@@ -15,11 +15,15 @@ Install NodeJS (https://nodejs.org)
 This suppose to install all the dependencies automatically into '/node_modules'.
 Execute in the project folder after cloning the repository and installing NodeJS.
 
+```bash
 $ npm install
+```
 
 ## Build
 
+```bash
 $ gulp build
+```
 
 For more options check 'gulpfile.js'.
 
