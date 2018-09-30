@@ -21,15 +21,7 @@ $ npm install
 
 $ gulp build
 
-More options (check gulpfile.js) : 
-
-$ gulp build_debug
-$ gulp build_css
-$ gulp build_css_debug
-$ gulp build_html
-$ gulp build_html_debug
-$ gulp build
-$ gulp build_debug
+For more options check 'gulpfile.js'.
 
 ## Published at
 
