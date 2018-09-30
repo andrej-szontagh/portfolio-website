@@ -1,5 +1,5 @@
 
-## Andrej Szontagh : Portfolio Website
+## Portfolio Website
 
 This repository contains my current portfolio website development files.
 It's just a DEMO, provisional temporary website that will be replaced with new complete website.
