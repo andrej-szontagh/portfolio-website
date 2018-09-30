@@ -1,0 +1,105 @@
+
+#gallery-images {
+
+    --blur: 0px;
+
+    // Prevent vertical gaps
+    line-height: 0;
+
+    .gallery-image {
+
+        width:              25%;
+        filter:             grayscale(1.0) contrast(0.5) brightness(0.5) blur(var(--blur));
+        transition:         filter 0.5s;
+        user-select:        none;
+        pointer-events:     auto;
+        cursor:             pointer;
+
+        &:hover {
+
+            filter:         grayscale(0);
+            transition:     filter 0.5s;
+        }
+
+        // we keep image width around 500px
+        // make sure the queries are descending !
+        @media (max-width: 4000px) { width:  12.5000%; }
+        @media (max-width: 3500px) { width:  14.2857%; }
+        @media (max-width: 3000px) { width:  16.6666%; }
+        @media (max-width: 2500px) { width:  20.0000%; }
+        @media (max-width: 2000px) { width:  25.0000%; }
+        @media (max-width: 1500px) { width:  33.3333%; }
+        @media (max-width: 1000px) { width:  50.0000%; }
+        @media (max-width: 500px)  { width: 100.0000%; }
+    }
+
+    #lightbox {
+
+        position:           fixed;
+        width:              100vw;
+        height:             100vh;
+        left:               0;
+        top:                0;
+        z-index:            2;          // to be over UI
+        cursor:             pointer;
+
+        // center the image
+        display:            flex;
+        align-items:        center;
+        justify-content:    center;
+
+        -webkit-user-drag:  none;
+        -khtml-user-drag:   none;
+        -moz-user-drag:     none;
+        -o-user-drag:       none;
+        user-drag:          none;
+
+        #lightbox-image {
+
+            // these are like desired maximum dimensions
+            height:             80vh;
+            width:              100vw;
+
+            // this will scale the image preserving aspect ratio to
+            // fill the desired width & height
+            object-fit:         contain;
+
+            user-select:        none;
+            pointer-events:     none;
+
+            -webkit-user-drag:  none;
+            -khtml-user-drag:   none;
+            -moz-user-drag:     none;
+            -o-user-drag:       none;
+            user-drag:          none;
+        }
+
+        &:before {
+
+            content:            "";
+            position:           fixed;
+            width:              100vw;
+            height:             100vh;
+            left:               0;
+            top:                0;
+            //background:         var(--color-bg);
+            background-image:   radial-gradient(var(--color-bg) 50%, black 100%);
+            opacity:            0.5;
+            z-index:            -1;
+        }
+
+        &.lightbox-hidden {
+
+            opacity:            0.0;
+            transition:         opacity 0.5s;
+            pointer-events:     none;
+        }
+
+        &.lightbox-visible {
+
+            opacity:            1.0;
+            transition:         opacity 0.5s;
+            pointer-events:     auto;
+        }
+    }
+}

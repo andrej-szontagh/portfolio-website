@@ -1,0 +1,225 @@
+
+#terms-conditions-button-hover,
+#terms-conditions-button-press {
+
+    position:           fixed;
+    top:                auto;
+    bottom:             $ui-margin-bottom;
+    left:               $ui-margin-left;
+    right:              auto;
+
+    text-align:         right;
+    cursor:             default;
+}
+
+// hover button is active by default
+#terms-conditions-button-hover { display: block;    }
+#terms-conditions-button-press { display: none;     }
+
+#terms-conditions-button-press {
+
+    // hide button when on so it doesn't collide with text
+    &[button-state='on'] {
+
+        opacity:    0.0;
+    }
+}
+
+#terms-conditions-block {
+
+    position:               fixed;
+    top:                    0;
+    left:                   0;
+    width:                  100vw;
+    height:                 100vh;
+
+    opacity:                0.0;
+    transition:             opacity 0.5s;
+
+    //background-color:       var(--color-fr);
+
+    pointer-events:         none;
+    user-select:            none;
+
+    /*
+    display:                flex;
+    justify-items:          center;
+    align-items:            center;
+    */
+
+    &.visible {
+
+        opacity:            1.0;
+        transition:         opacity 0.5s;
+    }
+
+    // override button setting !
+    &.button-press {
+
+        // puts hover object on the top over other elements but keeps under other buttons
+        z-index:                1;
+    }
+
+    .scroll {
+
+        --gap-vert:             1.71rem;
+        --gap-horz:             3.42rem;
+
+        padding-top:            $ui-margin-top + 6rem;
+        padding-bottom:         $ui-margin-top;         // top !
+
+        padding-left:           $ui-margin-left;
+        padding-right:          $ui-margin-right;
+
+        display:                grid;
+
+        grid-template-columns:  30rem 30rem;
+        grid-template-rows:     10rem 10rem;
+        grid-gap:               var(--gap-vert) var(--gap-horz);
+
+        justify-items:          stretch;
+
+        > div {
+
+            display:            inline-block;
+            float:              left;
+            justify-self:       stretch;
+            align-self:         stretch;
+
+            width:              fit-content;
+            height:             fit-content;
+        }
+
+        #block-a {
+
+            grid-column-start:  1;
+            grid-column-end:    span 1;
+            grid-row-start:     1;
+            grid-row-end:       span 1;
+        }
+
+        #block-b {
+
+            grid-column-start:  2;
+            grid-column-end:    span 1;
+            grid-row-start:     1;
+            grid-row-end:       span 1;
+        }
+
+        #block-c {
+
+            grid-column-start:  1;
+            grid-column-end:    span 1;
+            grid-row-start:     2;
+            grid-row-end:       span 1;
+        }
+
+        #block-d {
+
+            grid-column-start:  2;
+            grid-column-end:    span 1;
+            grid-row-start:     2;
+            grid-row-end:       span 1;
+        }
+
+
+        @include media ("width<1400px") {
+
+            grid-template-columns:  30rem;
+            grid-template-rows:     auto;
+
+            @include media ("width<" + (30rem + $ui-margin-left + $ui-margin-right)) {
+
+                grid-template-columns:  100%;
+                grid-template-rows:     auto;
+            }
+
+            #block-a {
+
+                grid-column-start:  1;
+                grid-column-end:    span 1;
+                grid-row-start:     1;
+                grid-row-end:       span 1;
+            }
+
+            #block-b {
+
+                grid-column-start:  1;
+                grid-column-end:    span 1;
+                grid-row-start:     2;
+                grid-row-end:       span 1;
+            }
+
+            #block-c {
+
+                grid-column-start:  1;
+                grid-column-end:    span 1;
+                grid-row-start:     3;
+                grid-row-end:       span 1;
+            }
+
+            #block-d {
+
+                grid-column-start:  1;
+                grid-column-end:    span 1;
+                grid-row-start:     4;
+                grid-row-end:       span 1;
+            }
+
+        }
+
+        p {
+
+            color:              var(--color-bg);
+            font-size:          var(--font-size-normal);
+            font-weight:        var(--font-weight-normal);
+            line-height:        1.3em;
+        }
+
+        h3 {
+
+            color:              var(--color-bg);
+            font-size:          var(--font-size-normal);
+            font-weight:        var(--font-weight-bold);
+            line-height:        1.2em;
+        }
+    }
+}
+
+@mixin terms-conditions-block-notfit () {
+
+    @include media ("width<text") {
+        @include media ("width>=1000px", "width<1400px", "height<800px")    { @content; }
+        @include media ("width>=800px",  "width<1000px", "height<850px")    { @content; }
+        @include media ("width>=600px",  "width<800px",  "height<950px")    { @content; }
+        @include media ("width>=500px",  "width<600px",  "height<1050px")   { @content; }
+        @include media ("width>=400px",  "width<500px",  "height<1250px")   { @content; }
+        @include media ("width<400px")                                      { @content; }
+        @include media ("height<500px")                                     { @content; }
+    }
+    @include media ("width>=text") {
+        @include media ("height<700px") { @content; }
+    }
+}
+
+@include terms-conditions-block-notfit {
+
+    // turn on scrolling ..
+    #terms-conditions-block.visible {
+
+        pointer-events: auto;
+        overflow:       auto;
+        height:         100%;
+
+        // for some reason scrolling doesn't
+        // work properly when hovering over text
+        & > div {
+
+            pointer-events: none;
+        }
+    }
+
+    // switch to press button
+    #terms-conditions-button-press { display: block;    }
+    #terms-conditions-button-hover { display: none;     }
+}

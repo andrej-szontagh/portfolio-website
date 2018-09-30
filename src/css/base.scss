@@ -1,0 +1,79 @@
+
+// ----------------------------------------------
+// GENERAL
+
+:root {
+
+    --color-fr:         rgb(225,225,225);
+    --color-bg:         rgb(32,34,37);
+
+    color:              var(--color-fr);
+    transition:         none;
+}
+
+body {
+
+    display:            block;
+    margin:             0;
+    padding:            0;
+    color:              inherit;
+    background:         var(--color-bg);
+
+    user-select:        none;
+
+    -webkit-user-drag:  none;
+    -khtml-user-drag:   none;
+    -moz-user-drag:     none;
+    -o-user-drag:       none;
+    user-drag:          none;
+}
+
+// to stop scrolling of the content behind modal overlay scrolling block ..
+// this is a little weird behaviour that causes scrolling events
+// propagate to the parent elements when you reach the edges of the scroll
+
+// https://stackoverflow.com/questions/5802467/prevent-scrolling-of-parent-element-when-inner-element-scroll-position-reaches-t
+// https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
+
+body.noscroll {
+
+    overflow: hidden;
+}
+
+#content {
+
+    overflow:           hidden;
+}
+
+// provisional overlay
+#content:before {
+
+    content:            "PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO";
+
+    position:           relative;
+
+    left:               var(--font-height-black);
+    top:                -1.0rem;
+    width:              0;
+    height:             0;
+
+    transform:          rotate(90deg);
+    transform-origin:   left bottom 0;
+
+    float:              left;
+
+    font-weight:        var(--font-weight-black);
+    font-size:          var(--font-size-6);
+    line-height:        var(--font-height-black);
+
+    white-space:        nowrap;
+    word-wrap:          normal;
+
+    display:            block;
+    color:              var(--color-fr);
+    opacity:            0.2;
+    z-index:            1;
+
+    pointer-events:     none;
+    user-select:        none;
+}

@@ -1,0 +1,105 @@
+
+TODO:   figure out hosting !!!
+        Use GitHUB .. just create repository "<name-of-repository>.github.io"
+        Download their app. Then using the full name of the repository as website URL.
+
+        The question is .. do we use separate repository for source and dist or somehow
+        use one repository for both while not making a complete mess ?
+
+        Google out how we should set up the files for a website and how for a webside dev. project
+
+BUG:    MOBILE HOVER :
+
+        to hover you have to touch the button but when touching the screen to hide the overlay you actually touch
+        element below and trigger image lightbox (for example).
+
+        We need to test this with actual phone !
+
+        TODO:   check all responsivity once again before release ..
+
+
+
+
+TODO:   add some animations for : email banner, terms & conditions text, copyright text ..
+
+TODO:   It's not always obvious that you should scroll (at some dimensions) when showing terms & conditions !
+
+
+TODO:   NEVER use OR REDUCE 'em' or 'rem' !!! .. except obvious text settings especially,
+        not for margins or media queries !!
+
+TODO:   remove $font-size-factor-down / up .. it's BS, may not work well every time since the
+        bounding box doesn't necessary scale linearly with text size.
+
+TODO:   remove CSS variables (unless absolutely necessary) use SASS variables they are more powerful and doesn't imply
+        that you can change them on the fly which would break the design in most cases
+        change font-sizes to SASS variables
+
+TODO:   remove device targeting media breakpoints ! .. they are useless !
+
+TODO:   make sure UI elements are in the GRID !
+
+TODO:   figure out how to actually use VUE in our website :)
+
+TODO:   test videos on actual phone to see how the video playback works !
+
+TODO:   handle mobile videos !! .. it plays too many videos at the same time
+        maybe one video at a time would be the best ..
+        test mobile with bandwith restriction to see how it looks like when videos are
+        buffering all the time or during playback
+
+IDEA:   add video/loading progress bar as a thin white line under the video container
+        filling from the left to right
+
+TODO:   test the website with bandwidth trottle
+TODO:   test on all browsers + your phone !
+
+TODO:   lazy loading of images (loads low-res tumbnails super fast and then load full-res images asynchronously)
+
+IDEA:   http://htmlgl.com/ ??
+
+REPOSITORY FOLDER STCUTURE CONVENTIONS
+
+https://github.com/kriasoft/Folder-Structure-Conventions
+
+DOWNLOAD FULL-RES TUMBNAIL:
+
+https://img.youtube.com/vi/<VIDEO ID HERE>/maxresdefault.jpg
+
+PNG - FULL-RES SHOTS FROM YOUTUBE VIDEOS
+
+http://www.youtubescreenshot.com/
+
+--------------
+
+Garden Designer WIP Demo A
+https://vimeo.com/288559688
+https://youtu.be/Joyiet6ag-A&t=40s
+https://youtu.be/Joyiet6ag-A?t=1m5s
+https://youtu.be/Joyiet6ag-A?start=65
+
+Garden Designer WIP Demo B
+https://vimeo.com/288563298
+https://youtu.be/sn55KJkVbfg
+
+Garden Designer WIP Demo C
+https://vimeo.com/288559732
+https://youtu.be/EnAjGROrvNw
+
+Garden Designer WIP Demo D
+https://vimeo.com/288559773
+https://youtu.be/MJMbMvZtvgo
+
+Garden Designer WIP Demo E
+https://vimeo.com/288563415
+https://youtu.be/-C-StR6aVxw&t=32s
+
+--------------
+
+META Elements DEMO A
+https://vimeo.com/288716561
+https://youtu.be/dfW26RLWRa8
+
+META Elements DEMO B
+https://vimeo.com/288716515
+https://youtu.be/euomAmzoJVg

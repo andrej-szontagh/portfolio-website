@@ -1,0 +1,37 @@
+{
+    "images" : [
+
+        "data\\images\\ui\\bouquet-designer_A_color.jpg",
+        "data\\images\\ui\\izo1.jpg",
+        "data\\images\\ui\\mobile1.jpg",
+        "data\\images\\ui\\mockup37.jpg",
+        "data\\images\\ui\\mockup39.jpg",
+        "data\\images\\ui\\me.jpg",
+        "data\\images\\ui\\ui01_bright.jpg",
+        "data\\images\\ui\\ui01_dark.jpg",
+        "data\\images\\ui\\ui02_bright.jpg",
+        "data\\images\\ui\\ui02_dark.jpg",
+
+        "data\\images\\mmorpg\\gameplay_01.jpg",
+        "data\\images\\mmorpg\\gameplay_02.jpg",
+        "data\\images\\mmorpg\\gameplay_03.jpg",
+        "data\\images\\mmorpg\\gameplay_04.jpg",
+        "data\\images\\mmorpg\\gameplay_05.jpg",
+        "data\\images\\mmorpg\\gameplay_06.jpg",
+        "data\\images\\mmorpg\\gameplay_07.jpg",
+        "data\\images\\mmorpg\\gameplay_08.jpg",
+        "data\\images\\mmorpg\\gameplay_09.jpg",
+        "data\\images\\mmorpg\\gameplay_10.jpg",
+        "data\\images\\mmorpg\\gameplay_11.jpg",
+
+        "data\\images\\mmorpg\\scenery_01.jpg",
+        "data\\images\\mmorpg\\scenery_02.jpg",
+        "data\\images\\mmorpg\\scenery_03.jpg",
+        "data\\images\\mmorpg\\scenery_04.jpg",
+        "data\\images\\mmorpg\\scenery_05.jpg",
+        "data\\images\\mmorpg\\scenery_06.jpg",
+        "data\\images\\mmorpg\\scenery_07.jpg",
+        "data\\images\\mmorpg\\scenery_08.jpg",
+        "data\\images\\mmorpg\\scenery_09.jpg"
+    ]
+}

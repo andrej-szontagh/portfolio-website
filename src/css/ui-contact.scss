@@ -1,0 +1,201 @@
+
+#contact {
+
+    position:       fixed;
+    width:          100vw;
+    height:         100vh;
+    display:        flex;
+    align-items:    center;
+
+    // actual button
+    a {
+        font-weight:        var(--font-weight-black);
+        font-size:          var(--font-size-3);
+        text-transform:     uppercase;
+        text-align:         left;
+
+        line-height:        1.6em;
+
+        position:           fixed;
+        left:               calc(#{$ui-margin-left} - 0.78em);
+        top:                $ui-margin-top  - 1.47rem;
+        width:              auto;
+        height:             auto;
+
+        padding:            0;
+        margin:             0;
+
+        cursor:             pointer;
+
+        pointer-events:     auto;
+        user-select:        none;
+
+        &:hover {
+
+            // we use different opacity for this button to
+            // reduce visual collision with the email banner
+            opacity:        0.3;
+        }
+
+        @include media ("width<text") {
+
+            @include media ("width<text-contact") {
+
+                font-size: var(--font-size-2);
+            }
+
+            @include media ("width<450px") {
+
+                .contact-tail { display: none; }
+
+                /*
+                @include media ("width<370px") {
+
+                    .contact-slash { display: none; }
+
+                    left: $ui-margin-left;
+                }
+                */
+            }
+        }
+    }
+
+    // hidden email banner
+    #email {
+
+        // this makes height values obvious
+        line-height:            1em;
+
+        // dimensions of the text element in font size relative values
+        $lines-two-width:       8.9em;
+        $lines-three-width:     6.4em;
+
+        // portrait sizes for 16px base font size >
+
+        $w-2-big:               1800px;
+        $h-2-big:               500px;
+
+        $w-2-small:             1200px;
+        $h-2-small:             350px;
+
+        $w-2-tiny:              800px;
+        $h-2-tiny:              200px;
+
+        $w-3-big:               1400px;
+        $h-3-big:               800px;
+
+        $w-3-small:             900px;
+        $h-3-small:             450px;
+
+        $w-3-tiny:              580px;
+        $h-3-tiny:              300px;
+
+        @mixin l-2-big      { font-size:var(--font-size-5); width:$lines-two-width;     }
+        @mixin l-2-small    { font-size:var(--font-size-4); width:$lines-two-width;     }
+        @mixin l-2-tiny     { font-size:var(--font-size-3); width:$lines-two-width;     }
+        @mixin l-3-big      { font-size:var(--font-size-5); width:$lines-three-width;   }
+        @mixin l-3-small    { font-size:var(--font-size-4); width:$lines-three-width;   }
+        @mixin l-3-tiny     { font-size:var(--font-size-3); width:$lines-three-width;   }
+
+        @mixin p-2-big      { @include l-2-big;     left: calc(50% - 1.0em); }
+        @mixin p-2-small    { @include l-2-small;   left: calc(50% - 1.0em); }
+        @mixin p-2-tiny     { @include l-2-tiny;    left: calc(50% - 1.0em); }
+        @mixin p-3-big      { @include l-3-big;     left: calc(50% - 1.5em); }
+        @mixin p-3-small    { @include l-3-small;   left: calc(50% - 1.5em); }
+        @mixin p-3-tiny     { @include l-3-tiny;    left: calc(50% - 1.5em); }
+
+        @mixin ml-2-big     ($f) { @include media ("width>=" + $w-2-big     * $f, "height>=" + $h-2-big     * $f) { @include l-2-big;     }}
+        @mixin ml-2-small   ($f) { @include media ("width>=" + $w-2-small   * $f, "height>=" + $h-2-small   * $f) { @include l-2-small;   }}
+        @mixin ml-2-tiny    ($f) { @include media ("width>=" + $w-2-tiny    * $f, "height>=" + $h-2-tiny    * $f) { @include l-2-tiny;    }}
+        @mixin ml-3-big     ($f) { @include media ("width>=" + $w-3-big     * $f, "height>=" + $h-3-big     * $f) { @include l-3-big;     }}
+        @mixin ml-3-small   ($f) { @include media ("width>=" + $w-3-small   * $f, "height>=" + $h-3-small   * $f) { @include l-3-small;   }}
+        @mixin ml-3-tiny    ($f) { @include media ("width>=" + $w-3-tiny    * $f, "height>=" + $h-3-tiny    * $f) { @include l-3-tiny;    }}
+
+        @mixin mp-2-big     ($f) { @include media ("width>=" + $h-2-big     * $f, "height>=" + $w-2-big     * $f) { @include p-2-big;     }}
+        @mixin mp-2-small   ($f) { @include media ("width>=" + $h-2-small   * $f, "height>=" + $w-2-small   * $f) { @include p-2-small;   }}
+        @mixin mp-2-tiny    ($f) { @include media ("width>=" + $h-2-tiny    * $f, "height>=" + $w-2-tiny    * $f) { @include p-2-tiny;    }}
+        @mixin mp-3-big     ($f) { @include media ("width>=" + $h-3-big     * $f, "height>=" + $w-3-big     * $f) { @include p-3-big;     }}
+        @mixin mp-3-small   ($f) { @include media ("width>=" + $h-3-small   * $f, "height>=" + $w-3-small   * $f) { @include p-3-small;   }}
+        @mixin mp-3-tiny    ($f) { @include media ("width>=" + $h-3-tiny    * $f, "height>=" + $w-3-tiny    * $f) { @include p-3-tiny;    }}
+
+        @include media ("portrait") {
+
+            // anchored at ..
+            position:           fixed;
+            left:               $ui-margin-left;
+            top:                $ui-margin-top + 8.3rem;
+            transform:          translateY(-100%) rotate(90deg);
+            transform-origin:   bottom left;
+
+            // latest have the highest priority
+
+            @include p-3-tiny;  // default
+
+            @include media ("width<text") {
+                @include mp-2-tiny  ($font-size-factor-down);
+                @include mp-3-tiny  ($font-size-factor-down);
+                @include mp-2-small ($font-size-factor-down);
+                @include mp-3-small ($font-size-factor-down);
+                @include mp-2-big   ($font-size-factor-down);
+                @include mp-3-big   ($font-size-factor-down);
+            }
+            @include media ("width>=text") {
+                @include mp-2-tiny  ($font-size-factor-up);
+                @include mp-3-tiny  ($font-size-factor-up);
+                @include mp-2-small ($font-size-factor-up);
+                @include mp-3-small ($font-size-factor-up);
+                @include mp-2-big   ($font-size-factor-up);
+                @include mp-3-big   ($font-size-factor-up);
+            }
+        }
+
+        @include media ("landscape") {
+
+            // anchored at ..
+            position:           fixed;
+            left:               $ui-margin-left;
+
+            // latest have the highest priority
+
+            @include l-3-tiny;  // default
+
+            @include media ("width<text") {
+                @include ml-2-tiny  ($font-size-factor-down);
+                @include ml-3-tiny  ($font-size-factor-down);
+                @include ml-2-small ($font-size-factor-down);
+                @include ml-3-small ($font-size-factor-down);
+                @include ml-2-big   ($font-size-factor-down);
+                @include ml-3-big   ($font-size-factor-down);
+            }
+            @include media ("width>=text") {
+                @include ml-2-tiny  ($font-size-factor-up);
+                @include ml-3-tiny  ($font-size-factor-up);
+                @include ml-2-small ($font-size-factor-up);
+                @include ml-3-small ($font-size-factor-up);
+                @include ml-2-big   ($font-size-factor-up);
+                @include ml-3-big   ($font-size-factor-up);
+            }
+        }
+
+        font-weight:        var(--font-weight-black);
+
+        text-transform:     lowercase;
+        word-break:         break-word;
+
+        color:              var(--color-bg);
+        z-index:            1;
+
+        pointer-events:     none;
+        user-select:        auto;
+
+        opacity:            0.0;
+        transition:         opacity 0.5s;
+    }
+
+    // unveil the email banner
+    &:hover #email {
+
+        opacity:            1.0;
+        transition:         opacity 0.5s;
+    }
+}

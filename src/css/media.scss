@@ -1,0 +1,74 @@
+
+// https://medium.freecodecamp.org/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862
+// https://cdn-images-1.medium.com/max/2000/1*7YeOvzoYgUEDJdfQy2ERXg.png
+
+// using this meta !
+// <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+// USING >>
+// https://include-media.com/
+
+// WARNING:
+//  Use '<=' to avoid low accuracy of '<' when using 'rem' or 'em' units
+//  when using '<52rem' which resulted in 51.9 and some pixels widths slipped in between '>=52rem' !
+//  that's why use '<=51.99rem' instead !!
+
+$breakpoints: (
+
+    // text size breakpoint
+    text-contact:   800px,      // contact button will shrink below this breakpoint to fit into viewport
+    text:           1600px,
+
+    // orientation invariant
+    phone:          600px,
+    tablet:         1200px,
+
+    // landscape
+    l-phone:        900px,
+    l-tablet:       1200px,
+
+    // portrait
+    p-phone:        600px,
+    p-tablet:       900px
+);
+
+// this is a custom helper mixin that allows me to
+// write min. box / boundary based queries with else statements ..
+// it's an approach that helps avoid collisions of queries and focus on
+// each variation independently in the priority fashion making the whole
+// responsive design process that much more easier
+
+// EXAMPLE:
+/*
+@include media_box_if           (1300px,    300px) { @include horizontal;   } @include media_box_else {
+    @include media_box_if       (800px,     750px) { @include vertical;     } @include media_box_else {
+        @include media_box_if   (1000px,    400px) { @include stacked;      }
+    }
+}
+*/
+
+// how to handle SASS local vs global variables ..
+// https://webdesign.tutsplus.com/articles/understanding-variable-scope-in-sass--cms-23498
+
+$media_box_prev_w: 0px;
+$media_box_prev_h: 0px;
+
+@mixin media_box_if ($w, $h) {
+
+    $media_box_prev_w: $w !global;
+    $media_box_prev_h: $h !global;
+
+    @include media ("width>" + $w, "height>" + $h) { @content; }
+}
+
+@mixin media_box_else () {
+
+    // these are local variables protected from
+    // modification outside of this scope ..
+
+    $sw : $media_box_prev_w;
+    $sh : $media_box_prev_h;
+
+    @include media ("width<="   + $sw) { @content; }
+    @include media ("height<="  + $sh) { @content; }
+}

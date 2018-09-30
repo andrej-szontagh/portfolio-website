@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+        title Andrej Szontagh
+
+        //- https://wpbuffs.com/responsive-media-queries/
+
+        meta(name="viewport"    content="width=device-width, initial-scale=1")
+        meta(name="pinterest"   content="nopin")
+
+        link(rel="stylesheet" href="styles.css")
+
+        //-
+            if debug
+                script(src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js')
+            else
+                script(src='https://cdn.jsdelivr.net/npm/vue')
+
+        script(src='masonry.pkgd.min.js')
+        script(src='scripts.js')
+
+    body
+        div(style="width:0; height:0;")
+            include dist/svg.svg
+
+        include src/html/content.html
+
+        //- include src/html/ui.html

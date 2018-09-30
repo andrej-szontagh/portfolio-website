@@ -1,0 +1,84 @@
+
+#copyright-button {
+
+    position:           fixed;
+    top:                auto;
+    bottom:             $ui-margin-bottom;
+    left:               auto;
+    right:              $ui-margin-right;
+    text-align:         right;
+    pointer-events:     auto;
+    user-select:        none;
+
+    // the size is so small here that wrapping to
+    // major text breakpoints is redundant
+    @include media ("width<500px") {
+
+        display:    none;
+    }
+}
+
+#copyright-block {
+
+    position:               fixed;
+
+    right:                  $ui-margin-right    + 3.4rem;
+    bottom:                 $ui-margin-bottom   + 3.4rem;
+
+    width:                  30rem;
+    height:                 auto;
+
+    opacity:                0.0;
+    transition:             opacity 0.5s;
+
+//  background-color:       var(--color-fr);
+
+    pointer-events:         none;
+    user-select:            none;
+
+    z-index:                1;
+
+    &.visible {
+
+//      opacity:            0.5;
+        opacity:            1.0;
+        transition:         opacity 0.5s;
+    }
+
+    & > div {
+
+        display:            inline-block;
+        padding:            1.3rem;
+    }
+
+    #block-a,
+    #block-b {
+
+        p {
+
+            color:              var(--color-bg);
+            font-size:          var(--font-size-normal);
+            font-weight:        var(--font-weight-bold);
+            line-height:        1.3em;
+        }
+
+        h4 {
+
+            color:              var(--color-bg);
+            font-size:          var(--font-size-normal);
+            font-weight:        var(--font-weight-normal);
+            line-height:        1.2em;
+        }
+    }
+
+    #block-c {
+
+        p {
+
+            color:              var(--color-bg);
+            font-size:          var(--font-size-normal);
+            font-weight:        var(--font-weight-normal);
+            line-height:        1.3em;
+        }
+    }
+}

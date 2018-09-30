@@ -1,0 +1,78 @@
+
+#gallery-videos {
+
+    --section-height:       40vw;
+    --video-height:         calc(var(--section-height) *  1.4);
+    --video-offset:         calc(var(--section-height) * -0.2);
+    --blur:                 0px;
+
+    .video-wrapper {
+
+        width:                  100%;
+        height:                 var(--section-height);   // keep the video in desired proportion
+        user-select:            none;
+        pointer-events:         auto;
+        overflow:               hidden;
+
+        & {
+            filter:             grayscale(1.0) contrast(0.5) brightness(0.5);
+            transition:         filter 0.5s;
+
+            // we want the blur to be on the iframe so the blurry edges
+            // will be cut off by the wrapper container using overflow:hidden
+
+            iframe {
+
+                filter: blur(var(--blur));
+            }
+        }
+
+        &:hover {
+
+            filter:             grayscale(0);
+            transition:         filter 0.5s;
+
+            iframe {
+
+                filter: none;
+            }
+        }
+
+        .video-cover {
+
+            &.cover-hidden {
+
+                z-index: 0;
+            }
+
+            &.cover-visible {
+
+                z-index: 1;
+            }
+
+            position:           absolute;
+            width:              100%;
+            left:               0;
+            height:             var(--video-height);
+            top:                var(--video-offset);
+            user-select:        none;
+            pointer-events:     none;
+            z-index:            1;
+            filter:             blur(var(--blur));
+        }
+
+        iframe {
+
+            position:           absolute;
+            width:              100%;
+            left:               0;
+
+            // we have to scale to stretch the video accoring aspect ratio of the video
+            height:             var(--video-height);
+            top:                var(--video-offset);
+
+            user-select:        none;
+            pointer-events:     none;
+        }
+    }
+}

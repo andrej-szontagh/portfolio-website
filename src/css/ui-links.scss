@@ -1,0 +1,118 @@
+
+#external-links {
+
+    @mixin horizontal {
+
+        display:            block;
+
+        position:           fixed;
+        top:                $ui-margin-top;
+        left:               auto;
+        right:              $ui-margin-right;
+
+        text-align:         right;
+        float:              right;
+
+        max-width:          none;
+
+        a {
+            margin-left:        5em;    // this is for horizontally stacked links
+            margin-bottom:      5em;    // this is for vertically stacked links
+
+            float:              right;
+            clear:              none;
+        }
+
+        div {
+
+            transform:          none;
+        }
+    }
+
+    @mixin stacked () {
+
+        display:            block;
+
+        position:           fixed;
+        top:                $ui-margin-top;
+        left:               auto;
+        right:              $ui-margin-right;
+
+        text-align:         right;
+        float:              right;
+
+        max-width:          450px;
+
+        a {
+            margin-left:        5em;
+            margin-bottom:      4em;
+
+            float:              right;
+            clear:              none;
+        }
+
+        div {
+
+            transform:          none;
+        }
+    }
+
+    @mixin vertical {
+
+        display:            block;
+
+        position:           fixed;
+        top:                $ui-margin-top;
+        left:               auto;
+        right:              $ui-margin-right - 0.48rem;
+
+        text-align:         right;
+        float:              right;
+
+        max-width:          none;
+
+        a {
+            margin-left:        0em;    // this is for horizontally stacked links
+            margin-bottom:      7em;    // this is for vertically stacked links
+
+            float:              right;
+            clear:              both;
+
+            // this is little hack that will help remove extra margins
+            // caused by rotation of the children
+
+            //width:              0;
+            //height:             0;
+
+            div {
+
+                // rotation doesn't affect the parent container which is a problem !
+                // https://stackoverflow.com/questions/16301625/rotated-elements-in-css-that-affect-their-parents-height-correctly
+
+                transform-origin:   top right;
+                transform:          rotate(90deg) translateX(100%);
+            }
+        }
+    }
+
+    display: none;
+
+    @include media ("width<text-contact") {
+        @include media_box_if       (550px, 750px) { @include vertical;     } @include media_box_else {
+            @include media_box_if   (750px, 400px) { @include stacked;      }
+        }
+    }
+
+    @include media ("width>=text-contact", "width<text") {
+        @include media_box_if           (1300px,    300px) { @include horizontal;   } @include media_box_else {
+            @include media_box_if       (550px,     750px) { @include vertical;     } @include media_box_else {
+                @include media_box_if   (1000px,    400px) { @include stacked;      }
+            }
+        }
+    }
+
+    @include media ("width>=text") {
+
+        @include horizontal;
+    }
+}
