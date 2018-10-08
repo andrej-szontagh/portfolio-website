@@ -4,7 +4,6 @@
     --section-height:       40vw;
     --video-height:         calc(var(--section-height) *  1.4);
     --video-offset:         calc(var(--section-height) * -0.2);
-    --blur:                 0px;
 
     .video-wrapper {
 
@@ -14,43 +13,13 @@
         pointer-events:         auto;
         overflow:               hidden;
 
-        & {
-            filter:             grayscale(1.0) contrast(0.5) brightness(0.5);
-            transition:         filter 0.5s;
-
-            // we want the blur to be on the iframe so the blurry edges
-            // will be cut off by the wrapper container using overflow:hidden
-
-            iframe {
-
-                filter: blur(var(--blur));
-            }
-        }
-
-        &:hover {
-
-            filter:             grayscale(0);
-            transition:         filter 0.5s;
-
-            iframe {
-
-                filter: none;
-            }
-        }
-
         .video-cover {
 
-            &.cover-hidden {
+            &.cover-hidden  {   display: none;  }
+            &.cover-visible {   display: block; }
 
-                z-index: 0;
-            }
-
-            &.cover-visible {
-
-                z-index: 1;
-            }
-
-            position:           absolute;
+            // position:           absolute;
+            position:           relative;
             width:              100%;
             left:               0;
             height:             var(--video-height);
@@ -58,12 +27,14 @@
             user-select:        none;
             pointer-events:     none;
             z-index:            1;
-            filter:             blur(var(--blur));
+
+            // filter:             blur(var(--blur));
         }
 
         iframe {
 
-            position:           absolute;
+            // position:           absolute;
+            position:           relative;
             width:              100%;
             left:               0;
 

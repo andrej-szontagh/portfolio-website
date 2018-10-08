@@ -1,24 +1,20 @@
 
 #gallery-images {
 
-    --blur: 0px;
-
     // Prevent vertical gaps
-    line-height: 0;
+    line-height: 0;     // no units !!
 
-    .gallery-image {
+    .gallery-block {
 
-        width:              25%;
-        filter:             grayscale(1.0) contrast(0.5) brightness(0.5) blur(var(--blur));
-        transition:         filter 0.5s;
-        user-select:        none;
-        pointer-events:     auto;
-        cursor:             pointer;
+        width: 25%;
 
-        &:hover {
+        img {
 
-            filter:         grayscale(0);
-            transition:     filter 0.5s;
+            display:            block;  // !!
+            width:              100%;   // !!
+
+            user-select:        none;
+            pointer-events:     none;
         }
 
         // we keep image width around 500px
@@ -43,6 +39,20 @@
         z-index:            2;          // to be over UI
         cursor:             pointer;
 
+        &.lightbox-hidden {
+
+            opacity:            0.0;
+            transition:         opacity 0.5s;
+            pointer-events:     none;
+        }
+
+        &.lightbox-visible {
+
+            opacity:            1.0;
+            transition:         opacity 0.5s;
+            pointer-events:     auto;
+        }
+
         // center the image
         display:            flex;
         align-items:        center;
@@ -54,11 +64,38 @@
         -o-user-drag:       none;
         user-drag:          none;
 
+        #lightbox-background {
+
+            position:           absolute;
+            top:                0;
+            left:               0;
+            width:              100%;
+            height:             100%;
+
+            // background-color:   var(--color-bg);
+            // opacity:            0.9;
+
+            // background-image:   radial-gradient(var(--color-bg) 50%, black 100%);
+
+            // background-image:   radial-gradient(
+            //     rgba(var(--color-bg-r), var(--color-bg-g), var(--color-bg-b), 0.5) 50%,
+            //     rgba(var(--color-bg-r), var(--color-bg-g), var(--color-bg-b), 1.0) 100%);
+
+            // background-image:   radial-gradient(
+            //     rgba(var(--color-bg-r), var(--color-bg-g), var(--color-bg-b), 0.5) 50%, black 100%);
+
+            background-color:   black;
+            opacity:            0.75;
+        }
+
         #lightbox-image {
 
             // these are like desired maximum dimensions
             height:             80vh;
-            width:              100vw;
+            width:              auto;
+            // width:              100vw;
+
+            z-index:            1;
 
             // this will scale the image preserving aspect ratio to
             // fill the desired width & height
@@ -72,34 +109,8 @@
             -moz-user-drag:     none;
             -o-user-drag:       none;
             user-drag:          none;
-        }
 
-        &:before {
-
-            content:            "";
-            position:           fixed;
-            width:              100vw;
-            height:             100vh;
-            left:               0;
-            top:                0;
-            //background:         var(--color-bg);
-            background-image:   radial-gradient(var(--color-bg) 50%, black 100%);
-            opacity:            0.5;
-            z-index:            -1;
-        }
-
-        &.lightbox-hidden {
-
-            opacity:            0.0;
-            transition:         opacity 0.5s;
-            pointer-events:     none;
-        }
-
-        &.lightbox-visible {
-
-            opacity:            1.0;
-            transition:         opacity 0.5s;
-            pointer-events:     auto;
+            // box-shadow:         0 0px 20px 0px rgba(0, 0, 0, 0.5);
         }
     }
 }

@@ -6,6 +6,8 @@ $ui-margin-right:       4.8rem;
 
 #ui {
 
+    @include font-normal;
+
     // without this css below the UI doesn't show up at all
     height:             100vh;
     width:              100vw;
@@ -16,13 +18,57 @@ $ui-margin-right:       4.8rem;
 
     // some base settings ..
     font-size:          var(--font-size-normal);
-    font-weight:        var(--font-weight-normal);
-    line-height:        1.6em;
+    line-height:        1.6;    // no units !!
 
     // the container catches pointer events
     pointer-events:     none;
 
-    // fix the children
+    // buttons below overlay
+
+    &.overlay {
+
+        // All buttons default ..
+
+        .button-hover,
+        .button-press {
+
+            &:not(.hidden) {
+
+                pointer-events:     none;
+                opacity:            0.3;
+
+                &[button-state='on'] {
+
+                    opacity:        1.0;
+                    pointer-events: auto;
+                }
+            }
+        }
+
+        // some special cases ..
+
+        // 'visible' class might not be always set
+        #contact-button:not(.hidden) {
+
+            opacity:            0.0;
+            pointer-events:     none;
+
+            &.button-hover[button-state='on'] {
+
+                pointer-events:     auto;
+            }
+        }
+
+        // hide press button when turned on, priority override.
+        #terms-conditions-button.button-press[button-state='on'] {
+
+            opacity:            0.0;
+            pointer-events:     none;
+        }
+    }
+
+    // buttons defaults ..
+
     .button-hover,
     .button-press {
 
@@ -72,7 +118,9 @@ $ui-margin-right:       4.8rem;
         &.visible {
 
             transition:         opacity 0.5s;
-            opacity:            0.5;
+            opacity:            0.7;
+
+            pointer-events:     auto;
         }
 
         &.hidden {

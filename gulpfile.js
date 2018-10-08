@@ -77,15 +77,17 @@ function js_concat (cb) {
         gulp.src    ([
 
             //'src/js/lib/decodeurl.js',
+            'src/js/lib/utils.js',
             'src/js/lib/animations.js',
             'src/js/lib/json.js',
             'src/js/lib/youtube.js',
 
-            'src/js/gallery-videos.js',
-            'src/js/gallery-images.js',
+            'src/js/gallery/gallery.js',
+            'src/js/gallery/gallery-videos.js',
+            'src/js/gallery/gallery-images.js',
 
             'src/js/ui.js',
-
+            
             'src/js/onload.js',
         ]),
         gulp_concat ('scripts.js'),

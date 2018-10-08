@@ -1,60 +1,66 @@
-<div id="ui">
-    <div id="external-links">
-        <a href="https://www.linkedin.com/in/andrejszontagh/"   target="_blank" class="button-hover" button-target="#overlay"><div>LinkedIn</div></a>
-        <a href="https://www.behance.net/andrejszon331e"        target="_blank" class="button-hover" button-target="#overlay"><div>Behance</div></a>
-        <a href="https://dribbble.com/AndrejSzontagh"           target="_blank" class="button-hover" button-target="#overlay"><div>Dribbble</div></a>
-        <a href="https://github.com/andrej-szontagh"            target="_blank" class="button-hover" button-target="#overlay"><div>GitHub</div></a>
-    </div>
-    <div id="terms-conditions-button-hover" class="button-hover" button-state="off" button-target="#overlay, #terms-conditions-block">Terms & Conditions</div>
-    <div id="terms-conditions-button-press" class="button-press" button-state="off" button-target="#overlay, #terms-conditions-block">Terms & Conditions</div>
-    <div id="terms-conditions-block"        class="button-press hidden"
-        button-state="{#terms-conditions-button-press}"
-        button-target="#overlay, #terms-conditions-block">
-        <div class="scroll">
+<div id="body-wrapper">
+    <div id="ui">
+        <div id="external-links">
+            <a href="https://www.linkedin.com/in/andrejszontagh/"   target="_blank" class="button-hover" button-target="#overlay"><div>LinkedIn</div></a>
+            <a href="https://www.behance.net/andrejszon331e"        target="_blank" class="button-hover" button-target="#overlay"><div>Behance</div></a>
+            <a href="https://dribbble.com/AndrejSzontagh"           target="_blank" class="button-hover" button-target="#overlay"><div>Dribbble</div></a>
+            <a href="https://github.com/andrej-szontagh"            target="_blank" class="button-hover" button-target="#overlay"><div>GitHub</div></a>
+        </div>
+        <div id="terms-conditions-button" class="button-hover"
+            button-state="off"
+            button-target="#overlay, #terms-conditions-block"
+            button-scroll="#terms-conditions-block .scroll">
+            Terms & Conditions
+        </div>
+        <div id="terms-conditions-block" class="hidden">
+            <div class="scroll button-press" button-state="[on]" button-set-off="#terms-conditions-button">
+                <div id="block-a">
+                    <h3>It's €800 / $1000 per milestone.</h3>
+                    <p>The project is subdivided into milestone blocks which are designed to be completed in one week (can take longer sometimes). If you are happy with the result and I receive the payment for the milestone we can move on to the next one.</p>
+                </div>
+                <div id="block-b">
+                    <h3>I prefer written communication.</h3>
+                    <p>It might sounds counterintuitive, but it saves time, makes communication more clear and provide archivation for reference. Primarily email, secondary messaging app. like Skype.</p>
+                </div>
+                <div id="block-c">
+                    <h3>I work solo and remote.</h3>
+                    <p>Dealing with extra people can easily cause train to run out of rails without me being able to do anything about it. I have high standards and I don't like to make compromises unless necessary. Also I would love to put my name on my work.</p>
+                </div>
+                <div id="block-d">
+                    <h3>Agreements have to accommodate my needs.</h3>
+                    <p>The right to show the work in my portfolio, tech. support, risks and future burden. Attribution is welcome.</p>
+                </div>
+            </div>
+        </div>
+        <div id="copyright-button"  class="button-hover" button-state="off" button-target="#overlay, #copyright-block">© 2018</div>
+        <div id="copyright-block"   class="hidden">
             <div id="block-a">
-                <h3>It's €800 / $1000 per milestone.</h3>
-                <p>The project is subdivided into milestone blocks which are designed to be completed in one week (can take longer sometimes). If you are happy with the result and I receive the payment for the milestone we can move on to the next one.</p>
+                <h4>Design</h4>
+                <p>Andrej Szontagh</p>
             </div>
             <div id="block-b">
-                <h3>I prefer written communication.</h3>
-                <p>It might sounds counterintuitive, but it saves time, makes communication more clear and provide archivation for reference. Primarily email, secondary messaging app. like Skype.</p>
+                <h4>Development</h4>
+                <p>Andrej Szontagh</p>
             </div>
             <div id="block-c">
-                <h3>I work solo and remote.</h3>
-                <p>Dealing with extra people can easily cause train to run out of rails without me being able to do anything about it. I have high standards and I don't like to make compromises unless necessary. Also I would love to put my name on my work.</p>
-            </div>
-            <div id="block-d">
-                <h3>Agreements have to accommodate my needs.</h3>
-                <p>The right to show the work in my portfolio, tech. support, risks and future burden. Attribution is welcome.</p>
+                <p>© 2018 Andrej Szontagh.<br>All Rights Reserved.</p>
             </div>
         </div>
-    </div>
-    <div id="copyright-button"  class="button-hover" button-state="off" button-target="#overlay, #copyright-block">© 2018</div>
-    <div id="copyright-block"   class="hidden">
-        <div id="block-a">
-            <h4>Design</h3>
-            <p>Andrej Szontagh</p>
+        <a href="" id="contact-button" class="button-hover" button-state="off" button-target="#overlay, #contact-block">
+            <span class="contact-button-slash">\ </span>Contact<span class="contact-button-tail"> me</span>
+        </a>
+        <div id="contact-block">
+            <div id="contact-email"></div>
         </div>
-        <div id="block-b">
-            <h4>Development</h3>
-            <p>Andrej Szontagh</p>
-        </div>
-        <div id="block-c">
-            <p>© 2018 Andrej Szontagh.<br>All Rights Reserved.</p>
-        </div>
+        <div id="overlay" class="button-press hidden" button-state="[on]" button-set-off="#ui .button-press" button-target="#overlay"></div>
     </div>
-    <div id="contact">
-        <a href="" id="contact-button" class="button-hover" button-state="off" button-target="#overlay">
-            <span class="contact-slash">\ </span>Contact<span class="contact-tail"> me</span></a>
-        <div id="email"></div>
-    </div>
-    <div id="overlay"></div>
-</div>
-<div id="content">
-    <div id="gallery-videos"></div>
-    <div id="gallery-images">
-        <div id="lightbox">
-            <img id="lightbox-image" src="">
+    <div id="content">
+        <div id="gallery-videos"></div>
+        <div id="gallery-images">
+            <div id="lightbox">
+                <div id="lightbox-background"></div>
+                <img id="lightbox-image" src="">
+            </div>
         </div>
     </div>
 </div>

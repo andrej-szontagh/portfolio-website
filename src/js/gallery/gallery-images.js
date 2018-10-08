@@ -1,5 +1,5 @@
 
-function GalleryImages (container, filepath_json, callback) {
+function GalleryImages (container, filepath_json, callback_init, callback_update) {
 
     var t = this;
 
@@ -22,8 +22,8 @@ function GalleryImages (container, filepath_json, callback) {
 
     t.layout = new Masonry ('#gallery-images', {
 
-        itemSelector:       '.gallery-image',
-        columnWidth:        '.gallery-image',
+        itemSelector:       '.gallery-block',
+        columnWidth:        '.gallery-block',
         percentPosition:    true,
         transitionDuration: 0,
         stagger:            0,
@@ -36,7 +36,8 @@ function GalleryImages (container, filepath_json, callback) {
 
             // console.log ("json.images [i] >> " + json.images [i]);
 
-            var img = document.createElement ('img');
+            var wrapper     = document.createElement ('div');
+            var img         = document.createElement ('img');
 
             // https://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
 
@@ -47,18 +48,15 @@ function GalleryImages (container, filepath_json, callback) {
 
             // console.log ("FILE : " + base + " EXTENSION : " + extension);
 
-            img.src         = base + "_tumbnail" + extension;
-            img.className   = "gallery-image";
+            wrapper.className = "gallery-block";
+
+            img.src = base + "_tumbnail" + extension;
 
             // store full res image filename for lightbox (loads when opening lightbox)
             img.setAttribute ("src-lightbox", filename);
 
-            img.onclick = function (e) {
-
-                t.showLightbox (e.target);
-            };
-
-            t.container.appendChild (img);
+            wrapper     .appendChild (img);
+            t.container .appendChild (wrapper);
 
             // as soon as image is loaded update the layout ..
 
@@ -66,8 +64,10 @@ function GalleryImages (container, filepath_json, callback) {
 
                 // console.log ("Image loaded > " + e.target);
 
-                t.layout.appended (e.target);
+                t.layout.appended (e.target.parentNode);
                 t.layout.layout (); // !!
+
+                callback_update ();
             });
 
             img.addEventListener ('error', function () {
@@ -76,11 +76,13 @@ function GalleryImages (container, filepath_json, callback) {
 
                 e.target.remove ();
                 t.layout.layout (); // !!
+
+                callback_update ();
             });
         }
 
         // images might not be loaded yet and layout not ready !
-        callback ();
+        callback_init ();
     });
 };
 
@@ -93,7 +95,22 @@ GalleryImages.prototype = {
         this.lightbox.classList.remove  ("lightbox-hidden");
         this.lightbox.classList.add     ("lightbox-visible");
 
-        this.lightbox_img.src = img.getAttribute ("src-lightbox");
+        // Set low-res image first (which suppose to be already loaded)
+        // and after showing up start loading actuall hi-res image
+
+        this.lightbox_img.setAttribute ("src",      img.getAttribute ("src"));
+        this.lightbox_img.setAttribute ("src-lazy", img.getAttribute ("src-lightbox"));
+
+        this.lightbox_img.onload = function (e) {
+
+            var img = e.target;
+
+            img.src = img.getAttribute ("src-lazy");
+        }
+
+        // TODO:
+        // body.classList.add ("noscroll");
+        // call it from some UI function
 
         this.lightbox_visible = true;
     },
@@ -102,6 +119,10 @@ GalleryImages.prototype = {
 
         this.lightbox.classList.remove  ("lightbox-visible");
         this.lightbox.classList.add     ("lightbox-hidden");
+
+        // TODO:
+        // body.classList.remove ("noscroll");
+        // call it from some UI function
 
         this.lightbox_visible = false;
     },

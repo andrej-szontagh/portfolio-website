@@ -1,7 +1,7 @@
 
 #copyright-button {
 
-    position:           fixed;
+    position:           absolute;
     top:                auto;
     bottom:             $ui-margin-bottom;
     left:               auto;
@@ -20,7 +20,7 @@
 
 #copyright-block {
 
-    position:               fixed;
+    position:               absolute;
 
     right:                  $ui-margin-right    + 3.4rem;
     bottom:                 $ui-margin-bottom   + 3.4rem;
@@ -56,18 +56,20 @@
 
         p {
 
+            @include font-bold;
+
             color:              var(--color-bg);
             font-size:          var(--font-size-normal);
-            font-weight:        var(--font-weight-bold);
-            line-height:        1.3em;
+            line-height:        1.3;    // no units !!
         }
 
         h4 {
 
+            @include font-normal;
+
             color:              var(--color-bg);
             font-size:          var(--font-size-normal);
-            font-weight:        var(--font-weight-normal);
-            line-height:        1.2em;
+            line-height:        1.2;    // no units !!
         }
     }
 
@@ -75,10 +77,11 @@
 
         p {
 
+            @include font-normal;
+
             color:              var(--color-bg);
             font-size:          var(--font-size-normal);
-            font-weight:        var(--font-weight-normal);
-            line-height:        1.3em;
+            line-height:        1.3;    // no units !!
         }
     }
 }

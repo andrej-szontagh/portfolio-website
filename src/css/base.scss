@@ -4,11 +4,24 @@
 
 :root {
 
+    --color-fr-r:       225;
+    --color-fr-g:       225;
+    --color-fr-b:       225;
+
+    --color-bg-r:       32;
+    --color-bg-g:       34;
+    --color-bg-b:       37;
+
+    --color-fr:         rgb(var(--color-fr-r), var(--color-fr-g), var(--color-fr-b));
+    --color-bg:         rgb(var(--color-bg-r), var(--color-bg-g), var(--color-bg-b));
+/*
     --color-fr:         rgb(225,225,225);
     --color-bg:         rgb(32,34,37);
-
+*/
     color:              var(--color-fr);
-    transition:         none;
+    background-color:   var(--color-bg);
+
+    transition:         none;   // !!
 }
 
 body {
@@ -17,7 +30,7 @@ body {
     margin:             0;
     padding:            0;
     color:              inherit;
-    background:         var(--color-bg);
+    background-color:   var(--color-bg);
 
     user-select:        none;
 
@@ -26,6 +39,9 @@ body {
     -moz-user-drag:     none;
     -o-user-drag:       none;
     user-drag:          none;
+
+    // https://stackoverflow.com/questions/25704650/disable-blue-highlight-when-touch-press-object-with-cursorpointer
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 // to stop scrolling of the content behind modal overlay scrolling block ..
@@ -37,8 +53,30 @@ body {
 
 body.noscroll {
 
-    overflow: hidden;
+    // WARNING:
+    // do not use "position: fixed" or the content will jump as the body's vertical scrollbar will be hidden
+    // use "position: absolute" insteead !
+
+    overflow:           hidden;
+
+    // this forces vertical scroll-bar
+    // second best option after hiding the scroll-bar which is
+    // unfortunately not supported on most browsers
+    // scroll-bar popping in/out is just annoying and distracting
+
+    #body-wrapper {
+
+        overflow-y:     scroll;
+    }
 }
+
+// disable scrollbar (fixing scrollbar jumping problem, not working in way too many browsers !)
+/*
+body::-webkit-scrollbar {
+
+    display:            none;
+}
+*/
 
 #content {
 
@@ -48,11 +86,13 @@ body.noscroll {
 // provisional overlay
 #content:before {
 
+    @include font-boldest;
+
     content:            "PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO TEMPORARY DEMO PROVISIONAL DEMO";
 
     position:           relative;
 
-    left:               var(--font-height-black);
+    left:               0.7em;
     top:                -1.0rem;
     width:              0;
     height:             0;
@@ -62,9 +102,8 @@ body.noscroll {
 
     float:              left;
 
-    font-weight:        var(--font-weight-black);
     font-size:          var(--font-size-6);
-    line-height:        var(--font-height-black);
+    line-height:        0.7;    // no units !!
 
     white-space:        nowrap;
     word-wrap:          normal;

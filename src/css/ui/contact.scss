@@ -1,70 +1,74 @@
 
-#contact {
+#contact-button {
 
-    position:       fixed;
-    width:          100vw;
-    height:         100vh;
-    display:        flex;
-    align-items:    center;
+    @include font-boldest;
 
-    // actual button
-    a {
-        font-weight:        var(--font-weight-black);
-        font-size:          var(--font-size-3);
-        text-transform:     uppercase;
-        text-align:         left;
+    font-size:          var(--font-size-3);
+    text-transform:     uppercase;
+    text-align:         left;
 
-        line-height:        1.6em;
+    line-height:        1.6;    // no units !!
 
-        position:           fixed;
-        left:               calc(#{$ui-margin-left} - 0.78em);
-        top:                $ui-margin-top  - 1.47rem;
-        width:              auto;
-        height:             auto;
+    position:           absolute;
+    left:               calc(#{$ui-margin-left} - 0.78em);
+    top:                $ui-margin-top  - 1.47rem;
+    width:              auto;
+    height:             auto;
 
-        padding:            0;
-        margin:             0;
+    padding:            0;
+    margin:             0;
 
-        cursor:             pointer;
+    cursor:             pointer;
 
-        pointer-events:     auto;
-        user-select:        none;
+    pointer-events:     auto;
+    user-select:        none;
 
-        &:hover {
+    @include media ("width<text") {
 
-            // we use different opacity for this button to
-            // reduce visual collision with the email banner
-            opacity:        0.3;
+        @include media ("width<text-contact") {
+
+            font-size: var(--font-size-2);
         }
 
-        @include media ("width<text") {
+        @include media ("width<450px") {
 
-            @include media ("width<text-contact") {
+            .contact-button-tail { display: none; }
 
-                font-size: var(--font-size-2);
+            /*
+            @include media ("width<370px") {
+
+                .contact-button-slash { display: none; }
+
+                left: $ui-margin-left;
             }
-
-            @include media ("width<450px") {
-
-                .contact-tail { display: none; }
-
-                /*
-                @include media ("width<370px") {
-
-                    .contact-slash { display: none; }
-
-                    left: $ui-margin-left;
-                }
-                */
-            }
+            */
         }
     }
+}
 
-    // hidden email banner
-    #email {
+// hidden email banner
+#contact-block {
+
+    position:           absolute;
+    width:              100vw;
+    height:             100vh;
+    display:            flex;
+    align-items:        center;
+    overflow:           hidden;
+
+    opacity:            0.0;
+    transition:         opacity 0.5s;
+
+    &.visible {
+
+        opacity:        1.0;
+        transition:     opacity 0.5s;
+    }
+
+    #contact-email {
 
         // this makes height values obvious
-        line-height:            1em;
+        line-height:            1;      // no units !!
 
         // dimensions of the text element in font size relative values
         $lines-two-width:       8.9em;
@@ -121,7 +125,7 @@
         @include media ("portrait") {
 
             // anchored at ..
-            position:           fixed;
+            position:           absolute;
             left:               $ui-margin-left;
             top:                $ui-margin-top + 8.3rem;
             transform:          translateY(-100%) rotate(90deg);
@@ -132,6 +136,13 @@
             @include p-3-tiny;  // default
 
             @include media ("width<text") {
+
+                // adjust the offset when contact buttons shrinks
+                @include media ("width<text-contact") {
+
+                    top: $ui-margin-top - 0.5rem;
+                }
+
                 @include mp-2-tiny  ($font-size-factor-down);
                 @include mp-3-tiny  ($font-size-factor-down);
                 @include mp-2-small ($font-size-factor-down);
@@ -140,6 +151,7 @@
                 @include mp-3-big   ($font-size-factor-down);
             }
             @include media ("width>=text") {
+
                 @include mp-2-tiny  ($font-size-factor-up);
                 @include mp-3-tiny  ($font-size-factor-up);
                 @include mp-2-small ($font-size-factor-up);
@@ -152,7 +164,7 @@
         @include media ("landscape") {
 
             // anchored at ..
-            position:           fixed;
+            position:           absolute;
             left:               $ui-margin-left;
 
             // latest have the highest priority
@@ -177,7 +189,7 @@
             }
         }
 
-        font-weight:        var(--font-weight-black);
+        @include font-boldest;
 
         text-transform:     lowercase;
         word-break:         break-word;
@@ -187,15 +199,5 @@
 
         pointer-events:     none;
         user-select:        auto;
-
-        opacity:            0.0;
-        transition:         opacity 0.5s;
-    }
-
-    // unveil the email banner
-    &:hover #email {
-
-        opacity:            1.0;
-        transition:         opacity 0.5s;
     }
 }

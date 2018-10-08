@@ -1,5 +1,85 @@
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500,700,900');
+// https://google-webfonts-helper.herokuapp.com/fonts/montserrat?subsets=latin
+
+// WARNING:
+
+// we removed 'local' from the src property to avoid loading local fonts.
+// we also named fonts differently and used normal weight to make sure we 100% get the right font and weight.
+// as it turns out some of the Montserrat fonts that somehow got into my system have a different weights as
+// they suppose to have which might possibly happen to anybody if these font's are somewhere on the web
+// forcing custom font loading will hurt loading times but still better than screwed up design
+
+@font-face {
+
+    font-family:    'Montserrat400';
+    font-style:     normal;
+    font-weight:    400;
+    src:            url('data/fonts/montserrat-v12-latin-regular.eot');
+    src:            url('data/fonts/montserrat-v12-latin-regular.eot?#iefix')       format('embedded-opentype'),
+                    url('data/fonts/montserrat-v12-latin-regular.woff2')            format('woff2'),
+                    url('data/fonts/montserrat-v12-latin-regular.woff')             format('woff'),
+                    url('data/fonts/montserrat-v12-latin-regular.ttf')              format('truetype'),
+                    url('data/fonts/montserrat-v12-latin-regular.svg#Montserrat')   format('svg');
+}
+
+@font-face {
+
+    font-family:    'Montserrat500';
+    font-style:     normal;
+    font-weight:    500;
+    src:            url('data/fonts/montserrat-v12-latin-500.eot');
+    src:            url('data/fonts/montserrat-v12-latin-500.eot?#iefix')           format('embedded-opentype'),
+                    url('data/fonts/montserrat-v12-latin-500.woff2')                format('woff2'),
+                    url('data/fonts/montserrat-v12-latin-500.woff')                 format('woff'),
+                    url('data/fonts/montserrat-v12-latin-500.ttf')                  format('truetype'),
+                    url('data/fonts/montserrat-v12-latin-500.svg#Montserrat')       format('svg');
+}
+
+@font-face {
+
+    font-family:    'Montserrat700';
+    font-style:     normal;
+    font-weight:    700;
+    src:            url('data/fonts/montserrat-v12-latin-700.eot');
+    src:            url('data/fonts/montserrat-v12-latin-700.eot?#iefix')           format('embedded-opentype'),
+                    url('data/fonts/montserrat-v12-latin-700.woff2')                format('woff2'),
+                    url('data/fonts/montserrat-v12-latin-700.woff')                 format('woff'),
+                    url('data/fonts/montserrat-v12-latin-700.ttf')                  format('truetype'),
+                    url('data/fonts/montserrat-v12-latin-700.svg#Montserrat')       format('svg');
+}
+
+@font-face {
+
+    font-family:    'Montserrat900';
+    font-style:     normal;
+    font-weight:    900;
+    src:            url('data/fonts/montserrat-v12-latin-900.eot');
+    src:            url('data/fonts/montserrat-v12-latin-900.eot?#iefix')           format('embedded-opentype'),
+                    url('data/fonts/montserrat-v12-latin-900.woff2')                format('woff2'),
+                    url('data/fonts/montserrat-v12-latin-900.woff')                 format('woff'),
+                    url('data/fonts/montserrat-v12-latin-900.ttf')                  format('truetype'),
+                    url('data/fonts/montserrat-v12-latin-900.svg#Montserrat')       format('svg');
+}
+
+// Universal 3 level system ..
+
+@mixin font-normal () {
+
+    font-family:    "Montserrat500", sans-serif;
+    font-weight:    500;
+}
+
+@mixin font-bold () {
+
+    font-family:    "Montserrat700", sans-serif;
+    font-weight:    700;
+}
+
+@mixin font-boldest () {
+
+    font-family:    "Montserrat900", sans-serif;
+    font-weight:    900;
+}
 
 // global SASS variables
 
@@ -26,17 +106,7 @@ $font-size-factor-up:   1.25;
     --font-size-1:              1.618033rem;
     --font-size-normal:         1.000000rem;
 
-    --font-weight-normal:       500;
-    --font-weight-bold:         700;
-    --font-weight-black:        900;
-
-    --font-height-normal:       0.7em;
-    --font-height-bold:         0.7em;
-    --font-height-black:        0.7em;
-
-    font-family:                "Montserrat", sans-serif;
-    font-weight:                var(--font-weight-normal);
-    font-style:                 normal;
+    @include font-normal;
 
     // unfortunately there is no reliable way how to know how big is the pixel or any of the CSS units which are pretty
     // much just relative values that depends on outside factors that are not under our control
@@ -60,11 +130,16 @@ $font-size-factor-up:   1.25;
     text-decoration:            none;
     text-rendering:             geometricPrecision;
 
-    line-height:                1.6em;
+    line-height:                1.6;    // no units !!
 
     letter-spacing:             normal;
 
-    -webkit-font-smoothing:     subpixel-antialiased;
+    -moz-osx-font-smoothing:    grayscale;
+     -webkit-font-smoothing:    subpixel-antialiased;
+             font-smoothing:    antialiased;
+
+    // Fix for IE10 and IE11 Montserrat font display issues.
+    -ms-font-feature-settings:  normal;
 
     -webkit-text-size-adjust:   100%;
         -ms-text-size-adjust:   100%;
