@@ -68,59 +68,101 @@
     #contact-email {
 
         // this makes height values obvious
-        line-height:            1;      // no units !!
+        line-height:    1;  // no units !!
 
-        // dimensions of the text element in font size relative values
-        $lines-two-width:       8.9em;
-        $lines-three-width:     6.4em;
+        // this is my experimental way for handling different variations of the
+        // element that switches by available space and priority using media queries
+        // the downside is pretty complex media queries depends on how many variations we have
 
-        // portrait sizes for 16px base font size >
+        // dimensions of the banner for different font sizes (with some margin) ..
+        // fs - font size
+        // bw - block width (this breaks the lines)
+        // hh - half height (depends on the number of lines)
 
-        $w-2-big:               1800px;
-        $h-2-big:               500px;
+        // WARNING: the pixel 'w' & 'h' dimensions are for 16px base font size !
 
-        $w-2-small:             1200px;
-        $h-2-small:             350px;
+        $dim-2-big:     (w: 1800px, h: 500px,   fs: var(--font-size-5), bw: 8.9em, hh: 1.0em);
+        $dim-2-small:   (w: 1200px, h: 350px,   fs: var(--font-size-4), bw: 8.9em, hh: 1.0em);
+        $dim-2-tiny:    (w: 800px,  h: 200px,   fs: var(--font-size-3), bw: 8.9em, hh: 1.0em);
+        $dim-3-big:     (w: 1400px, h: 800px,   fs: var(--font-size-5), bw: 6.5em, hh: 1.5em);
+        $dim-3-small:   (w: 900px,  h: 450px,   fs: var(--font-size-4), bw: 6.5em, hh: 1.5em);
+        $dim-3-tiny:    (w: 580px,  h: 300px,   fs: var(--font-size-3), bw: 6.5em, hh: 1.5em);
+        $dim-4-big:     (w: 1200px, h: 900px,   fs: var(--font-size-5), bw: 5.2em, hh: 2.0em);
+        $dim-4-small:   (w: 700px,  h: 600px,   fs: var(--font-size-4), bw: 5.2em, hh: 2.0em);
+        $dim-4-tiny:    (w: 500px,  h: 400px,   fs: var(--font-size-3), bw: 5.2em, hh: 2.0em);
 
-        $w-2-tiny:              800px;
-        $h-2-tiny:              200px;
+        @mixin landscape ($map) {
 
-        $w-3-big:               1400px;
-        $h-3-big:               800px;
+            font-size:  map-get($map, fs);
+            width:      map-get($map, bw);
+        }
 
-        $w-3-small:             900px;
-        $h-3-small:             450px;
+        @mixin portrait ($map) {
 
-        $w-3-tiny:              580px;
-        $h-3-tiny:              300px;
+            @include landscape ($map);
 
-        @mixin l-2-big      { font-size:var(--font-size-5); width:$lines-two-width;     }
-        @mixin l-2-small    { font-size:var(--font-size-4); width:$lines-two-width;     }
-        @mixin l-2-tiny     { font-size:var(--font-size-3); width:$lines-two-width;     }
-        @mixin l-3-big      { font-size:var(--font-size-5); width:$lines-three-width;   }
-        @mixin l-3-small    { font-size:var(--font-size-4); width:$lines-three-width;   }
-        @mixin l-3-tiny     { font-size:var(--font-size-3); width:$lines-three-width;   }
+            left:       calc(50% - #{map-get($map, hh)});
+        }
 
-        @mixin p-2-big      { @include l-2-big;     left: calc(50% - 1.0em); }
-        @mixin p-2-small    { @include l-2-small;   left: calc(50% - 1.0em); }
-        @mixin p-2-tiny     { @include l-2-tiny;    left: calc(50% - 1.0em); }
-        @mixin p-3-big      { @include l-3-big;     left: calc(50% - 1.5em); }
-        @mixin p-3-small    { @include l-3-small;   left: calc(50% - 1.5em); }
-        @mixin p-3-tiny     { @include l-3-tiny;    left: calc(50% - 1.5em); }
+        @mixin media-landscape ($f, $map) {
 
-        @mixin ml-2-big     ($f) { @include media ("width>=" + $w-2-big     * $f, "height>=" + $h-2-big     * $f) { @include l-2-big;     }}
-        @mixin ml-2-small   ($f) { @include media ("width>=" + $w-2-small   * $f, "height>=" + $h-2-small   * $f) { @include l-2-small;   }}
-        @mixin ml-2-tiny    ($f) { @include media ("width>=" + $w-2-tiny    * $f, "height>=" + $h-2-tiny    * $f) { @include l-2-tiny;    }}
-        @mixin ml-3-big     ($f) { @include media ("width>=" + $w-3-big     * $f, "height>=" + $h-3-big     * $f) { @include l-3-big;     }}
-        @mixin ml-3-small   ($f) { @include media ("width>=" + $w-3-small   * $f, "height>=" + $h-3-small   * $f) { @include l-3-small;   }}
-        @mixin ml-3-tiny    ($f) { @include media ("width>=" + $w-3-tiny    * $f, "height>=" + $h-3-tiny    * $f) { @include l-3-tiny;    }}
+            @include media (
 
-        @mixin mp-2-big     ($f) { @include media ("width>=" + $h-2-big     * $f, "height>=" + $w-2-big     * $f) { @include p-2-big;     }}
-        @mixin mp-2-small   ($f) { @include media ("width>=" + $h-2-small   * $f, "height>=" + $w-2-small   * $f) { @include p-2-small;   }}
-        @mixin mp-2-tiny    ($f) { @include media ("width>=" + $h-2-tiny    * $f, "height>=" + $w-2-tiny    * $f) { @include p-2-tiny;    }}
-        @mixin mp-3-big     ($f) { @include media ("width>=" + $h-3-big     * $f, "height>=" + $w-3-big     * $f) { @include p-3-big;     }}
-        @mixin mp-3-small   ($f) { @include media ("width>=" + $h-3-small   * $f, "height>=" + $w-3-small   * $f) { @include p-3-small;   }}
-        @mixin mp-3-tiny    ($f) { @include media ("width>=" + $h-3-tiny    * $f, "height>=" + $w-3-tiny    * $f) { @include p-3-tiny;    }}
+                "width>="   + map-get($map, w) * $f,
+                "height>="  + map-get($map, h) * $f) {
+
+                @include landscape ($map);
+            }
+        }
+
+        @mixin media-portrait ($f, $map) {
+
+            // 'w' & 'h' are flipped !
+            @include media (
+
+                "width>="   + map-get($map, h) * $f,
+                "height>="  + map-get($map, w) * $f) {
+
+                @include portrait ($map);
+            }
+        }
+
+        @mixin media-uni ($type, $f, $map) {
+
+            @if $type == 'portrait' {
+                @include media-portrait     ($f, $map); } @else {
+                @include media-landscape    ($f, $map);
+            }
+        }
+
+        @mixin media-all ($type) {
+
+            // latest have the highest priority
+
+            @include media ("width<text") {
+                @include media-uni ($type, $font-size-factor-down, $dim-2-tiny);
+                // @include media-uni ($type, $font-size-factor-down, $dim-3-tiny);
+                @include media-uni ($type, $font-size-factor-down, $dim-4-tiny);
+                @include media-uni ($type, $font-size-factor-down, $dim-2-small);
+                // @include media-uni ($type, $font-size-factor-down, $dim-3-small);
+                @include media-uni ($type, $font-size-factor-down, $dim-4-small);
+                @include media-uni ($type, $font-size-factor-down, $dim-2-big);
+                // @include media-uni ($type, $font-size-factor-down, $dim-3-big);
+                @include media-uni ($type, $font-size-factor-down, $dim-4-big);
+            }
+
+            @include media ("width>=text") {
+                @include media-uni ($type, $font-size-factor-up, $dim-2-tiny);
+                // @include media-uni ($type, $font-size-factor-up, $dim-3-tiny);
+                @include media-uni ($type, $font-size-factor-up, $dim-4-tiny);
+                @include media-uni ($type, $font-size-factor-up, $dim-2-small);
+                // @include media-uni ($type, $font-size-factor-up, $dim-3-small);
+                @include media-uni ($type, $font-size-factor-up, $dim-4-small);
+                @include media-uni ($type, $font-size-factor-up, $dim-2-big);
+                // @include media-uni ($type, $font-size-factor-up, $dim-3-big);
+                @include media-uni ($type, $font-size-factor-up, $dim-4-big);
+            }
+        }
 
         @include media ("portrait") {
 
@@ -131,34 +173,14 @@
             transform:          translateY(-100%) rotate(90deg);
             transform-origin:   bottom left;
 
-            // latest have the highest priority
+            // adjust the offset when contact buttons shrinks
+            @include media ("width<text-contact") {
 
-            @include p-3-tiny;  // default
-
-            @include media ("width<text") {
-
-                // adjust the offset when contact buttons shrinks
-                @include media ("width<text-contact") {
-
-                    top: $ui-margin-top - 0.5rem;
-                }
-
-                @include mp-2-tiny  ($font-size-factor-down);
-                @include mp-3-tiny  ($font-size-factor-down);
-                @include mp-2-small ($font-size-factor-down);
-                @include mp-3-small ($font-size-factor-down);
-                @include mp-2-big   ($font-size-factor-down);
-                @include mp-3-big   ($font-size-factor-down);
+                top: $ui-margin-top - 0.5rem;
             }
-            @include media ("width>=text") {
 
-                @include mp-2-tiny  ($font-size-factor-up);
-                @include mp-3-tiny  ($font-size-factor-up);
-                @include mp-2-small ($font-size-factor-up);
-                @include mp-3-small ($font-size-factor-up);
-                @include mp-2-big   ($font-size-factor-up);
-                @include mp-3-big   ($font-size-factor-up);
-            }
+            @include portrait ($dim-4-tiny);    // default
+            @include media-all ("portrait");
         }
 
         @include media ("landscape") {
@@ -167,26 +189,8 @@
             position:           absolute;
             left:               $ui-margin-left;
 
-            // latest have the highest priority
-
-            @include l-3-tiny;  // default
-
-            @include media ("width<text") {
-                @include ml-2-tiny  ($font-size-factor-down);
-                @include ml-3-tiny  ($font-size-factor-down);
-                @include ml-2-small ($font-size-factor-down);
-                @include ml-3-small ($font-size-factor-down);
-                @include ml-2-big   ($font-size-factor-down);
-                @include ml-3-big   ($font-size-factor-down);
-            }
-            @include media ("width>=text") {
-                @include ml-2-tiny  ($font-size-factor-up);
-                @include ml-3-tiny  ($font-size-factor-up);
-                @include ml-2-small ($font-size-factor-up);
-                @include ml-3-small ($font-size-factor-up);
-                @include ml-2-big   ($font-size-factor-up);
-                @include ml-3-big   ($font-size-factor-up);
-            }
+            @include landscape ($dim-4-tiny);   // default
+            @include media-all ("landscape");
         }
 
         @include font-boldest;
