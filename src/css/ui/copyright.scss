@@ -20,13 +20,34 @@
 
 #copyright-block {
 
+    --block-padding:        1.3rem;
+
     position:               absolute;
 
     right:                  $ui-margin-right    + 3.4rem;
     bottom:                 $ui-margin-bottom   + 3.4rem;
 
+    // when the space is running out we align to the left
+    @include media ("width<670px") {
+
+        right:              auto;
+        left:               calc(#{$ui-margin-left} - var(--block-padding));
+    }
+
+    // when the space is running out we push closer to the edge
+    @include media ("height<400px") {
+
+        bottom:             $ui-margin-bottom;
+    }
+
     width:                  30rem;
     height:                 auto;
+
+    // one column
+    @include media ("width<450px") {
+
+        width:              15rem;
+    }
 
     opacity:                0.0;
     transition:             opacity 0.5s;
@@ -48,7 +69,7 @@
     & > div {
 
         display:            inline-block;
-        padding:            1.3rem;
+        padding:            var(--block-padding);
     }
 
     #block-a,
