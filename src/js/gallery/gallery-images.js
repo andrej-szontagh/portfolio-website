@@ -25,6 +25,7 @@ function GalleryImages (container, filepath_json, callback_init, callback_update
         itemSelector:       '.gallery-block',
         columnWidth:        '.gallery-block',
         percentPosition:    true,
+        // horizontalOrder:    true,
         transitionDuration: 0,
         stagger:            0,
         resize:             true,
@@ -32,53 +33,31 @@ function GalleryImages (container, filepath_json, callback_init, callback_update
 
     loadJSON (filepath_json, function (json) {
 
-        for (var i = 0; i < json.images.length; i ++) {
+        addNextImage (0);
 
-            // console.log ("json.images [i] >> " + json.images [i]);
+        function addNextImage (index) {
 
-            var wrapper     = document.createElement ('div');
-            var img         = document.createElement ('img');
+            if (index < json.images.length) {
 
-            // https://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
+                var filename    = json.images [index];
 
-            var filename    = json.images [i];
+                // https://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
 
-            var base        = filename.split ('.').slice (0, -1).join ('.');
-            var extension   = filename.substring (base.length, filename.length);
+                var base        = filename.split ('.').slice (0, -1).join ('.');
+                var extension   = filename.substring (base.length, filename.length);
 
-            // console.log ("FILE : " + base + " EXTENSION : " + extension);
+                // console.log ("FILE : " + base + " EXTENSION : " + extension);
 
-            wrapper.className = "gallery-block";
+                var src         = base + "_tumbnail" + extension;
+                var src_fullres = filename;
 
-            img.src = base + "_tumbnail" + extension;
+                t.addImage (src, src_fullres, function () {
 
-            // store full res image filename for lightbox (loads when opening lightbox)
-            img.setAttribute ("src-lightbox", filename);
+                    callback_update ();
 
-            wrapper     .appendChild (img);
-            t.container .appendChild (wrapper);
-
-            // as soon as image is loaded update the layout ..
-
-            img.addEventListener ('load', function (e) {
-
-                // console.log ("Image loaded > " + e.target);
-
-                t.layout.appended (e.target.parentNode);
-                t.layout.layout (); // !!
-
-                callback_update ();
-            });
-
-            img.addEventListener ('error', function () {
-
-                // console.log ("Image load error > " + e.target);
-
-                e.target.remove ();
-                t.layout.layout (); // !!
-
-                callback_update ();
-            });
+                    addNextImage (++ index);
+                });
+            }
         }
 
         // images might not be loaded yet and layout not ready !
@@ -89,6 +68,45 @@ function GalleryImages (container, filepath_json, callback_init, callback_update
 GalleryImages.prototype = {
 
     constructor: GalleryImages,
+
+    addImage: function (src, src_fullres, callback) {
+
+        var t = this;
+
+        var wrapper     = document.createElement ('div');
+        var img         = document.createElement ('img');
+
+        wrapper.className = "gallery-block";
+
+        // store full res image filename for lightbox (loads when opening lightbox)
+        img.setAttribute ("src",            src);
+        img.setAttribute ("src-lightbox",   src_fullres);
+
+        wrapper     .appendChild (img);
+        t.container .appendChild (wrapper);
+
+        // as soon as image is loaded update the layout ..
+
+        img.addEventListener ('load', function (e) {
+
+            // console.log ("Image loaded > " + e.target);
+
+            t.layout.appended (e.target.parentNode);
+            t.layout.layout (); // !!
+
+            callback ();
+        });
+
+        img.addEventListener ('error', function () {
+
+            // console.log ("Image load error > " + e.target);
+
+            e.target.remove ();
+            t.layout.layout (); // !!
+
+            callback ();
+        });
+    },
 
     showLightbox: function (img) {
 
