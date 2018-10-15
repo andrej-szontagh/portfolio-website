@@ -1,5 +1,5 @@
 
-function GalleryImages (container, filepath_json, callback_init, callback_update) {
+function GalleryImages (container, json, callback_update) {
 
     var t = this;
 
@@ -31,52 +31,62 @@ function GalleryImages (container, filepath_json, callback_init, callback_update
         resize:             true,
     });
 
-    loadJSON (filepath_json, function (json) {
+    // make an array of image json objects to form a loading queue
 
-        addNextImage (0);
+    t.loadstack = [];
 
-        function addNextImage (index) {
+    for (var img in json.images) {
 
-            if (index < json.images.length) {
+        // check if the property/key is defined in the object itself, not in parent
+        if (json.images.hasOwnProperty (img)) {
 
-                var filename    = json.images [index];
-
-                // https://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
-
-                var base        = filename.split ('.').slice (0, -1).join ('.');
-                var extension   = filename.substring (base.length, filename.length);
-
-                // console.log ("FILE : " + base + " EXTENSION : " + extension);
-
-                var src         = base + "_tumbnail" + extension;
-                var src_fullres = filename;
-
-                t.addImage (src, src_fullres, function () {
-
-                    callback_update ();
-
-                    addNextImage (++ index);
-                });
-            }
+            t.loadstack.push ({id:img, data:json.images [img]});
         }
+    }
 
-        // images might not be loaded yet and layout not ready !
-        callback_init ();
-    });
+    addNextImage (0);
+
+    function addNextImage (index) {
+
+        if (index < t.loadstack.length) {
+
+            var id          = t.loadstack [index].id;
+            var filename    = json.filebase_images + id;
+
+            // https://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
+
+            var base        = filename.split ('.').slice (0, -1).join ('.');
+            var extension   = filename.substring (base.length, filename.length);
+
+            // console.log ("FILE : " + base + " EXTENSION : " + extension);
+
+            var src         = base + "_tumbnail" + extension;
+            var src_fullres = filename;
+
+            t.addImage (id, src, src_fullres, function () {
+
+                callback_update ();
+
+                addNextImage (++ index);
+            });
+        }
+    }
 };
 
 GalleryImages.prototype = {
 
-    constructor: GalleryImages,
+    constructor:    GalleryImages,
+    loadstack:      [],
 
-    addImage: function (src, src_fullres, callback) {
+    addImage: function (id, src, src_fullres, callback) {
 
         var t = this;
 
         var wrapper     = document.createElement ('div');
         var img         = document.createElement ('img');
 
-        wrapper.className = "gallery-block";
+        wrapper.id          = id;
+        wrapper.className   = "gallery-block";
 
         // store full res image filename for lightbox (loads when opening lightbox)
         img.setAttribute ("src",            src);

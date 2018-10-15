@@ -35,15 +35,12 @@
         opacity:                1.0;
         transition:             opacity 0.5s;
 
-        // this allows scroll-bar to receive events
-        pointer-events:         auto;
+        // button overrides ..
+        .scroll.button_press {
 
-        .scroll {
-
-            // button overrides ..
-            pointer-events:     auto    !important;
-            z-index:            1       !important;
-            opacity:            1.0     !important;
+            pointer-events:     auto;
+            z-index:            1;
+            opacity:            1.0;
         }
     }
 
@@ -52,14 +49,12 @@
         opacity:                0.0;
         transition:             opacity 0.5s;
 
-        pointer-events:         none;
+        // button overrides ..
+        .scroll.button_press {
 
-        .scroll {
-
-            // button overrides ..
-            pointer-events:     none    !important;
-            z-index:            0       !important;
-            opacity:            1.0     !important;
+            pointer-events:     none;
+            z-index:            0;
+            opacity:            1.0;
         }
     }
 
@@ -83,7 +78,7 @@
         display:                grid;
 
         grid-template-columns:  30rem 30rem;
-        grid-template-rows:     10rem 10rem;
+        grid-template-rows:     13rem 13rem;
         grid-gap:               var(--gap-vert) var(--gap-horz);
 
         justify-items:          stretch;
@@ -92,6 +87,8 @@
 
         > div {
 
+            color:              var(--color-bg);
+
             display:            inline-block;
             float:              left;
             justify-self:       stretch;
@@ -99,6 +96,11 @@
 
             width:              fit-content;
             height:             fit-content;
+        }
+
+        p, h3 {
+
+            color: var(--color-bg);
         }
 
         #block-a {
@@ -131,24 +133,6 @@
             grid-column-end:    span 1;
             grid-row-start:     2;
             grid-row-end:       span 1;
-        }
-
-        p {
-
-            @include font-normal;
-
-            color:              var(--color-bg);
-            font-size:          var(--font-size-normal);
-            line-height:        1.3;    // no units !!
-        }
-
-        h3 {
-
-            @include font-bold;
-
-            color:              var(--color-bg);
-            font-size:          var(--font-size-normal);
-            line-height:        1.2;    // no units !!
         }
     }
 
@@ -194,6 +178,19 @@
                 grid-column-end:    span 1;
                 grid-row-start:     4;
                 grid-row-end:       span 1;
+            }
+
+            // when there is a possibility that the text will be
+            // further broken down because of insufficient space
+            // we disable fixed breaks and let the container
+            // control the breaking of the text
+
+            // it also looks better on verticaly stacked blocks since it is a
+            // better use of space reducing amount of possible scrolling needed
+
+            br {
+
+                display: none;
             }
         }
     }

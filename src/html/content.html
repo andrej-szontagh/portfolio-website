@@ -8,26 +8,26 @@
         </div>
         <div id="terms-conditions-button" class="button-hover"
             button-state="off"
-            button-target="#overlay, #terms-conditions-block"
+            button-target="#terms-conditions-block .scroll, #terms-conditions-block, #overlay"
             button-scroll="#terms-conditions-block .scroll">
             Terms & Conditions
         </div>
         <div id="terms-conditions-block" class="hidden">
             <div class="scroll button-press" button-state="[on]" button-set-off="#terms-conditions-button">
                 <div id="block-a">
-                    <h3>It's €800 / $1000 per milestone.</h3>
+                    <h2>It's €800 / $1000 <br>per milestone.</h2>
                     <p>The project is subdivided into milestone blocks which are designed to be completed in one week (can take longer sometimes). If you are happy with the result and I receive the payment for the milestone we can move on to the next one.</p>
                 </div>
                 <div id="block-b">
-                    <h3>I prefer written communication.</h3>
+                    <h2>I prefer written <br>communication.</h2>
                     <p>It might sounds counterintuitive, but it saves time, makes communication more clear and provide archivation for reference. Primarily email, secondary messaging app. like Skype.</p>
                 </div>
                 <div id="block-c">
-                    <h3>I work solo and remote.</h3>
+                    <h2>I work solo and <br>remote.</h2>
                     <p>Dealing with extra people can easily cause train to run out of rails without me being able to do anything about it. I have high standards and I don't like to make compromises unless necessary. Also I would love to put my name on my work.</p>
                 </div>
                 <div id="block-d">
-                    <h3>Agreements have to accommodate my needs.</h3>
+                    <h2>Agreements have to <br>accommodate my needs.</h2>
                     <p>The right to show the work in my portfolio, tech. support, risks and future burden. Attribution is welcome.</p>
                 </div>
             </div>
@@ -35,12 +35,12 @@
         <div id="copyright-button"  class="button-hover" button-state="off" button-target="#overlay, #copyright-block">© 2018</div>
         <div id="copyright-block"   class="hidden">
             <div id="block-a">
-                <h4>Design</h4>
-                <p>Andrej Szontagh</p>
+                <p>Design</p>
+                <p><b>Andrej Szontagh</b></p>
             </div>
             <div id="block-b">
-                <h4>Development</h4>
-                <p>Andrej Szontagh</p>
+                <p>Development</p>
+                <p><b>Andrej Szontagh</b></p>
             </div>
             <div id="block-c">
                 <p>© 2018 Andrej Szontagh.<br>All Rights Reserved.</p>
@@ -51,6 +51,9 @@
         </a>
         <div id="contact-block">
             <div id="contact-email"></div>
+        </div>
+        <div id="description-block" class="hidden">
+            <h1></h1><p></p><h3></h3>
         </div>
         <div id="overlay" class="button-press hidden" button-state="[on]" button-set-off="#ui .button-press" button-target="#overlay"></div>
     </div>

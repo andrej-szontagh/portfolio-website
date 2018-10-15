@@ -1,0 +1,39 @@
+
+// External link Variations ..
+
+@mixin links-horizontal {
+
+    @include external-links-horizontal;
+    @include description-block-links-horizontal;
+}
+
+@mixin links-stacked () {
+
+    @include external-links-stacked;
+    @include description-block-links-stacked;
+}
+
+@mixin links-vertical {
+
+    @include external-links-vertical;
+    @include description-block-links-vertical;
+}
+
+@include media ("width<text-contact") {
+    @include media_box_if       (550px, 750px) { @include links-vertical;     } @include media_box_else {
+        @include media_box_if   (750px, 400px) { @include links-stacked;      }
+    }
+}
+
+@include media ("width>=text-contact", "width<text") {
+    @include media_box_if           (1300px,    300px) { @include links-horizontal;   } @include media_box_else {
+        @include media_box_if       (550px,     750px) { @include links-vertical;     } @include media_box_else {
+            @include media_box_if   (1000px,    400px) { @include links-stacked;      }
+        }
+    }
+}
+
+@include media ("width>=text") {
+
+    @include links-horizontal;
+}

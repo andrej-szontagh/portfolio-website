@@ -1,0 +1,89 @@
+
+// hide block when overlay
+#ui.overlay #description-block {
+
+    opacity:            0.0;
+    transition:         opacity 0.5s;
+}
+
+#description-block {
+
+    position:           absolute;
+    width:              calc(100% - #{$ui-margin-left} - #{$ui-margin-right});
+
+    // vertical center
+    // top:                50%;
+    // transform:          translateY(-50%);
+
+    // anchor to bottom
+    bottom:             $ui-margin-bottom-content;
+
+    left:               auto;
+    // right:              calc(#{$ui-margin-right} + var(--right-offset));
+    right:              $ui-margin-right;
+    text-align:         right;
+
+    pointer-events:     none;
+    user-select:        none;
+
+    &.visible {
+
+        opacity:            1.0;
+        transition:         opacity 0.5s;
+    }
+
+    &.hidden {
+
+        opacity:            0.0;
+        transition:         opacity 0.5s;
+    }
+
+    @include media ("width<text") {
+
+        @include media ("width<750px")  {   display: none;  }
+        @include media ("height<650px") {   display: none;  }
+    }
+
+    @include media ("width>=text") {
+
+        @include media ("height<700px") {
+
+            display: none;
+        }
+    }
+}
+
+@mixin description-block-links-horizontal {
+
+    @include media ("height<550px") {
+
+        #description-block {
+
+            display: none;
+        }
+    }
+}
+
+@mixin description-block-links-stacked () {
+
+    @include media ("height<650px") {
+
+        #description-block {
+
+            display: none;
+        }
+    }
+}
+
+@mixin description-block-links-vertical {
+
+    @include media ("height<1000px") {
+
+        #description-block {
+
+            left:               $ui-margin-left !important;
+            right:              auto            !important;
+            text-align:         left            !important;
+        }
+    }
+}

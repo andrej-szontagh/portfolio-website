@@ -1,8 +1,11 @@
 
-$ui-margin-top:         6.27rem;
-$ui-margin-bottom:      2.6rem;
-$ui-margin-left:        4.8rem;
-$ui-margin-right:       4.8rem;
+$ui-margin-top:             6.27rem;
+$ui-margin-bottom:          2.6rem;
+$ui-margin-left:            4.8rem;
+$ui-margin-right:           4.8rem;
+
+$ui-margin-right-content:   $ui-margin-right    + 3.4rem;
+$ui-margin-bottom-content:  $ui-margin-bottom   + 3.4rem;
 
 #ui {
 
@@ -27,15 +30,18 @@ $ui-margin-right:       4.8rem;
 
     &.overlay {
 
-        // All buttons default ..
+        // Buttons defaults ..
 
         .button-hover,
         .button-press {
 
-            &:not(.hidden) {
+            &.visible {
 
-                pointer-events:     none;
-                opacity:            0.3;
+                &[button-state='off'] {
+
+                    opacity:        0.3;
+                    pointer-events: none;
+                }
 
                 &[button-state='on'] {
 
@@ -46,9 +52,7 @@ $ui-margin-right:       4.8rem;
         }
 
         // some special cases ..
-
-        // 'visible' class might not be always set
-        #contact-button:not(.hidden) {
+        #contact-button.visible {
 
             opacity:            0.0;
             pointer-events:     none;
@@ -72,18 +76,23 @@ $ui-margin-right:       4.8rem;
     .button-hover,
     .button-press {
 
-        // make sure buttons and links receives events
-        pointer-events:     auto;
-
-        color:              var(--color-fr);
-        transition:         color 0.5s, opacity 0.5s;
-
-        z-index:            999;
+        z-index: 999;
 
         &[button-state='on'] {
 
             color:              var(--color-bg);
             transition:         color 0.5s, opacity 0.5s;
+        }
+
+        &[button-state='off'] {
+
+            color:              var(--color-fr);
+            transition:         color 0.5s, opacity 0.5s;
+        }
+
+        &.visible {
+
+            pointer-events: auto;
         }
 
         &.hidden {

@@ -269,12 +269,32 @@ UI.prototype = {
 
         if (sel) {
 
-            var targets;
+            var targets = [];
 
-            if (sel.trim () === "<this>") {
+            sel = sel.trim ();
 
-                targets = [el]; } else {
-                targets = t.body.querySelectorAll (sel);
+            // check if the string contains the "self" token
+
+            var selftoken = "<this>";
+
+            var thisindex = sel.indexOf (selftoken);
+            if (thisindex >= 0) {
+
+                // cut off the self token
+                sel = sel.substr (0, thisindex) + sel.substr (thisindex + selftoken.length);
+                sel = sel.trim ();
+
+                targets.push (el);
+            }
+
+            if (sel) {
+
+                var elements = t.body.querySelectorAll (sel);
+                if (elements) {
+
+                    // convert to array first (NodeList)
+                    targets = targets.concat (Array.prototype.slice.call (elements));
+                }
             }
 
             if (targets != null) {
@@ -319,6 +339,12 @@ UI.prototype = {
         // init state if missing ..
         if (b.getAttribute ("button-state") === null) {
             b.setAttribute ("button-state", "off");
+        }
+
+        // init visibility state if missing ..
+        if (b.classList.contains    ("hidden")  == false &&
+            b.classList.contains    ("visible") == false) {
+            b.classList.add         ("visible");
         }
 
         if (b.classList.contains ("button-hover")) {

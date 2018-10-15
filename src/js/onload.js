@@ -13,5 +13,5 @@ window.onload = function (e) {
 
     manager_ui          = new UI            ();
     manager_animations  = new Animations    ();
-    manager_gallery     = new Gallery       (manager_ui, manager_animations);
+    manager_gallery     = new Gallery       (manager_ui, manager_animations, "data/gallery.json");
 }

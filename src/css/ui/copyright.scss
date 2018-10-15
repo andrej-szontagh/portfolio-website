@@ -24,8 +24,8 @@
 
     position:               absolute;
 
-    right:                  $ui-margin-right    + 3.4rem;
-    bottom:                 $ui-margin-bottom   + 3.4rem;
+    right:                  $ui-margin-right-content;
+    bottom:                 $ui-margin-bottom-content;
 
     // when the space is running out we align to the left
     @include media ("width<670px") {
@@ -72,37 +72,8 @@
         padding:            var(--block-padding);
     }
 
-    #block-a,
-    #block-b {
+    p, b, h4 {
 
-        p {
-
-            @include font-bold;
-
-            color:              var(--color-bg);
-            font-size:          var(--font-size-normal);
-            line-height:        1.3;    // no units !!
-        }
-
-        h4 {
-
-            @include font-normal;
-
-            color:              var(--color-bg);
-            font-size:          var(--font-size-normal);
-            line-height:        1.2;    // no units !!
-        }
-    }
-
-    #block-c {
-
-        p {
-
-            @include font-normal;
-
-            color:              var(--color-bg);
-            font-size:          var(--font-size-normal);
-            line-height:        1.3;    // no units !!
-        }
+        color:              var(--color-bg);
     }
 }

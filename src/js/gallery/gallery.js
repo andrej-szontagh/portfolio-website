@@ -1,36 +1,34 @@
 
-function Gallery (manager_ui, manager_animations) {
+function Gallery (manager_ui, manager_animations, filepath_json) {
 
     var t = this;
 
-    t.manager_videos = new GalleryVideos (
+    // initialize YouTube API ASAP (for faster loading)
+    YouTubeAPIInit ();
 
-        document.getElementById ("gallery-videos"), "data/gallery-videos.json", manager_animations, 0.0,
+    var desc = document.querySelector ("#description-block");
 
-        function () {
+    t.desc_header   = desc.querySelector ("h1");
+    t.desc_oneliner = desc.querySelector ("p");
+    t.desc_tags     = desc.querySelector ("h3");
 
-            console.log ("Video Gallery Initialized");
-        }
-    );
+    loadJSON (filepath_json, function (json) {
 
-    t.manager_images = new GalleryImages (
+        t.json = json;
 
-        document.getElementById ("gallery-images"), "data/gallery-images.json",
+        t.manager_videos = new GalleryVideos (document.getElementById ("gallery-videos"), json, manager_animations, 0.0);
+        t.manager_images = new GalleryImages (document.getElementById ("gallery-images"), json,
 
-        function () {
+            function () {
 
-            console.log ("Image Gallery Initialized");
-        },
+                // console.log ("Image Gallery Update");
 
-        function () {
+                updateButtons ();
+            }
+        );
 
-            console.log ("Image Gallery Update");
-
-            updateButtons ();
-        }
-    );
-
-    updateButtons ();
+        updateButtons ();
+    });
 
     function updateButtons () {
 
@@ -46,8 +44,62 @@ function Gallery (manager_ui, manager_animations) {
                     el.classList.add        ("button-hover");
                     el.classList.add        ("hidden");
 
-                    el.setAttribute ("button-target",  "<this>");
+                    el.setAttribute ("button-target",  "<this> #description-block");
                     el.setAttribute ("button-clear",   ".gallery-block");
+
+                    el.addEventListener ('onvisible', function (e) {
+
+                        var d, desc = null;
+
+                        var id = e.target.id;
+/*
+                        if (t.json.images [id]) {
+
+                            console.log ("IS IMAGE >> " + id);
+
+                            desc = t.json.images [id].description;
+
+                        } else
+                        if (t.json.videos [id]) {
+
+                            console.log ("IS VIDEO >> " + id);
+
+                            desc = t.json.videos [id].description;
+                        }
+*/
+                        if (d = t.json.images [id]) desc = d.description; else
+                        if (d = t.json.videos [id]) desc = d.description;
+
+                        if (desc) {
+                            desc = t.json.descriptions [desc];
+
+                            if (desc) {
+
+                                t.desc_header   .innerHTML = desc.name + "<br> (" + desc.year + ")";
+                                t.desc_oneliner .innerHTML = desc.oneliner;
+                                t.desc_tags     .innerHTML = "";
+
+                                if (desc.tags) {
+
+                                    for (var i = 0; i < desc.tags.length; i ++) {
+
+                                        if (i > 0) {
+
+                                            t.desc_tags.innerHTML += " - ";
+                                        }
+
+                                        t.desc_tags.innerHTML += desc.tags [i];
+                                    }
+                                }
+
+                            } else {
+
+                                t.desc_header   .innerHTML = "";
+                                t.desc_oneliner .innerHTML = "";
+                                t.desc_tags     .innerHTML = "";
+                            }
+                        }
+                    });
 
                     el.___callback_open_lightbox = function (e) {
 
@@ -77,6 +129,10 @@ Gallery.prototype = {
 
     manager_videos:     null,
     manager_images:     null,
+
+    desc_header:        null,
+    desc_oneliner:      null,
+    desc_tags:          null,
 
     showLightbox: function (img) {
 

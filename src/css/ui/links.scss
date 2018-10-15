@@ -1,7 +1,16 @@
 
+// Defaults ..
+
 #external-links {
 
-    @mixin horizontal {
+    display: none;
+}
+
+// Variations ..
+
+@mixin external-links-horizontal {
+
+    #external-links {
 
         display:            block;
 
@@ -28,8 +37,11 @@
             transform:          none;
         }
     }
+}
 
-    @mixin stacked () {
+@mixin external-links-stacked () {
+
+    #external-links {
 
         display:            block;
 
@@ -56,8 +68,11 @@
             transform:          none;
         }
     }
+}
 
-    @mixin vertical {
+@mixin external-links-vertical {
+
+    #external-links {
 
         display:            block;
 
@@ -93,26 +108,5 @@
                 transform:          rotate(90deg) translateX(100%);
             }
         }
-    }
-
-    display: none;
-
-    @include media ("width<text-contact") {
-        @include media_box_if       (550px, 750px) { @include vertical;     } @include media_box_else {
-            @include media_box_if   (750px, 400px) { @include stacked;      }
-        }
-    }
-
-    @include media ("width>=text-contact", "width<text") {
-        @include media_box_if           (1300px,    300px) { @include horizontal;   } @include media_box_else {
-            @include media_box_if       (550px,     750px) { @include vertical;     } @include media_box_else {
-                @include media_box_if   (1000px,    400px) { @include stacked;      }
-            }
-        }
-    }
-
-    @include media ("width>=text") {
-
-        @include horizontal;
     }
 }

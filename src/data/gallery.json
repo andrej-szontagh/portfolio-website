@@ -1,0 +1,120 @@
+{
+
+    "filebase_images" : "data\\images\\",
+    "filebase_covers" : "data\\covers\\",
+
+    "descriptions" : {
+
+        "garden_designer": {
+
+            "name":     "Garden Designer",
+            "year":     "2016 - 2017",
+            "oneliner": "Garden / outdoor / indoor arranger and editor<br>incorporated into e-commerce system.",
+            "tags":     ["Unity3D", "Procedural", "Editor"],
+            "tags_sub": ["Unity3D", "C#", "WebGL", "Solo"]
+        },
+
+        "meta_elements": {
+
+            "name":     "META-Elements",
+            "year":     "2012 - 2016",
+            "oneliner": "Procedural 3D modeling system / generator for<br>realistic vegetation modeling.",
+            "tags":     ["Java", "Procedural", "PathTracing"],
+            "tags_sub": ["Java", "OpenGL", "OpenCL", "OpenCV", "Swing", "Nodes", "PathTracing", "PBR", "HDRi", "Unbiased", "Personal"]
+        },
+
+        "bouquet_designer": {
+
+            "name":     "Bouquet Designer",
+            "year":     "2016",
+            "oneliner": "Web application selling flower bouquets showing<br>generated 3D visualization in real time.",
+            "tags":     ["JavaScript", "WebGL", "Generator"],
+            "tags_sub": ["WebGL", "javascript", "generator", "shaders", "3dmodeling", "phone", "tablet", "desktop", "solo"]
+        },
+
+        "mmorpg": {
+
+            "name":     "MMORPG",
+            "year":     "2015",
+            "oneliner": "MMORPG game demo showing the mechanics in<br>the game and basic combat and key features.",
+            "tags":     ["Unity3D", "AI", "Mechanics", "Animation"],
+            "tags_sub": ["Unity3D", "C#", "NPC-AI", "GUI", "inventory", "armor", "environment", "combat", "animation", "3dmodeling", "solo"]
+        }
+    },
+
+    "videos" : {
+
+        "Joyiet6ag-A": {
+
+            "start":        "65",
+            "cover":        "Garden Designer WIP Demo A.jpg",
+            "description":  "garden_designer"
+        },
+        "sn55KJkVbfg": {
+
+            "start":        "4",
+            "cover":        "Garden Designer WIP Demo B.jpg",
+            "description":  "garden_designer"
+        },
+        "EnAjGROrvNw": {
+
+            "start":        "0",
+            "cover":        "Garden Designer WIP Demo C.jpg",
+            "description":  "garden_designer"
+        },
+        "MJMbMvZtvgo": {
+
+            "start":        "3",
+            "cover":        "Garden Designer WIP Demo D.jpg",
+            "description":  "garden_designer"
+        },
+        "-C-StR6aVxw": {
+
+            "start":        "32",
+            "cover":        "Garden Designer WIP Demo E.jpg",
+            "description":  "garden_designer"
+        },
+        "dfW26RLWRa8": {
+
+            "start":        "0",
+            "cover":        "META-Elements DEMO A.jpg",
+            "description":  "meta_elements"
+        },
+        "euomAmzoJVg": {
+
+            "start":        "0",
+            "cover":        "META-Elements DEMO B.jpg",
+            "description":  "meta_elements"
+        }
+    },
+
+    "images" : {
+
+        "bouquet-designer\\desktop1.jpg":   { "description": "bouquet_designer" },
+        "bouquet-designer\\desktop2.jpg":   { "description": "bouquet_designer" },
+        "bouquet-designer\\phone1.jpg":     { "description": "bouquet_designer" },
+        "bouquet-designer\\phone2.jpg":     { "description": "bouquet_designer" },
+
+        "mmorpg\\gameplay_01.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_02.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_03.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_04.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_05.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_06.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_07.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_08.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_09.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_10.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_11.jpg":          { "description": "mmorpg"           },
+
+        "mmorpg\\scenery_01.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_02.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_03.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_04.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_05.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_06.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_07.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_08.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_09.jpg":           { "description": "mmorpg"           }
+    }
+}
