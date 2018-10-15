@@ -30,35 +30,35 @@
     display:                    flex;
     align-items:                center;
 
-    &.visible {
-
-        opacity:                1.0;
-        transition:             opacity 0.5s;
-
-        // button overrides ..
-        .scroll.button_press {
-
-            pointer-events:     auto;
-            z-index:            1;
-            opacity:            1.0;
-        }
-    }
-
-    &.hidden {
-
-        opacity:                0.0;
-        transition:             opacity 0.5s;
-
-        // button overrides ..
-        .scroll.button_press {
-
-            pointer-events:     none;
-            z-index:            0;
-            opacity:            1.0;
-        }
-    }
-
     .scroll {
+
+        &.visible {
+
+            opacity:                1.0;
+            transition:             opacity 0.5s;
+
+            // button overrides ..
+            &.button-press {
+
+                pointer-events:     auto;
+                z-index:            1;
+                opacity:            1.0;
+            }
+        }
+
+        &.hidden {
+
+            opacity:                0.0;
+            transition:             opacity 0.5s;
+
+            // button overrides ..
+            &.button-press {
+
+                pointer-events:     none;
+                z-index:            0;
+                opacity:            0.0;
+            }
+        }
 
         & > div {
 
@@ -74,6 +74,10 @@
 
         padding-left:           $ui-margin-left;
         padding-right:          $ui-margin-right;
+
+        // this stretches scroll to cover entire screen so
+        // we can grab and scroll anywhere on the screen ..
+        width:                  100%;
 
         display:                grid;
 

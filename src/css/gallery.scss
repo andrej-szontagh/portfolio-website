@@ -8,8 +8,10 @@
 
 #content {
 
+    // We use lower brightness to make better contrast with UI
+
     --gallery-block-filter-on:  grayscale(1.0) contrast(0.5) brightness(0.5);
-    --gallery-block-filter-off: grayscale(0.0) contrast(1.0) brightness(1.0);
+    --gallery-block-filter-off: grayscale(0.0) contrast(1.0) brightness(0.8);
 
     .gallery-block {
 

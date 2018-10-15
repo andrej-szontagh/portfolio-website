@@ -342,8 +342,8 @@ UI.prototype = {
         }
 
         // init visibility state if missing ..
-        if (b.classList.contains    ("hidden")  == false &&
-            b.classList.contains    ("visible") == false) {
+        if (b.classList.contains    ("hidden")  === false &&
+            b.classList.contains    ("visible") === false) {
             b.classList.add         ("visible");
         }
 
