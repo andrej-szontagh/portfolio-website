@@ -52,21 +52,7 @@ function Gallery (manager_ui, manager_animations, filepath_json) {
                         var d, desc = null;
 
                         var id = e.target.id;
-/*
-                        if (t.json.images [id]) {
-
-                            console.log ("IS IMAGE >> " + id);
-
-                            desc = t.json.images [id].description;
-
-                        } else
-                        if (t.json.videos [id]) {
-
-                            console.log ("IS VIDEO >> " + id);
-
-                            desc = t.json.videos [id].description;
-                        }
-*/
+                        
                         if (d = t.json.images [id]) desc = d.description; else
                         if (d = t.json.videos [id]) desc = d.description;
 

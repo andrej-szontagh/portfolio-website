@@ -63,22 +63,49 @@
             pointer-events:         auto;
             overflow:               hidden;
 
+            // we need to set this to fix cover positioning problems on Edge
+            position:               relative;
+
             .video-cover {
 
-                &.cover-hidden  {   display: none;  }
-                &.cover-visible {   display: block; }
+                // this is fake progress bar, goal is to make visitors
+                // wait for the animation to show up
+                .video-progressbar {
 
-                // position:           absolute;
-                position:           relative;
-                width:              100%;
-                left:               0;
-                height:             var(--video-height);
-                top:                var(--video-offset);
-                user-select:        none;
-                pointer-events:     none;
-                z-index:            1;
+                    position:           absolute;
+                    left:               0;
+                    top:                0;
 
-                // filter:             blur(var(--blur));
+                    overflow:           hidden;
+
+                    // animation ..
+                    width:                      0%;
+                    transition-property:        width;
+                    transition-timing-function: ease-out;
+
+                    img {
+
+                        // override !
+                        filter:         none;
+                    }
+                }
+
+                &.hidden    {   display: none;  }
+                &.visible   {   display: block; }
+
+                img {
+
+                    position:           relative;
+                    width:              auto;
+                    left:               0;
+                    height:             var(--video-height);
+                    top:                var(--video-offset);
+                    user-select:        none;
+                    pointer-events:     none;
+                    z-index:            1;
+
+                    filter:             grayscale(1.0) brightness(0.5) blur(5px);
+                }
             }
 
             iframe {

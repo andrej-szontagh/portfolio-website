@@ -26,8 +26,17 @@
 }
 
 @include media ("width>=text-contact", "width<text") {
-    @include media_box_if           (1300px,    300px) { @include links-horizontal;   } @include media_box_else {
-        @include media_box_if       (550px,     750px) { @include links-vertical;     } @include media_box_else {
+
+    // HORIZONTAL FIRST
+    // @include media_box_if           (1300px,    300px) { @include links-horizontal;   } @include media_box_else {
+    //     @include media_box_if       (550px,     750px) { @include links-vertical;     } @include media_box_else {
+    //         @include media_box_if   (1000px,    400px) { @include links-stacked;      }
+    //     }
+    // }
+
+    // VERTICAL FIRST
+    @include media_box_if           (550px,     750px) { @include links-vertical;     } @include media_box_else {
+        @include media_box_if       (1300px,    300px) { @include links-horizontal;   } @include media_box_else {
             @include media_box_if   (1000px,    400px) { @include links-stacked;      }
         }
     }
@@ -35,5 +44,13 @@
 
 @include media ("width>=text") {
 
-    @include links-horizontal;
+    // HORIZONTAL FIRST
+    // @include media_box_if       (1600px,    380px) { @include links-horizontal; } @include media_box_else {
+    //     @include media_box_if   (680px,     940px) { @include links-vertical;   }
+    // }
+
+    // VERTICAL FIRST
+    @include media_box_if       (680px,     940px) { @include links-vertical;   } @include media_box_else {
+        @include media_box_if   (1600px,    380px) { @include links-horizontal; }
+    }
 }
