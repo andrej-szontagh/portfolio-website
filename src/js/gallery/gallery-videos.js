@@ -122,11 +122,9 @@ function GalleryVideos (container, json, animations, edge) {
                             // starts low quality to make the buffering fast ..
                             player.setPlaybackQuality ("small");  // small, medium, large, hd720 ..
 
-                            // sometimes (mobile) when the videos are played right after "onReady"
-                            // the playback just never happen. Not sure if bug or what is going on but a
-                            // short delay seems to fix the problem
-
-                            setTimeout (function () { player.playVideo (); }, 100);
+                            // this is required for the player loading queue to advance ..
+                            // we will pause video on YT.PlayerState.PLAYING if not in viewport
+                            player.playVideo ();
 
                             function playPlayer (player) {
 
