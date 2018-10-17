@@ -20,7 +20,7 @@ function UI () {
 
     window.addEventListener ('touchstart', function onFirstTouch () {
 
-        console.log ("User touched !");
+        // console.log ("User touched !");
 
         t.touch = true;
 

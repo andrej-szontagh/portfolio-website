@@ -4,7 +4,7 @@ function Gallery (manager_ui, manager_animations, filepath_json) {
     var t = this;
 
     // initialize YouTube API ASAP (for faster loading)
-    YouTubeAPIInit ();
+    YouTubeManager.init ();
 
     var desc = document.querySelector ("#description-block");
 
@@ -52,7 +52,7 @@ function Gallery (manager_ui, manager_animations, filepath_json) {
                         var d, desc = null;
 
                         var id = e.target.id;
-                        
+
                         if (d = t.json.images [id]) desc = d.description; else
                         if (d = t.json.videos [id]) desc = d.description;
 
@@ -122,7 +122,7 @@ Gallery.prototype = {
 
     showLightbox: function (img) {
 
-        console.log ("showLightbox");
+        // console.log ("showLightbox");
 
         /*
         this.lightbox.classList.remove  ("lightbox-hidden");
@@ -147,7 +147,7 @@ Gallery.prototype = {
 
     hideLightbox: function () {
 
-        console.log ("hideLightbox");
+        // console.log ("hideLightbox");
 
         /*
         this.lightbox.classList.remove  ("lightbox-visible");

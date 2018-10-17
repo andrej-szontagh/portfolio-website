@@ -6,7 +6,7 @@ function GalleryVideos (container, json, animations, edge) {
     t.container = container;
 
     // YouTube API needs to be initialized beforehand !
-    YouTubeAPIInit ();
+    YouTubeManager.init ();
 
     var index = -1;
 
@@ -74,7 +74,7 @@ function GalleryVideos (container, json, animations, edge) {
                 progressbar.style.transitionDuration    = (20 + Math.random ()  * 10)   + "s";
             });
 
-            YouTubeAPIAddPlayer ({
+            YouTubeManager.addPlayer ({
 
                 id:     player.id,
                 params: {
@@ -91,7 +91,7 @@ function GalleryVideos (container, json, animations, edge) {
                         'loop'              : 1,
                         'start'             : video.start,
                         'playlist'          : vid,  // this is necessary for 'loop' to work
-                        'autoplay'          : 0,
+                        'autoplay'          : 1,
                         'controls'          : 0,
                         'showinfo'          : 0,
                         'fs'                : 0,
@@ -99,7 +99,7 @@ function GalleryVideos (container, json, animations, edge) {
                         'disablekb'         : 1,
                         'modestbranding'    : 1,
                         'playsinline'       : 1,
-                        'origin'            : "https://andrej-szontagh.github.io/",
+                        // 'origin'            : "https://andrej-szontagh.github.io/",
                         // 'origin'            : "https://www.andrejszontagh.com/",
                     },
 
@@ -164,6 +164,8 @@ function GalleryVideos (container, json, animations, edge) {
                             window.addEventListener ("scroll", onScroll);
 
                             function finishLoading () {
+
+                                // console.log ("finishLoading");
 
                                 // when the video loading / initalization is finished and video is ready to play
                                 // we hide the entire cover and don't have to update the progress bar anymore
@@ -258,6 +260,8 @@ function GalleryVideos (container, json, animations, edge) {
             });
         }
     }
+
+    YouTubeManager.createPlayers ();
 }
 
 GalleryVideos.prototype = {
