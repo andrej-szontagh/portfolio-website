@@ -114,16 +114,19 @@ function GalleryVideos (container, json, animations, edge) {
                             var cover       = iframe.parentNode.querySelector (".video-cover");
                             var progressbar = iframe.parentNode.querySelector (".video-progressbar");
 
+                            // console.log ("onReady >> " + iframe.id);
+
                             // makes sure it's muted
                             player.mute ();
 
                             // starts low quality to make the buffering fast ..
                             player.setPlaybackQuality ("small");  // small, medium, large, hd720 ..
 
-                            // this starts buffering
-                            // we want to start buffering as soon as possible ..
-                            // the playback will be paused right after chaning state to 'PLAYING'
-                            player.playVideo ();
+                            // sometimes (mobile) when the videos are played right after "onReady"
+                            // the playback just never happen. Not sure if bug or what is going on but a
+                            // short delay seems to fix the problem
+
+                            setTimeout (function () { player.playVideo (); }, 100);
 
                             function playPlayer (player) {
 
@@ -225,6 +228,8 @@ function GalleryVideos (container, json, animations, edge) {
 
                             var player  = e.target;
                             var iframe  = player.getIframe ();
+
+                            // console.log ("onStateChange >> " + iframe.id + " >> " + e.data);
 
                             switch (e.data) {
 
