@@ -81,17 +81,18 @@ $font-size-factor-up:   1.25;
 
 :root {
 
-    // GOLDEN RATIO : 1.61803398875
+    --gratio:                   1.61803398875;
 
-    // IDEA: make these static too ??
+    --font-size-6:              calc(var(--font-size-5)         * var(--gratio));    // 17.94427rem;
+    --font-size-5:              calc(var(--font-size-4)         * var(--gratio));    // 11.09016rem;
+    --font-size-4:              calc(var(--font-size-3)         * var(--gratio));    // 6.854101rem;
+    --font-size-3:              calc(var(--font-size-2)         * var(--gratio));    // 4.236067rem;
+    --font-size-2:              calc(var(--font-size-1)         * var(--gratio));    // 2.618033rem;
+    --font-size-1:              calc(var(--font-size-normal)    * var(--gratio));    // 1.618033rem;
+    --font-size-normal:         1.0rem;
 
-    --font-size-6:              17.94427rem;
-    --font-size-5:              11.09016rem;
-    --font-size-4:              6.854101rem;
-    --font-size-3:              4.236067rem;
-    --font-size-2:              2.618033rem;
-    --font-size-1:              1.618033rem;
-    --font-size-normal:         1.000000rem;
+    // font visual size factor / multiplier
+    --font-size-visual:         0.7;
 
     @include font-normal;
 
@@ -117,7 +118,7 @@ $font-size-factor-up:   1.25;
     text-decoration:            none;
     text-rendering:             geometricPrecision;
 
-    line-height:                1.6;    // no units !!
+    line-height:                var(--gratio);
 
     letter-spacing:             normal;
 
@@ -133,15 +134,15 @@ $font-size-factor-up:   1.25;
             text-size-adjust:   100%;
 }
 
-h1 { @include font-normal;  font-size: var(--font-size-2);      line-height: 1.2; text-transform: none;      }
-h2 { @include font-bold;    font-size: var(--font-size-1);      line-height: 1.2; text-transform: none;      }
-h3 { @include font-boldest; font-size: var(--font-size-1);      line-height: 1.5; text-transform: uppercase; }
-p  { @include font-normal;  font-size: var(--font-size-normal); line-height: 1.3; text-transform: none;      }
-b  { @include font-bold;    font-size: var(--font-size-normal); line-height: 1.3; text-transform: none;      }
+h1 { @include font-boldest; font-size: var(--font-size-3);      line-height: 1.0;           text-transform: uppercase; }
+h2 { @include font-bold;    font-size: var(--font-size-2);      line-height: 1.0;           text-transform: none;      }
+h3 { @include font-boldest; font-size: var(--font-size-1);      line-height: 1.0;           text-transform: uppercase; }
+p  { @include font-normal;  font-size: var(--font-size-normal); line-height: var(--gratio); text-transform: none;      }
+b  { @include font-bold;    font-size: var(--font-size-normal); line-height: var(--gratio); text-transform: none;      }
 
-h1 { margin-block-start: 0.6em; margin-block-end: 0.6em;    }
-h2 { margin-block-start: 0.6em; margin-block-end: 0.6em;    }
-h3 { margin-block-start: 1.0em; margin-block-end: 1.0em;    }
+h1 { margin-top:  0.60em; margin-bottom: 0.6em; }
+h2 { margin-top: -0.15em; margin-bottom: 0.6em; }
+h3 { margin-top:  1.00em; margin-bottom: 1.0em; }
 
 // basic link overrides
 a:link      { color: inherit; text-decoration: none; }

@@ -80,13 +80,13 @@ $ui-margin-bottom-content:  $ui-margin-bottom   + 3.4rem;
 
         &[button-state='on'] {
 
-            color:              var(--color-bg);
+            // color:              var(--color-bg);
             transition:         color 0.5s, opacity 0.5s;
         }
 
         &[button-state='off'] {
 
-            color:              var(--color-fr);
+            // color:              var(--color-fr);
             transition:         color 0.5s, opacity 0.5s;
         }
 
@@ -116,7 +116,8 @@ $ui-margin-bottom-content:  $ui-margin-bottom   + 3.4rem;
         padding:                0;
         margin:                 0;
 
-        background-color:       var(--color-fr);
+        // background-color:       var(--color-fr);
+        background-color:       var(--color-bg);
         opacity:                0.0;
 
         z-index:                -1;
@@ -126,8 +127,11 @@ $ui-margin-bottom-content:  $ui-margin-bottom   + 3.4rem;
 
         &.visible {
 
-            transition:         opacity 0.5s;
-            opacity:            0.7;
+            // transition:         opacity 0.5s;
+            // opacity:            0.7;
+
+            transition:         opacity 1.0s;
+            opacity:            1.0;
 
             pointer-events:     auto;
         }

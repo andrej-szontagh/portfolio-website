@@ -38,6 +38,12 @@
         transition:         opacity 0.5s;
     }
 
+    h1 {
+
+        // hide title for now it seems to look better
+        visibility:         hidden;
+    }
+
     @include media ("width<text") {
 
         @include media ("width<750px")  {   display: none;  }
@@ -77,13 +83,29 @@
 
 @mixin description-block-links-vertical {
 
-    @include media ("height<1000px") {
+    @include media ("width<text") {
 
-        #description-block {
+        @include media ("height<1000px") {
 
-            left:               $ui-margin-left !important;
-            right:              auto            !important;
-            text-align:         left            !important;
+            #description-block {
+
+                left:               $ui-margin-left !important;
+                right:              auto            !important;
+                text-align:         left            !important;
+            }
+        }
+    }
+
+    @include media ("width>=text") {
+
+        @include media ("height<1250px") {
+
+            #description-block {
+
+                left:               $ui-margin-left !important;
+                right:              auto            !important;
+                text-align:         left            !important;
+            }
         }
     }
 }
