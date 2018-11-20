@@ -1,0 +1,150 @@
+
+.screen {
+
+    position:           fixed;
+    min-height:         100vh;
+    width:              100vw;
+    top:                0;
+    left:               0;
+
+    pointer-events:     none;
+
+    overflow:           hidden;
+
+    // default
+    opacity:            0.0;
+
+    &.hidden {
+
+        transition:         filter      var(--duration-focus)       var(--ease-focus),
+                            transform   var(--duration-flyin)       var(--ease-focus),
+                            opacity     var(--duration-opacity-out) var(--ease-opacity-out);
+
+        opacity:        0.0;
+        pointer-events: none;
+    }
+
+    &.visible {
+
+        transition:         filter      var(--duration-focus)       var(--ease-focus),
+                            transform   var(--duration-flyin)       var(--ease-focus),
+                            opacity     var(--duration-opacity-in)  var(--ease-opacity-in);
+
+        opacity:        1.0;
+        pointer-events: auto;
+    }
+}
+
+body:not(.has-screen) {
+
+    #content-transform, #ui {
+
+        filter: var(--blur-focus-in);
+    }
+
+    #screen-contact,
+    #screen-lightbox,
+    #screen-copyright,
+    #screen-terms {
+
+        filter: var(--blur-focus-out);
+    }
+
+    #screen-terms {
+
+        transform:      translateX(-2%) translateY(-100%);
+
+        #screen-terms-block-a .wrapper { transform: translateY(-100%); transition: transform 0.2s ease; }
+        #screen-terms-block-b .wrapper { transform: translateY(-100%); transition: transform 0.2s ease; }
+        #screen-terms-block-c .wrapper { transform: translateY(-200%); transition: transform 0.3s ease; }
+        #screen-terms-block-d .wrapper { transform: translateY(-200%); transition: transform 0.3s ease; }
+
+        .scroll > div { overflow: hidden; }
+    }
+
+    #label-description {
+
+        transition:     opacity 0.5s;
+    }
+}
+
+body.has-screen {
+
+    .button-hover,
+    .button-press {
+
+        &.visible[button-state='on'] {
+
+            opacity:        1.0;
+            pointer-events: auto;
+        }
+
+        &.visible[button-state='off'] {
+
+            opacity:        0.3;
+            pointer-events: none;
+        }
+    }
+
+    &:not(.has-zoom) {
+
+        #content-transform {
+
+            filter: var(--blur-focus-out);
+
+            .gallery-block {
+
+                filter:             var(--gallery-block-filter-inactive);
+                transition:         filter 0.5s;
+            }
+        }
+    }
+
+    #ui {
+
+        filter: var(--blur-focus-out);
+    }
+
+    #screen-contact,
+    #screen-lightbox,
+    #screen-copyright,
+    #screen-terms {
+
+        filter: var(--blur-focus-in);
+    }
+
+    #screen-terms {
+
+        transform:      translateX(0%) translateY(0%);
+
+        #screen-terms-block-a .wrapper { transform: translateY(0%); transition: transform 0.20s ease; }
+        #screen-terms-block-b .wrapper { transform: translateY(0%); transition: transform 0.30s ease; }
+        #screen-terms-block-c .wrapper { transform: translateY(0%); transition: transform 0.40s ease; }
+        #screen-terms-block-d .wrapper { transform: translateY(0%); transition: transform 0.45s ease; }
+
+        .scroll > div { overflow: hidden; }
+    }
+
+    #button-contact.visible {
+
+        opacity:            0.0;
+        pointer-events:     none;
+
+        &.button-hover[button-state='on'] {
+
+            pointer-events:     auto;
+        }
+    }
+
+    #button-terms.button-press[button-state='on'] {
+
+        opacity:            0.0;
+        pointer-events:     none;
+    }
+
+    #label-description {
+
+        opacity:            0.0;
+        transition:         opacity 0.5s;
+    }
+}

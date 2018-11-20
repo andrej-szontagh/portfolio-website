@@ -11,7 +11,38 @@
             "year":     "2016 - 2017",
             "oneliner": "Garden / outdoor / indoor arranger and editor<br>incorporated into e-commerce system.",
             "tags":     ["Unity3D", "Procedural", "Editor"],
-            "tags_sub": ["Unity3D", "C#", "WebGL", "Solo"]
+            "details":  [
+
+                ["Garden Designer"],
+                ["2017"],
+                ["20 Months"],
+                ["Client Project"],
+                ["Unfinished"],
+
+                ["Procedural Geometry"],
+                ["Graph Analysis"],
+                ["Wall Extrusion"],
+                ["Floating Walls"],
+
+                ["GPU Terrain"],
+                ["GPU Grass"],
+                ["Terrain Shader"],
+                ["16+ Layers"],
+                ["Terrain Displacement"],
+                ["Natural Mixing"],
+                ["Untiling"],
+
+                ["Intuitive UX"],
+                ["Drag & Drop"],
+                ["Easy handles"],
+
+                ["Windows Desktop"],
+                ["WebGL"],
+                ["Unity 3D - C#"],
+                ["Cg - HLSL"],
+
+                ["© 2017"]
+            ]
         },
 
         "meta_elements": {
@@ -20,7 +51,81 @@
             "year":     "2012 - 2016",
             "oneliner": "Procedural 3D modeling system / generator for<br>realistic vegetation modeling.",
             "tags":     ["Java", "Procedural", "PathTracing"],
-            "tags_sub": ["Java", "OpenGL", "OpenCL", "OpenCV", "Swing", "Nodes", "PathTracing", "PBR", "HDRi", "Unbiased", "Personal"]
+            "details":  [
+
+                ["META-Elements"],
+                ["2016"],
+                ["4+ Years"],
+                ["Personal Project"],
+                ["Released"],
+                ["Maintained"],
+                ["Closed"],
+
+                ["Procedural"],
+                ["Transformations"],
+                ["Structure"],
+                ["Deformations"],
+
+                ["OBJ - PLY - XML"],
+                ["Preset system"],
+
+                ["Interactive"],
+                ["Massive Models"],
+
+                ["Viewport Modes"],
+                ["Intuitive Handles"],
+                ["One By One Tweaking"],
+                ["2D + 3D Curve Editor"],
+
+                ["Multi Threaded"],
+                ["Load Balancing"],
+                ["MVP architecture"],
+                ["DATA - UI - GUI"],
+                ["Separation of Concerns"],
+                ["Loose Coupling"],
+                ["Component Design"],
+                ["Custom SWING GUI"],
+
+                ["Interactive Help"],
+
+                ["Render Engine"],
+                ["Unbiased Path-Tracing"],
+                ["GPU based"],
+                ["Tiles"],
+                ["Supersampling"],
+                ["Transparency"],
+                ["Color Space"],
+                ["DOF - HDR - HDRi"],
+                ["Post-Processing"],
+                ["Mesh Emitters"],
+                ["Uber Shader"],
+                ["Fresnel"],
+                ["IOR"],
+                ["Diffuse"],
+                ["Specular"],
+                ["Transmission"],
+                ["Emission"],
+                ["Normal"],
+                ["Alpha Mask"],
+                ["Vertex AO"],
+                ["Error correction"],
+
+                ["Vertex Snapping"],
+                ["Collision Detection"],
+                ["Smooth Transitions"],
+                ["Polygon Reduction"],
+                ["Polygon Subdivision"],
+
+                ["Website Backend"],
+
+                ["Windows Desktop"],
+                ["Java SE"],
+                ["OpenGL"],
+                ["OpenCL"],
+                ["OpenCV"],
+
+                ["© 2016"]
+            ]
         },
 
         "bouquet_designer": {
@@ -29,7 +134,50 @@
             "year":     "2016",
             "oneliner": "Web application selling flower bouquets showing<br>generated 3D visualization in real time.",
             "tags":     ["JavaScript", "WebGL", "Generator"],
-            "tags_sub": ["WebGL", "javascript", "generator", "shaders", "3dmodeling", "phone", "tablet", "desktop", "solo"]
+            "details":  [
+
+                ["Bouquet Designer"],
+                ["2016"],
+                ["6 Months"],
+                ["Client Project"],
+                ["Proof Of Concept"],
+
+                ["Parametric Generator"],
+                ["Distribution"],
+                ["Collision Detection"],
+                ["Optimized"],
+                ["Performance"],
+
+                ["Custom Shaders"],
+                ["Exponential Shadows"],
+                ["Logaritmic Shadows"],
+                ["Material Shaders"],
+                ["Lighting"],
+                ["Mobile Performance"],
+                ["Dynamic Loading"],
+
+                ["UI / UX Design"],
+                ["Scrollable Lists"],
+                ["SVG Effects"],
+
+                ["3D Modeling"],
+                ["Flowers"],
+                ["Vases"],
+
+                ["Desktop"],
+                ["Tablet"],
+                ["Phone"],
+                ["JavaScript"],
+                ["WebGL"],
+                ["GLSL"],
+                ["BabylonJS"],
+                ["HandJS"],
+                ["iScroll"],
+                ["Blender"],
+                ["Gimp"],
+
+                ["© 2016"]
+            ]
         },
 
         "mmorpg": {
@@ -38,7 +186,39 @@
             "year":     "2015",
             "oneliner": "MMORPG game demo showing the mechanics in<br>the game and basic combat and key features.",
             "tags":     ["Unity3D", "AI", "Mechanics", "Animation"],
-            "tags_sub": ["Unity3D", "C#", "NPC-AI", "GUI", "inventory", "armor", "environment", "combat", "animation", "3dmodeling", "solo"]
+            "details":  [
+
+                ["MMORPG"],
+                ["2015"],
+                ["6 Months"],
+                ["Demo"],
+
+                ["NPC AI"],
+                ["NPC 3D Modeling"],
+                ["NPC Animation"],
+
+                ["Player Stats"],
+                ["Inventory"],
+                ["Combat System"],
+                ["Armor System"],
+                ["Game Items"],
+                ["Loot Boxes"],
+
+                ["Environment"],
+                ["Generated Terrain"],
+                ["Generated Trees"],
+                ["Generated Grass"],
+                ["Terrain Shader"],
+                ["GUI"],
+
+                ["PC Desktop"],
+                ["Unity 3D - C#"],
+                ["Cg - HLSL"],
+                ["Blender"],
+                ["Gimp"],
+
+                ["© 2015"]
+            ]
         }
     },
 
@@ -89,11 +269,6 @@
     },
 
     "images" : {
-
-        "bouquet-designer\\desktop1.jpg":   { "description": "bouquet_designer" },
-        "bouquet-designer\\desktop2.jpg":   { "description": "bouquet_designer" },
-        "bouquet-designer\\phone1.jpg":     { "description": "bouquet_designer" },
-        "bouquet-designer\\phone2.jpg":     { "description": "bouquet_designer" },
 
         "mmorpg\\gameplay_01.jpg":          { "description": "mmorpg"           },
         "mmorpg\\gameplay_02.jpg":          { "description": "mmorpg"           },

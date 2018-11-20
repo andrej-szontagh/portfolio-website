@@ -76,19 +76,28 @@ function js_concat (cb) {
     return pumpify  ([
         gulp.src    ([
 
-            //'src/js/lib/decodeurl.js',
-            'src/js/lib/utils.js',
-            'src/js/lib/animations.js',
-            'src/js/lib/json.js',
-            'src/js/lib/youtube.js',
+            'src/js/lib/Utils.js',
+            'src/js/lib/Animations.js',
+            'src/js/lib/YouTube.js',
 
-            'src/js/gallery/gallery.js',
-            'src/js/gallery/gallery-videos.js',
-            'src/js/gallery/gallery-images.js',
+            'src/js/ContentBase.js',
+            'src/js/ContentCrop.js',
+            'src/js/ContentZoom.js',
+            'src/js/Content.js',
 
-            'src/js/ui.js',
-            
-            'src/js/onload.js',
+            'src/js/Gallery.js',
+            'src/js/GalleryVideos.js',
+            'src/js/GalleryImages.js',
+            'src/js/GalleryLightbox.js',
+
+            'src/js/ButtonsBase.js',
+            'src/js/ButtonsState.js',
+            'src/js/ButtonsActions.js',
+            'src/js/ButtonsEvents.js',
+            'src/js/Buttons.js',
+
+            'src/js/Mechanics.js',
+            'src/js/Entry.js',
         ]),
         gulp_concat ('scripts.js'),
         gulp.dest   ('dist')

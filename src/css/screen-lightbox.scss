@@ -1,0 +1,125 @@
+
+#screen-lightbox {
+
+    #details {
+
+        position:       absolute;
+
+        // @include font-boldest;
+        //
+        // font-size:          var(--font-size-1);
+        // line-height:        1.0;
+        // text-transform:     uppercase;
+        // margin-top:         -0.15em;    // tight
+        // margin-bottom:      -0.15em;    // tight
+        //
+        // --left:         15rem;
+        //
+        // @include media ("width<1000px") {
+        //
+        //     --left:     #{$ui-margin-left};
+        // }
+        //
+        // bottom:         8rem;
+        // left:           var(--left);
+        //
+        // width:          calc(100% - var(--left) - #{$ui-margin-right});
+
+        @include media ("portrait") {
+
+            @include media ("height<750px")                         { font-size: var(--font-size-1); }
+            @include media ("height>750px",     "height<1200px")    { font-size: var(--font-size-2); }
+            @include media ("height>1200px",    "height<2000px")    { font-size: var(--font-size-3); }
+            @include media (                    "height>2000px")    { font-size: var(--font-size-4); }
+
+            right:              0.85em;
+            bottom:             0.1em;
+            width:              200vh;
+            text-align:         right;
+
+            transform:          translateY(0) rotate(90deg);
+            transform-origin:   right bottom;
+
+            @keyframes roll-on {
+                from    { transform: translateY(-100vh) rotate(90deg);  filter: blur(0.4vw);    }
+                to      { transform: translateY(0)      rotate(90deg);  filter: blur(0.4vw);    }
+            }
+
+            @keyframes roll-off {
+                from    { transform: translateY(0)      rotate(90deg);  filter: blur(0);        }   // don't use units !! (Edge bug)
+                to      { transform: translateY(100vh)  rotate(90deg);  filter: blur(0.4vw);    }
+            }
+        }
+
+        @include media ("landscape") {
+
+            @include media ("width<750px")                      { font-size: var(--font-size-1); }
+            @include media ("width>750px",      "width<1200px") { font-size: var(--font-size-2); }
+            @include media ("width>1200px",     "width<2000px") { font-size: var(--font-size-3); }
+            @include media (                    "width>2000px") { font-size: var(--font-size-4); }
+
+            right:              4.8rem;
+            bottom:             2.2rem;
+            // width:              calc(100vw - 9.4rem);
+            width:              200vw;
+            text-align:         right;
+
+            transform:          translateX(0);
+
+            @keyframes roll-on {
+                from    { transform: translateX(-100vw);    filter: blur(0.4vw);    }
+                to      { transform: translateX(0);         filter: blur(0.4vw);    }
+            }
+
+            @keyframes roll-off {
+                from    { transform: translateX(0);         filter: blur(0);        }   // don't use units !! (Edge bug)
+                to      { transform: translateX(100vw);     filter: blur(0.4vw);    }
+            }
+        }
+
+        @include font-boldest;
+
+        line-height:        1.0;
+        text-transform:     uppercase;
+        margin-top:         -0.15em;    // tight
+        margin-bottom:      -0.15em;    // tight
+
+        // break the long lines, keep it in the bottom left area
+        // max-width:      30rem;
+
+        pointer-events: none;
+
+        &.roll-on {
+
+            animation-name:             roll-on;
+            animation-duration:         0.2s;
+            animation-timing-function:  linear;
+        }
+
+        &.roll-off {
+
+            animation-name:             roll-off;
+            animation-duration:         0.2s;
+            animation-timing-function:  ease-in;
+        }
+    }
+
+    // background: rgba(0, 0, 0, 0.5);
+    // background-image:   radial-gradient(
+    //     rgba(var(--color-bg-r), var(--color-bg-g), var(--color-bg-b), 0.5) 50%,
+    //     rgba(var(--color-bg-r), var(--color-bg-g), var(--color-bg-b), 1.0) 100%);
+
+    // button overrides ..
+    &.visible .scroll.button-press {
+
+        z-index:    1;
+        opacity:    1.0;
+    }
+
+    // button overrides ..
+    &.hidden .scroll.button-press {
+
+        z-index:    0;
+        opacity:    0.0;
+    }
+}

@@ -4,19 +4,19 @@
 @mixin links-horizontal {
 
     @include external-links-horizontal;
-    @include description-block-links-horizontal;
+    @include label-description-links-horizontal;
 }
 
 @mixin links-stacked () {
 
     @include external-links-stacked;
-    @include description-block-links-stacked;
+    @include label-description-links-stacked;
 }
 
 @mixin links-vertical {
 
     @include external-links-vertical;
-    @include description-block-links-vertical;
+    @include label-description-links-vertical;
 }
 
 @include media ("width<text-contact") {

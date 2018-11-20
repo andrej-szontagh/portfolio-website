@@ -1,0 +1,40 @@
+
+#screen-copyright > div {
+
+    --block-padding:        1.3rem;
+
+    position:               absolute;
+
+    right:                  $ui-margin-right-content;
+    bottom:                 $ui-margin-bottom-content;
+
+    width:                  30rem;
+    height:                 auto;
+
+    pointer-events:         none;   // !!
+
+    & > div {
+
+        display:            inline-block;
+        padding:            var(--block-padding);
+    }
+
+    // when the space is running out we align to the left
+    @include media ("width<670px") {
+
+        right:              auto;
+        left:               calc(#{$ui-margin-left} - var(--block-padding));
+    }
+
+    // when the space is running out we push closer to the edge
+    @include media ("height<400px") {
+
+        bottom:             $ui-margin-bottom;
+    }
+
+    // one column
+    @include media ("width<450px") {
+
+        width:              15rem;
+    }
+}

@@ -6,13 +6,25 @@
 @import "fonts.scss";
 @import "base.scss";
 
-@import "ui/ui.scss";
-@import "ui/links.scss";
-@import "ui/contact.scss";
-@import "ui/terms.scss";
-@import "ui/copyright.scss";
-@import "ui/description.scss";
+@import "content.scss";
+@import "content-overlay.scss";
+
+@import "zoom.scss";
+
+@import "ui.scss";
+@import "ui-buttons.scss";
+@import "ui-links.scss";
+@import "ui-description.scss";
+
+@import "screen.scss";
+@import "screen-overlay.scss";
+@import "screen-contact.scss";
+@import "screen-terms.scss";
+@import "screen-copyright.scss";
+@import "screen-lightbox.scss";
 
 @import "gallery.scss";
+@import "gallery-images.scss";
+@import "gallery-videos.scss";
 
 @import "responsive.scss";

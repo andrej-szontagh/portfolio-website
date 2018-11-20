@@ -1,12 +1,5 @@
 
-// hide block when overlay
-#ui.overlay #description-block {
-
-    opacity:            0.0;
-    transition:         opacity 0.5s;
-}
-
-#description-block {
+#label-description {
 
     position:           absolute;
     width:              calc(100% - #{$ui-margin-left} - #{$ui-margin-right});
@@ -59,35 +52,35 @@
     }
 }
 
-@mixin description-block-links-horizontal {
+@mixin label-description-links-horizontal {
 
     @include media ("height<550px") {
 
-        #description-block {
+        #label-description {
 
             display: none;
         }
     }
 }
 
-@mixin description-block-links-stacked () {
+@mixin label-description-links-stacked () {
 
     @include media ("height<650px") {
 
-        #description-block {
+        #label-description {
 
             display: none;
         }
     }
 }
 
-@mixin description-block-links-vertical {
+@mixin label-description-links-vertical {
 
     @include media ("width<text") {
 
         @include media ("height<1000px") {
 
-            #description-block {
+            #label-description {
 
                 left:               $ui-margin-left !important;
                 right:              auto            !important;
@@ -100,7 +93,7 @@
 
         @include media ("height<1250px") {
 
-            #description-block {
+            #label-description {
 
                 left:               $ui-margin-left !important;
                 right:              auto            !important;

@@ -1,0 +1,29 @@
+
+#screen-overlay {
+
+    position:               fixed;
+
+    left:                   0;
+    top:                    0;
+    width:                  100vw;
+    height:                 100vh;
+
+    padding:                0;
+    margin:                 0;
+
+    // background-image:       radial-gradient(
+    //     rgba(var(--color-bg-r), var(--color-bg-g), var(--color-bg-b), 0.5) 50%,
+    //     rgba(var(--color-bg-r), var(--color-bg-g), var(--color-bg-b), 1.0) 100%);
+
+    background-color:       var(--color-bg);
+    opacity:                0.0;
+
+    pointer-events:         none;
+    user-select:            none;
+
+    // override
+    &.visible {
+
+        opacity:            0.8;
+    }
+}

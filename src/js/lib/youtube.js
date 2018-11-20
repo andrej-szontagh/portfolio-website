@@ -3,25 +3,25 @@ function onYouTubeIframeAPIReady () {
 
     // console.log ("onYouTubeIframeAPIReady");
 
-    YouTubeManager.apiready = true;
+    YouTube.apiready = true;
 
-    if (YouTubeManager.initialized &&
-        YouTubeManager.sealed) {
+    if (YouTube.initialized &&
+        YouTube.sealed) {
 
-        YouTubeManager.createPlayers ();
+        YouTube.createPlayers ();
     }
 }
 
-function YouTubeAPIManager () {
+function YouTube () {
 
     var t = this;
 
     // ..
 }
 
-YouTubeAPIManager.prototype = {
+YouTube.prototype = {
 
-    constructor:    YouTubeAPIManager,
+    constructor:    YouTube,
 
     initialized:    false,
     sealed:         false,
@@ -46,6 +46,27 @@ YouTubeAPIManager.prototype = {
             var firstScriptTag = document.getElementsByTagName ('script')[0];
 
             firstScriptTag.parentNode.insertBefore (tag, firstScriptTag);
+        }
+    },
+
+    debug: function () {
+
+        var t = this;
+
+        for (var i = 0; i < t.players.length; i ++) {
+
+            var state = t.players [i].getPlayerState ();
+
+            switch (state) {
+                case YT.PlayerState.ENDED:      state = "ended";        break;
+                case YT.PlayerState.PLAYING:    state = "playing";      break;
+                case YT.PlayerState.PAUSED:     state = "paused";       break;
+                case YT.PlayerState.BUFFERING:  state = "buffering";    break;
+                case YT.PlayerState.CUED:       state = "cued";         break;
+                default:                        state = "unstarted";    break;
+            }
+
+            console.log ("Player " + i + " >> " + state);
         }
     },
 
@@ -89,23 +110,21 @@ YouTubeAPIManager.prototype = {
                     // console.log ("YouTube player created >> " + player_desc.id);
 
                     /*
-                    player.addEventListener ("onReady", function (e) {
+                    player.addEventListener ("onReady", function listener (e) {
 
-                        // https://www.sitepoint.com/create-one-time-events-javascript/
-                        e.target.removeEventListener (e.type, arguments.callee);
+                        e.target.removeEventListener (e.type, listener);
 
                         initPlayer ();
                     });
                     */
 
-                    player.addEventListener ("onStateChange", function (e) {
+                    player.addEventListener ("onStateChange", function listener (e) {
 
                         // console.log ("createPlayers >> onStateChange : " + e.data + " >> " + e.target.getIframe ().id);
 
                         if (e.data === YT.PlayerState.PLAYING) {
 
-                            // https://www.sitepoint.com/create-one-time-events-javascript/
-                            e.target.removeEventListener (e.type, arguments.callee);
+                            e.target.removeEventListener (e.type, listener);
 
                             // timeout helps to greatly reduce CPU spikes
                             setTimeout (initPlayer, 1000);
@@ -134,4 +153,4 @@ YouTubeAPIManager.prototype = {
     },
 }
 
-var YouTubeManager = new YouTubeAPIManager ();
+var YouTube = new YouTube ();

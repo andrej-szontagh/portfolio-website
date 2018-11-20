@@ -1,69 +1,120 @@
 <div id="body-wrapper">
-    <div id="ui">
-        <div id="external-links">
-            <a href="https://www.linkedin.com/in/andrejszontagh/"   target="_blank" class="button-hover" button-target="#overlay"><div>LinkedIn</div></a>
-            <a href="https://www.behance.net/andrejszon331e"        target="_blank" class="button-hover" button-target="#overlay"><div>Behance</div></a>
-            <a href="https://dribbble.com/AndrejSzontagh"           target="_blank" class="button-hover" button-target="#overlay"><div>Dribbble</div></a>
-            <a href="https://github.com/andrej-szontagh"            target="_blank" class="button-hover" button-target="#overlay"><div>GitHub</div></a>
+
+    <div id="content-overflow">
+        <div id="content-transform">
+            <div id="content">
+                <div id="gallery-videos"></div>
+                <div id="gallery-images"></div>
+                <div id="label-demo">
+                    PROVISIONAL DEMO TEMPORARY DEMO
+                    PROVISIONAL DEMO TEMPORARY DEMO
+                </div>
+            </div>
         </div>
-        <div id="terms-conditions-button" class="button-hover"
-            button-state="off"
-            button-target="#terms-conditions-scroll, #overlay"
-            button-scroll="#terms-conditions-scroll">
-            Terms & Conditions
+    </div>
+
+    <div id="screen-overlay" class="screen hidden">
+    </div>
+
+    <div id="screen-contact"
+        class="screen button-press hidden"
+        button-state="[on]"
+        button-set-off="#button-contact">
+        <div id="label-email"></div>
+    </div>
+
+    <div id="screen-copyright"
+        class="screen button-press hidden"
+        button-state="[on]"
+        button-set-off="#button-copyright">
+        <div>
+            <div id="screen-copyright-block-a">
+                <p>Design</p>
+                <p><b>Andrej Szontagh</b></p>
+            </div>
+            <div id="screen-copyright-block-b">
+                <p>Development</p>
+                <p><b>Andrej Szontagh</b></p>
+            </div>
+            <div id="screen-copyright-block-c">
+                <p>© 2018 Andrej Szontagh.<br>All Rights Reserved.</p>
+            </div>
         </div>
-        <div id="terms-conditions-block">
-            <div id="terms-conditions-scroll" class="scroll button-press hidden" button-state="[on]" button-set-off="#terms-conditions-button">
-                <div id="block-a">
+    </div>
+
+    <div id="screen-terms"
+        class="screen button-press hidden"
+        button-state="[on]"
+        button-set-off="#button-terms">
+        <div
+            class="scroll button-press visible"
+            button-state="[on]"
+            button-set-off="#button-terms">
+            <div id="screen-terms-block-a">
+                <div class="wrapper">
                     <h2>Weekly milestones</h2>
                     <p>The project will be subdivided into milestone blocks which are designed to be completed in one week. If you are happy with the result and I receive the payment for the milestone we can move on to the next one.</p>
                 </div>
-                <div id="block-b">
+            </div>
+            <div id="screen-terms-block-b">
+                <div class="wrapper">
                     <h2>Written communi&shy;cation</h2>
                     <p>It might sounds counterintuitive, but it saves time, makes communication more clear and provide archivation for reference. Primarily email, secondary messaging app. like Skype.</p>
                 </div>
-                <div id="block-c">
+            </div>
+            <div id="screen-terms-block-c">
+                <div class="wrapper">
                     <h2>Working solo and remote</h2>
                     <p>Ability to have control over my time is very important for me. I understand that sometimes there is too much work for a one man show, but I will always choose the job with conditions that gives me more control over my own life.</p>
                 </div>
-                <div id="block-d">
+            </div>
+            <div id="screen-terms-block-d">
+                <div class="wrapper">
                     <h2>I read agreements</h2>
                     <p>I would love to keep the right to show the work in my portfolio. I care about tech. support, risks and future burden. Attribution is welcome.</p>
                 </div>
             </div>
         </div>
-        <div id="copyright-button"  class="button-hover" button-state="off" button-target="#overlay, #copyright-block">© 2018</div>
-        <div id="copyright-block"   class="hidden">
-            <div id="block-a">
-                <p>Design</p>
-                <p><b>Andrej Szontagh</b></p>
-            </div>
-            <div id="block-b">
-                <p>Development</p>
-                <p><b>Andrej Szontagh</b></p>
-            </div>
-            <div id="block-c">
-                <p>© 2018 Andrej Szontagh.<br>All Rights Reserved.</p>
-            </div>
+    </div>
+
+    <div id="screen-lightbox"
+        class="screen button-press hidden"
+        button-state="[on]"
+        button-target="#screen-lightbox">
+        <div id="details"></div>
+    </div>
+
+    <div id="ui">
+        <div id="external-links">
+            <a href="https://www.linkedin.com/in/andrejszontagh/"   target="_blank" class="button-hover" button-target="#screen-overlay"><div>LinkedIn</div></a>
+            <a href="https://www.behance.net/andrejszon331e"        target="_blank" class="button-hover" button-target="#screen-overlay"><div>Behance</div></a>
+            <a href="https://dribbble.com/AndrejSzontagh"           target="_blank" class="button-hover" button-target="#screen-overlay"><div>Dribbble</div></a>
+            <a href="https://github.com/andrej-szontagh"            target="_blank" class="button-hover" button-target="#screen-overlay"><div>GitHub</div></a>
         </div>
-        <a href="" id="contact-button" class="button-hover" button-state="off" button-target="#overlay, #contact-block">
-            <span class="contact-button-slash">\ </span>Contact<span class="contact-button-tail"> me</span>
+        <div id="button-terms"
+            class="button-hover"
+            button-state="off"
+            button-target="#screen-terms, #screen-overlay"
+            button-scroll="#screen-terms .scroll">
+            Terms & Conditions
+        </div>
+        <div id="button-copyright"
+            class="button-hover"
+            button-state="off"
+            button-target="#screen-copyright, #screen-overlay">
+            © 2018
+        </div>
+        <a id="button-contact"
+            class="button-hover"
+            button-state="off"
+            button-target="#screen-overlay, #screen-contact"
+            href="">
+            <span class="button-contact-slash">\ </span>Contact
+            <span class="button-contact-tail"> me</span>
         </a>
-        <div id="contact-block">
-            <div id="contact-email"></div>
-        </div>
-        <div id="description-block" class="hidden">
+        <div id="label-description" class="hidden">
             <h1></h1><p></p><h3></h3>
         </div>
-        <div id="overlay" class="button-press hidden" button-state="[on]" button-set-off="#ui .button-press" button-target="#overlay"></div>
     </div>
-    <div id="content">
-        <div id="gallery-videos"></div>
-        <div id="gallery-images">
-            <div id="lightbox">
-                <div id="lightbox-background"></div>
-                <img id="lightbox-image" src="">
-            </div>
-        </div>
-    </div>
+
 </div>

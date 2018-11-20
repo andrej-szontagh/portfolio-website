@@ -1,0 +1,70 @@
+
+body.has-zoom {
+
+    &:not(.is-zooming-out) {
+
+        // this makes transition start right away with the zoom out
+        #label-demo {
+
+            opacity: 0.0;
+        }
+    }
+
+    #body-wrapper {
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        #ui {
+
+            filter: none;
+
+            #button-terms,
+            #button-copyright {
+
+                display: none;
+            }
+        }
+
+        // #ui {
+        //
+        //     filter: var(--blur-focus-out);
+        // }
+
+        #content-transform {
+
+            &.focusing {
+
+                // WARNING: make sure filter transition is off !
+
+                @keyframes focusing {
+
+                    0%      { filter: blur(0);      }
+                    50%     { filter: blur(0.2vw);  }
+                    100%    { filter: blur(0);      }
+                }
+
+                animation-name:             focusing;
+                // animation-duration:         var(--duration-zoom);
+                animation-duration:         0.5s;
+                animation-timing-function:  var(--ease-focus);
+            }
+
+            #content {
+
+                .gallery-block {
+
+                    &.in-lightbox {
+                        &.button-hover, &.button-press {
+                            &.visible, &.hidden { filter: var(--gallery-block-filter-selected); }
+                        }
+                    }
+
+                    &:not(.in-lightbox) {
+                        &.button-hover, &.button-press {
+                            &.visible, &.hidden { filter: var(--gallery-block-filter-disabled); }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

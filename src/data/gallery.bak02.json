@@ -1,0 +1,436 @@
+{
+
+    "filebase_images" : "data\\images\\",
+    "filebase_covers" : "data\\covers\\",
+
+    "descriptions" : {
+
+        "garden_designer": {
+
+            "name":     "Garden Designer",
+            "year":     "2016 - 2017",
+            "oneliner": "Garden / outdoor / indoor arranger and editor<br>incorporated into e-commerce system.",
+            "tags":     ["Unity3D", "Procedural", "Editor"],
+            "tags_sub": ["Unity3D", "C#", "WebGL", "Solo"],
+            "details":  [
+                [
+                    "<h2>Garden Designer</h2>",
+                    "<p>Garden / outdoor / indoor arranger and editor incorporated into e-commerce system.</p>"
+                ],
+                [
+                    "<h3>Period</h3>",
+                    "<b>Year:</b>        2016 - 2017<br>",
+                    "<b>Duration:</b>    2 Years"
+                ],
+                [
+                    "<h3>Status</h3>",
+                    "<b>Type:</b>        Solo for client<br>",
+                    "<b>Status:</b>      Unfinished"
+                ],
+                [
+                    "<h3>Procedural</h3>",
+                    "Generated textured walls from<br>",
+                    "point connection graph network"
+                ],
+                [
+                    "<h3>Real-Time Graph Analysis</h3>",
+                    "Detect Rooms, Texturable wall pieces<br>",
+                    "Detect Wall Groups"
+                ],
+                [
+                    "<h3>Floorplan Editor</h3>",
+                    "Glitch Free Wall Connections<br>",
+                    "Extrusion, Floating walls, Thickness"
+                ],
+                [
+                    "<h3>Custom GPU Terrain</h3>",
+                    "Much much faster, higher resolution<br>",
+                    "Real-time editing"
+                ],
+                [
+                    "<h3>HD Terrain shader</h3>",
+                    "Aribtrary material layers, Parallax Occlusion Mapping<br>",
+                    "Height Based Mixing, Unity Standard Shader based"
+                ],
+                [
+                    "<h3>Intuitive UX</h3>",
+                    "Drag & Drop everything<br>",
+                    "Special easy handles, Combinations"
+                ],
+                [
+                    "<h3>Platform</h3>",
+                    "Windows Desktop, WebGL"
+                ],
+                [
+                    "<h3>Programming</h3>",
+                    "Unity 3D / C#"
+                ],
+                [
+                    "<h3>Shaders</h3>",
+                    "Cg / HLSL"
+                ],
+                [
+                    "Third Party Textures and <br>",
+                    "3D models used."
+                ],
+                [
+                    "Andrej Szontagh<br>",
+                    "© 2017"
+                ]
+            ]
+        },
+
+        "meta_elements": {
+
+            "name":     "META-Elements",
+            "year":     "2012 - 2016",
+            "oneliner": "Procedural 3D modeling system / generator for<br>realistic vegetation modeling.",
+            "tags":     ["Java", "Procedural", "PathTracing"],
+            "tags_sub": ["Java", "OpenGL", "OpenCL", "OpenCV", "Swing", "Nodes", "PathTracing", "PBR", "HDRi", "Unbiased", "Personal"],
+            "details":  [
+                [
+                    "<h2>META-Elements</h2>",
+                    "<p>Procedural 3D modeling system / generator for realistic vegetation modeling.</p>"
+                ],
+                [
+                    "<h3>Period</h3>",
+                    "<b>Year:</b>        2012 - 2016<br>",
+                    "<b>Duration:</b>    4+ Years"
+                ],
+                [
+                    "<h3>Status</h3>",
+                    "<b>Type:</b>        Personal Project<br>",
+                    "<b>Status:</b>      Released, Maintained, Closed"
+                ],
+                [
+                    "<h3>Procedural</h3>",
+                    "Three based generator system<br>",
+                    "Evaluations, Transformations, Curvature Nodes, Displacements"
+                ],
+                [
+                    "<h3>Export / Import</h3>",
+                    "Custom XML format, OBJ and PLY<br>",
+                    "Preset system"
+                ],
+                [
+                    "<h3>Interactive</h3>",
+                    "3D model and rendering updates instantly and interactively"
+                ],
+                [
+                    "<h3>Viewport</h3>",
+                    "View modes, and support visualization<br>",
+                    "Optimized rendering for high-poly models"
+                ],
+                [
+                    "<h3>Handles</h3>",
+                    "3D handles per component<br>",
+                    "Instant feedback"
+                ],
+                [
+                    "<h3>Manual Adjustments</h3>",
+                    "Weak invididual elements one by one"
+                ],
+                [
+                    "<h3>Curves</h3>",
+                    "2D and 3D curves, interactive editing and function nodes"
+                ],
+                [
+                    "<h3>Generator</h3>",
+                    "Multi-threaded segmentaion / load-balancing<br>",
+                    "Separation of Concerns / Loose Coupling"
+                ],
+                [
+                    "<h3>Component based architecture</h3>",
+                    "MVP architecture (DATA / UI / GUI)<br>",
+                    "Separation of Concerns / Loose Coupling"
+                ],
+                [
+                    "<h3>Graphical User Interface</h3>",
+                    "Custom extension of Java Swing GUI<br>",
+                    "Unique GUI elements and visual theme"
+                ],
+                [
+                    "<h3>Interactive Help System</h3>",
+                    "<p>Displays help tooltip in the status bar and detail info. in special help panel instantly.</p>"
+                ],
+                [
+                    "<h3>Render Engine</h3>",
+                    "Unbiased Bi-directional Path-Tracing<br>",
+                    "GPU / OpenCL / Physically based / Uber shader"
+                ],
+                [
+                    "<h3>Render Features</h3>",
+                    "Tiles, Supersampling, Transparency, Color Space<br>",
+                    "DOF, HDR, HDRi, Post-Processing, Mesh Lights"
+                ],
+                [
+                    "<h3>Materials</h3>",
+                    "Fresnel, IOR, Diffuse, Specular, Transmission<br>",
+                    "Emission, Nomral Maps, Alpha Mask"
+                ],
+                [
+                    "<h3>Post Processing</h3>",
+                    "Fresnel, IOR, Diffuse, Specular, Transmission<br>",
+                    "Emission, Nomral Maps, Alpha Mask"
+                ],
+                [
+                    "<h3>Vertex AO</h3>",
+                    "GPU / OpenCL based accruate ray-tracing AO<br>",
+                    "Interactive preview, Error correction"
+                ],
+                [
+                    "<h3>Advanced Vertex Snapping</h3>",
+                    "<p>Ray-matched accurate collision detection and projection with smooth tranitions</p>"
+                ],
+                [
+                    "<h3>Polygon Post-Processing</h3>",
+                    "Reduction and subdivision"
+                ],
+                [
+                    "<h3>Download / Subscription Backend</h3>",
+                    "Google App Engine / Java Servlets<br>",
+                    "Unique expirable download links"
+                ],
+                [
+                    "<h3>Platform</h3>",
+                    "Windows Desktop"
+                ],
+                [
+                    "<h3>Programming</h3>",
+                    "Java, OpenCL, OpenGL, GLSL"
+                ],
+                [
+                    "<h3>Frameworks</h3>",
+                    "Java Swing, JOGL, JOCL, OpenCV"
+                ],
+                [
+                    "Andrej Szontagh<br>",
+                    "© 2016"
+                ]
+            ]
+        },
+
+        "bouquet_designer": {
+
+            "name":     "Bouquet Designer",
+            "year":     "2016",
+            "oneliner": "Web application selling flower bouquets showing<br>generated 3D visualization in real time.",
+            "tags":     ["JavaScript", "WebGL", "Generator"],
+            "details":  [
+                [
+                    "<h2>Bouquet Designer</h2>",
+                    "<p>Web application selling flower bouquets showing generated 3D visualization in real time.</p>"
+                ],
+                [
+                    "<h3>Period</h3>",
+                    "<b>Year:</b>        2016<br>",
+                    "<b>Duration:</b>    6 Months"
+                ],
+                [
+                    "<h3>Status</h3>",
+                    "<b>Type:</b>        Solo for client<br>",
+                    "<b>Status:</b>      Proof of Concept"
+                ],
+                [
+                    "<h3>Parametric Bouquet Generator</h3>",
+                    "Distribution, math model and collision detection<br>",
+                    "Optimized algorithm for fast updates"
+                ],
+                [
+                    "<h3>Custom Shaders</h3>",
+                    "Logaritmic Exponential Shadows<br>",
+                    "Flower Material, Refraction Vase Material"
+                ],
+                [
+                    "<h3>Optimizations</h3>",
+                    "On Demand Content Loading<br>",
+                    "Mobile Graphic Performance (10 fold increase)"
+                ],
+                [
+                    "<h3>Graphical User Interface</h3>",
+                    "Responsive scrollable item blocks and menus<br>",
+                    "Custom SVG blending effects and graphics"
+                ],
+                [
+                    "<h3>3D Modeling</h3>",
+                    "All Flower and vase models<br>",
+                    "Procedural stems generator"
+                ],
+                [
+                    "<h3>Platform</h3>",
+                    "Web / Desktop / Tablet / Phone"
+                ],
+                [
+                    "<h3>Programming</h3>",
+                    "JavaScript, WebGL, GLSL"
+                ],
+                [
+                    "<h3>Graphics</h3>",
+                    "Blender / Gimp"
+                ],
+                [
+                    "<h3>Frameworks</h3>",
+                    "BabylonJS, HandJS, iScroll"
+                ],
+                [
+                    "Andrej Szontagh<br>",
+                    "© 2016"
+                ]
+            ]
+        },
+
+        "mmorpg": {
+
+            "name":     "MMORPG",
+            "year":     "2015",
+            "oneliner": "MMORPG game demo showing the mechanics in<br>the game and basic combat and key features.",
+            "tags":     ["Unity3D", "AI", "Mechanics", "Animation"],
+            "details":  [
+                [
+                    "<h2>MMORPG</h2>",
+                    "<p>MMORPG game demo showing the mechanics in the game and basic combat and key features.</p>"
+                ],
+                [
+                    "<h3>Period</h3>",
+                    "<b>Year:</b>        2015<br>",
+                    "<b>Duration:</b>    6 Months"
+                ],
+                [
+                    "<h3>Status</h3>",
+                    "<b>Type:</b>        Solo for client<br>",
+                    "<b>Status:</b>      Demo"
+                ],
+                [
+                    "<h3>Characters</h3>",
+                    "Character Locomotion<br>",
+                    "Character AI"
+                ],
+                [
+                    "<h3>Player Stats</h3>",
+                    "Health / Stamina / Mana System<br>",
+                    "Combat System"
+                ],
+                [
+                    "<h3>Player Items</h3>",
+                    "Armor System<br>",
+                    "Player Inventory"
+                ],
+                [
+                    "<h3>Game Items</h3>",
+                    "Loot Boxes<br>",
+                    "Item Properties"
+                ],
+                [
+                    "<h3>Environment</h3>",
+                    "Script Generated Terrain and Vegetation<br>",
+                    "Custom Terrain Shader"
+                ],
+                [
+                    "<h3>Graphical User Interface</h3>",
+                    "Resizable Floating Windows<br>",
+                    "Drag And Drop"
+                ],
+                [
+                    "<h3>3D Modeling And Animation</h3>",
+                    "NPC Character Animation<br>",
+                    "NPC Character 3D Modeling"
+                ],
+                [
+                    "<h3>Platform</h3>",
+                    "PC Desktop"
+                ],
+                [
+                    "<h3>Programming</h3>",
+                    "Unity 3D / C#"
+                ],
+                [
+                    "<h3>Shaders</h3>",
+                    "Cg / HLSL"
+                ],
+                [
+                    "<h3>Graphics</h3>",
+                    "Blender / Gimp"
+                ],
+                [
+                    "Third Party Textures,<br>",
+                    "3D models and animations used."
+                ],
+                [
+                    "Andrej Szontagh<br>",
+                    "© 2015"
+                ]
+            ]
+        }
+    },
+
+    "videos" : {
+
+        "Joyiet6ag-A": {
+
+            "start":        "65",
+            "cover":        "Garden Designer WIP Demo A.jpg",
+            "description":  "garden_designer"
+        },
+        "sn55KJkVbfg": {
+
+            "start":        "4",
+            "cover":        "Garden Designer WIP Demo B.jpg",
+            "description":  "garden_designer"
+        },
+        "EnAjGROrvNw": {
+
+            "start":        "0",
+            "cover":        "Garden Designer WIP Demo C.jpg",
+            "description":  "garden_designer"
+        },
+        "MJMbMvZtvgo": {
+
+            "start":        "3",
+            "cover":        "Garden Designer WIP Demo D.jpg",
+            "description":  "garden_designer"
+        },
+        "-C-StR6aVxw": {
+
+            "start":        "32",
+            "cover":        "Garden Designer WIP Demo E.jpg",
+            "description":  "garden_designer"
+        },
+        "dfW26RLWRa8": {
+
+            "start":        "0",
+            "cover":        "META-Elements DEMO A.jpg",
+            "description":  "meta_elements"
+        },
+        "euomAmzoJVg": {
+
+            "start":        "0",
+            "cover":        "META-Elements DEMO B.jpg",
+            "description":  "meta_elements"
+        }
+    },
+
+    "images" : {
+
+        "mmorpg\\gameplay_01.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_02.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_03.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_04.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_05.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_06.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_07.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_08.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_09.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_10.jpg":          { "description": "mmorpg"           },
+        "mmorpg\\gameplay_11.jpg":          { "description": "mmorpg"           },
+
+        "mmorpg\\scenery_01.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_02.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_03.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_04.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_05.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_06.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_07.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_08.jpg":           { "description": "mmorpg"           },
+        "mmorpg\\scenery_09.jpg":           { "description": "mmorpg"           }
+    }
+}

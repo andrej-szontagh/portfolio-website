@@ -1,0 +1,104 @@
+
+.button-hover,
+.button-press {
+
+    transition: opacity 0.5s;
+
+    &.visible {
+
+        opacity:        1.0;
+        pointer-events: auto;
+    }
+
+    &.hidden {
+
+        opacity:        0.0;
+        pointer-events: none;
+    }
+}
+
+.button-hover { cursor: default; }
+.button-press { cursor: pointer; }
+
+#button-contact {
+
+    @include font-boldest;
+
+    font-size:          var(--font-size-3);
+    text-transform:     uppercase;
+    text-align:         left;
+
+    line-height:        1.6;    // no units !!
+
+    position:           absolute;
+    left:               calc(#{$ui-margin-left} - 0.78em);
+    top:                $ui-margin-top  - 1.47rem;
+    width:              auto;
+    height:             auto;
+
+    padding:            0;
+    margin:             0;
+
+    cursor:             pointer;
+
+    pointer-events:     auto;
+    user-select:        none;
+
+    @include media ("width<text") {
+
+        @include media ("width<text-contact") {
+
+            font-size: var(--font-size-2);
+        }
+
+        @include media ("width<450px") {
+
+            .button-contact-tail { display: none; }
+
+            /*
+            @include media ("width<370px") {
+
+                .button-contact-slash { display: none; }
+
+                left: $ui-margin-left;
+            }
+            */
+        }
+    }
+}
+
+#button-terms {
+
+    position:           absolute;
+    top:                auto;
+    bottom:             $ui-margin-bottom;
+    left:               $ui-margin-left;
+    right:              auto;
+
+    text-align:         right;
+
+    // hide button when on so it doesn't collide with text
+    &[button-state='on'] {
+
+        z-index:    999;
+        opacity:    0.0;
+    }
+}
+
+#button-copyright {
+
+    position:           absolute;
+    top:                auto;
+    bottom:             $ui-margin-bottom;
+    left:               auto;
+    right:              $ui-margin-right;
+    text-align:         right;
+
+
+    // the size is so small here that wrapping to
+    // major text breakpoints is redundant
+    @include media ("width<500px") {
+
+        display:    none;
+    }
+}

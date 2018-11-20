@@ -1,7 +1,9 @@
 
-var manager_ui          = null;
+var body                = null;
+var manager_buttons     = null;
+var manager_mechanics   = null;
 var manager_animations  = null;
-var manager_gallery     = null;
+var manager_content     = null;
 
 window.onload = function (e) {
 
@@ -11,7 +13,10 @@ window.onload = function (e) {
     // console.log ("window.location.protocol  : " + window.location.protocol);
     // console.log ("window.location.port      : " + window.location.port);
 
-    manager_ui          = new UI            ();
+    body = document.getElementsByTagName ("BODY")[0];
+
+    manager_buttons     = new Buttons       ();
+    manager_mechanics   = new Mechanics     ();
     manager_animations  = new Animations    ();
-    manager_gallery     = new Gallery       (manager_ui, manager_animations, "data/gallery.json");
+    manager_content     = new Content       ();
 }

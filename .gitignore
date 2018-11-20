@@ -3,6 +3,7 @@
 
 _build.bat
 _server.bat
+_remote.bat
 _npm.lnk
 
 # Ignore builds

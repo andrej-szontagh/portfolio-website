@@ -1,64 +1,36 @@
 
-#terms-conditions-button {
+#screen-terms {
 
-    position:           absolute;
-    top:                auto;
-    bottom:             $ui-margin-bottom;
-    left:               $ui-margin-left;
-    right:              auto;
+    height:             100%;
 
-    text-align:         right;
-    cursor:             default;
+    overflow:           auto;
 
-    // hide button when on so it doesn't collide with text
-    &[button-state='on'] {
+    display:            flex;
+    align-items:        center;
 
-        opacity:    0.0;
+    &.visible {
+
+        // button overrides ..
+        .scroll.button-press {
+
+            pointer-events:     auto;
+            z-index:            1;
+            opacity:            1.0;
+        }
     }
-}
 
-#terms-conditions-block {
+    &.hidden {
 
-    position:                   absolute;
-    top:                        0;
-    left:                       0;
-    width:                      100vw;
-    height:                     100%;
+        // button overrides ..
+        .scroll.button-press {
 
-    overflow:                   auto;
-
-    display:                    flex;
-    align-items:                center;
+            pointer-events:     none;
+            z-index:            0;
+            opacity:            0.0;
+        }
+    }
 
     .scroll {
-
-        &.visible {
-
-            opacity:                1.0;
-            transition:             opacity 0.5s;
-
-            // button overrides ..
-            &.button-press {
-
-                pointer-events:     auto;
-                z-index:            1;
-                opacity:            1.0;
-            }
-        }
-
-        &.hidden {
-
-            opacity:                0.0;
-            transition:             opacity 0.5s;
-
-            // button overrides ..
-            &.button-press {
-
-                pointer-events:     none;
-                z-index:            0;
-                opacity:            0.0;
-            }
-        }
 
         & > div {
 
@@ -129,7 +101,7 @@
             // color:              var(--color-bg);
         }
 
-        #block-a {
+        #screen-terms-block-a {
 
             // breaks the line at specific word
             // h2 {    max-width: 10em;    }
@@ -140,7 +112,7 @@
             grid-row-end:       span 1;
         }
 
-        #block-b {
+        #screen-terms-block-b {
 
             // breaks the line at specific word
             // h2 {    max-width: 10em;    }
@@ -151,7 +123,7 @@
             grid-row-end:       span 1;
         }
 
-        #block-c {
+        #screen-terms-block-c {
 
             // breaks the line at specific word
             // h2 {    max-width: 10em;    }
@@ -162,7 +134,7 @@
             grid-row-end:       span 1;
         }
 
-        #block-d {
+        #screen-terms-block-d {
 
             // breaks the line at specific word
             // h2 {    max-width: 15em;    }
@@ -197,7 +169,7 @@
             grid-template-columns:  30rem;
             grid-template-rows:     auto;
 
-            #block-a {
+            #screen-terms-block-a {
 
                 grid-column-start:  1;
                 grid-column-end:    span 1;
@@ -205,7 +177,7 @@
                 grid-row-end:       span 1;
             }
 
-            #block-b {
+            #screen-terms-block-b {
 
                 grid-column-start:  1;
                 grid-column-end:    span 1;
@@ -213,7 +185,7 @@
                 grid-row-end:       span 1;
             }
 
-            #block-c {
+            #screen-terms-block-c {
 
                 grid-column-start:  1;
                 grid-column-end:    span 1;
@@ -221,7 +193,7 @@
                 grid-row-end:       span 1;
             }
 
-            #block-d {
+            #screen-terms-block-d {
 
                 grid-column-start:  1;
                 grid-column-end:    span 1;
