@@ -31,89 +31,102 @@ class Gallery {
 
                     // console.log ("Image Gallery Update");
 
-                    updateButtons ();
+                    t.updateButtons ();
                 }
             );
 
             t.lightbox = new GalleryLightbox (json);
 
-            updateButtons ();
+            t.updateButtons ();
         });
+    }
 
-        function updateButtons () {
+    updateButtons () {
 
-            let gallery_blocks = document.querySelectorAll (".gallery-block");
+        let t = this;
 
-            if (gallery_blocks) {
+        let gallery_blocks = document.querySelectorAll (".gallery-block");
 
-                for (let i = 0; i < gallery_blocks.length; i ++) {
+        if (gallery_blocks) {
 
-                    let el = gallery_blocks [i];
+            function onOpen     (e) { t.onOpen      (e);    }
+            function onVisible  (e) { t.onVisible   (e);    }
 
-                    if (el.classList.contains   ("button-hover") == false) {
-                        el.classList.add        ("button-hover");
-                        el.classList.add        ("hidden");
+            for (let i = 0; i < gallery_blocks.length; i ++) {
 
-                        el.setAttribute ("button-target",  "<this> #label-description");
-                        el.setAttribute ("button-clear",   ".gallery-block");
+                let el = gallery_blocks.item (i);
 
-                        el.addEventListener ("onvisible", function (e) {
+                if (el.classList.contains   ("button-hover") == false) {
+                    el.classList.add        ("button-hover");
+                    el.classList.add        ("hidden");
 
-                            let d, desc = null;
+                    el.setAttribute ("button-target",  "<this> #label-description");
+                    el.setAttribute ("button-clear",   ".gallery-block");
 
-                            let id = e.target.id;
-
-                            if (d = t.json.images [id]) desc = d.description; else
-                            if (d = t.json.videos [id]) desc = d.description;
-
-                            if (desc) {
-                                desc = t.json.descriptions [desc];
-
-                                if (desc) {
-
-                                    t.desc_header   .innerHTML = desc.name + "<br> (" + desc.year + ")";
-                                    t.desc_oneliner .innerHTML = desc.oneliner;
-                                    t.desc_tags     .innerHTML = "";
-
-                                    if (desc.tags) {
-
-                                        for (let i = 0; i < desc.tags.length; i ++) {
-
-                                            if (i > 0) {
-
-                                                t.desc_tags.innerHTML += " - ";
-                                            }
-
-                                            t.desc_tags.innerHTML += desc.tags [i];
-                                        }
-                                    }
-
-                                } else {
-
-                                    t.desc_header   .innerHTML = "";
-                                    t.desc_oneliner .innerHTML = "";
-                                    t.desc_tags     .innerHTML = "";
-                                }
-                            }
-                        });
-
-                        el.___callback_open = function (e) {
-
-                            // avoid some trouble when clicking on the block while zooming
-                            if (manager_content.zooming === false) {
-
-                                if (t.lightbox.isVisible ()) {
-
-                                    t.lightbox.hide (); } else {
-                                    t.lightbox.show (e.target);
-                                }
-                            }
-                        }
-                    }
+                    el.addEventListener ("onvisible", onVisible);
+                    el.___callback_open = onOpen;
                 }
             }
+        }
 
-            manager_buttons.updateButtons ();
+        manager_buttons.updateButtons ();
+    }
+
+    onVisible (e) {
+
+        let t = this;
+
+        let d, desc = null;
+
+        let id = e.target.id;
+
+        // to make the Codacy happy ..
+        d = t.json.images [id]; if (d) { desc = d.description; } else {
+        d = t.json.videos [id]; if (d) { desc = d.description; } }
+
+        if (desc) {
+            desc = t.json.descriptions [desc];
+
+            if (desc) {
+
+                t.desc_header   .innerHTML = desc.name + "<br> (" + desc.year + ")";
+                t.desc_oneliner .innerHTML = desc.oneliner;
+                t.desc_tags     .innerHTML = "";
+
+                if (desc.tags) {
+
+                    for (let i = 0; i < desc.tags.length; i ++) {
+
+                        if (i > 0) {
+
+                            t.desc_tags.innerHTML += " - ";
+                        }
+
+                        t.desc_tags.innerHTML += desc.tags [i];
+                    }
+                }
+
+            } else {
+
+                t.desc_header   .innerHTML = "";
+                t.desc_oneliner .innerHTML = "";
+                t.desc_tags     .innerHTML = "";
+            }
+        }
+    }
+
+    onOpen (e) {
+
+        let t = this;
+
+        // avoid some trouble when clicking on the block while zooming
+        if (manager_content.zooming === false) {
+
+            if (t.lightbox.isVisible ()) {
+
+                t.lightbox.hide (); } else {
+                t.lightbox.show (e.target);
+            }
         }
     }
 }
