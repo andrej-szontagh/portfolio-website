@@ -45,18 +45,17 @@ class Gallery {
 
         let t = this;
 
+        function onOpen     (e) { t.onOpen      (e);    }
+        function onVisible  (e) { t.onVisible   (e);    }
+
         let gallery_blocks = document.querySelectorAll (".gallery-block");
-
         if (gallery_blocks) {
-
-            function onOpen     (e) { t.onOpen      (e);    }
-            function onVisible  (e) { t.onVisible   (e);    }
 
             for (let i = 0; i < gallery_blocks.length; i ++) {
 
                 let el = gallery_blocks.item (i);
 
-                if (el.classList.contains   ("button-hover") == false) {
+                if (el.classList.contains   ("button-hover") === false) {
                     el.classList.add        ("button-hover");
                     el.classList.add        ("hidden");
 
@@ -72,17 +71,26 @@ class Gallery {
         manager_buttons.updateButtons ();
     }
 
+    getDescriptor (id) {
+
+        let t = this;
+
+        let desc, d;
+
+        // to make the Codacy happy ..
+        d = t.json.images [id]; if (d) { desc = d.description; } else {
+        d = t.json.videos [id]; if (d) { desc = d.description; } }
+
+        return desc;
+    }
+
     onVisible (e) {
 
         let t = this;
 
         let d, desc = null;
 
-        let id = e.target.id;
-
-        // to make the Codacy happy ..
-        d = t.json.images [id]; if (d) { desc = d.description; } else {
-        d = t.json.videos [id]; if (d) { desc = d.description; } }
+        desc = t.getDescriptor (e.target.id);
 
         if (desc) {
             desc = t.json.descriptions [desc];
@@ -95,15 +103,19 @@ class Gallery {
 
                 if (desc.tags) {
 
+                    let tags = "";
+
                     for (let i = 0; i < desc.tags.length; i ++) {
 
                         if (i > 0) {
 
-                            t.desc_tags.innerHTML += " - ";
+                            tags += " - ";
                         }
 
-                        t.desc_tags.innerHTML += desc.tags [i];
+                        tags += desc.tags [i];
                     }
+
+                    t.desc_tags.innerHTML = tags;
                 }
 
             } else {
