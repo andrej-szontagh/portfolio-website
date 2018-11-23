@@ -1,6 +1,8 @@
 
 ## Portfolio Website
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4f4291dde8dd4f5fbfc7e155e8413ae8)](https://www.codacy.com/app/andrej-szontagh/portfolio-website?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=andrej-szontagh/portfolio-website&amp;utm_campaign=Badge_Grade)
+
 This repository contains my current portfolio website development files.
 It's just a DEMO, provisional temporary website that will be replaced with new complete website.
 
@@ -23,6 +25,7 @@ $ npm install
 
 ```bash
 $ gulp build
+$ gulp build-debug
 ```
 
 For more options check 'gulpfile.js'.
