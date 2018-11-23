@@ -58,7 +58,7 @@ class GalleryLightbox {
 
                     let content = desc.details [t.details_index ++];
 
-                    let innerHTML = ""
+                    let innerHTML = "";
                     for (let i = 0; i < content.length; i ++) {
 
                         innerHTML += content [i];
