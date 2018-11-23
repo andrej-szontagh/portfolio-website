@@ -6,17 +6,17 @@ class Mechanics {
         let t = this;
 
         // build the email
-        initEmailBanner ();
+        t.initEmailBanner ();
 
         // add body class add ability to adjust CSS in entire hierarchy
-        initBodyTagSystem ();
+        t.initBodyTagSystem ();
 
         // reset scrolls when screen visible
-        initScrollReset ();
+        t.initScrollReset ();
 
         // update custom CSS property for scroll elements to add ability to
         // modify CSS depending on scroll position
-        initScrollCSSVar ();
+        t.initScrollCSSVar ();
     }
 
     initEmailBanner () {
@@ -155,7 +155,7 @@ class Mechanics {
             scroll_pos_min = (scroll_pos_min) ? parseFloat (scroll_pos_min) : 0.0;
             scroll_pos_max = (scroll_pos_max) ? parseFloat (scroll_pos_max) : 1.0;
 
-            let fn = function onScroll (e) {
+            let on_scroll = function onScroll (e) {
 
                 // viewport height
                 let h = window.innerHeight;
@@ -175,7 +175,7 @@ class Mechanics {
                 el.style.setProperty ("--scroll-pos", pos);
             }
 
-            el.parentNode.addEventListener ("scroll", onScroll);
+            el.parentNode.addEventListener ("scroll", on_scroll);
         }
     }
 }
