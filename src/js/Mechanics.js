@@ -54,7 +54,7 @@ class Mechanics {
 
                 let el = elements [i];
 
-                el.addEventListener ('onhidden', function (e) {
+                el.addEventListener ("onhidden", function (e) {
                     for (let key in bodytags) {
                         if (bodytags.hasOwnProperty (key)) {
                             if (e.target.classList.contains (key)) {
@@ -64,7 +64,7 @@ class Mechanics {
                     }
                 }, false);
 
-                el.addEventListener ('onvisible', function (e) {
+                el.addEventListener ("onvisible", function (e) {
                     for (let key in bodytags) {
                         if (bodytags.hasOwnProperty (key)) {
                             if (e.target.classList.contains (key)) {
@@ -84,7 +84,7 @@ class Mechanics {
 
                 let el = elements [i];
 
-                el.addEventListener ('onvisible', function (e) {
+                el.addEventListener ("onvisible", function (e) {
 
                     let scroll = e.target.querySelector (".scroll");
                     if (scroll) {
@@ -107,8 +107,8 @@ class Mechanics {
 
                 let cs = window.getComputedStyle (el);
 
-                let scroll_pos_min = cs.getPropertyValue ('--scroll-pos-min');
-                let scroll_pos_max = cs.getPropertyValue ('--scroll-pos-max');
+                let scroll_pos_min = cs.getPropertyValue ("--scroll-pos-min");
+                let scroll_pos_max = cs.getPropertyValue ("--scroll-pos-max");
 
                 scroll_pos_min = (scroll_pos_min) ? parseFloat (scroll_pos_min) : 0.0;
                 scroll_pos_max = (scroll_pos_max) ? parseFloat (scroll_pos_max) : 1.0;

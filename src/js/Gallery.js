@@ -57,7 +57,7 @@ class Gallery {
                         el.setAttribute ("button-target",  "<this> #label-description");
                         el.setAttribute ("button-clear",   ".gallery-block");
 
-                        el.addEventListener ('onvisible', function (e) {
+                        el.addEventListener ("onvisible", function (e) {
 
                             let d, desc = null;
 

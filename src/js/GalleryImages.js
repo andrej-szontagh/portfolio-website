@@ -13,10 +13,10 @@ class GalleryImages {
         // https://github.com/desandro/masonry
         // No simple solution for this ..
 
-        t.layout = new Masonry ('#gallery-images', {
+        t.layout = new Masonry ("#gallery-images", {
 
-            itemSelector:       '.gallery-block',
-            columnWidth:        '.gallery-block',
+            itemSelector:       ".gallery-block",
+            columnWidth:        ".gallery-block",
             percentPosition:    true,
             // horizontalOrder:    true,
             transitionDuration: 0,
@@ -24,11 +24,11 @@ class GalleryImages {
             resize:             true,
         });
 
-        t.layout.on ('layoutComplete', function (items) {
+        t.layout.on ("layoutComplete", function (items) {
 
             // this might be called too early so safety check ..
             if (manager_content.content) {
-                manager_content.content.dispatchEvent (new Event ('layoutComplete', { detail: items}));
+                manager_content.content.dispatchEvent (new Event ("layoutComplete", { detail: items}));
             }
         });
 
@@ -78,8 +78,8 @@ class GalleryImages {
 
         let t = this;
 
-        let wrapper     = document.createElement ('div');
-        let img         = document.createElement ('img');
+        let wrapper     = document.createElement ("div");
+        let img         = document.createElement ("img");
 
         wrapper.id          = id;
         wrapper.className   = "gallery-block";
@@ -94,7 +94,7 @@ class GalleryImages {
 
         // as soon as image is loaded update the layout ..
 
-        img.addEventListener ('load', function (e) {
+        img.addEventListener ("load", function (e) {
 
             // console.log ("Image loaded > " + e.target);
 
@@ -104,7 +104,7 @@ class GalleryImages {
             callback ();
         });
 
-        img.addEventListener ('error', function () {
+        img.addEventListener ("error", function () {
 
             // console.log ("Image load error > " + e.target);
 

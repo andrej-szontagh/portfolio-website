@@ -26,18 +26,18 @@ Animations.prototype = {
 
             let cs = window.getComputedStyle (el);
 
-            let anim_play = cs.getPropertyValue ('--anim-play');
+            let anim_play = cs.getPropertyValue ("--anim-play");
 
             if (anim_play) {
 
                 // OPTIMIZE: we do this for every element that has the same animation, but we can process it once and reuse data !
 
-                let anim_init       = cs.getPropertyValue ('--anim-init');
-                let anim_class      = cs.getPropertyValue ('--anim-class');
-                let anim_trigger    = cs.getPropertyValue ('--anim-trigger');
-                let anim_edge       = cs.getPropertyValue ('--anim-edge');
-                let anim_delay_min  = cs.getPropertyValue ('--anim-delay-min');
-                let anim_delay_max  = cs.getPropertyValue ('--anim-delay-max');
+                let anim_init       = cs.getPropertyValue ("--anim-init");
+                let anim_class      = cs.getPropertyValue ("--anim-class");
+                let anim_trigger    = cs.getPropertyValue ("--anim-trigger");
+                let anim_edge       = cs.getPropertyValue ("--anim-edge");
+                let anim_delay_min  = cs.getPropertyValue ("--anim-delay-min");
+                let anim_delay_max  = cs.getPropertyValue ("--anim-delay-max");
 
                 //console.log ("----------------------------------------------------------------------------------");
                 //console.log ("element           : " + el.nodeName);

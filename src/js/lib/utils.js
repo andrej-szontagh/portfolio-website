@@ -8,8 +8,8 @@ function loadJSON (filepath, callback) {
 
     xobj.overrideMimeType ("application/json");
 
-    // Replace 'appDataServices' with the path to your file
-    xobj.open ('GET', filepath, true);
+    // Replace "appDataServices" with the path to your file
+    xobj.open ("GET", filepath, true);
 
     xobj.onreadystatechange = function () {
 

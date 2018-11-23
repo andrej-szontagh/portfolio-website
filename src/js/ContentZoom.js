@@ -149,7 +149,7 @@ class ContentZoom extends ContentCrop {
         // if (overflow_top        && !overflow_bottom)    ty = -n_top;
         // if (overflow_bottom     && !overflow_top)       ty = -n_bottom + h;
         //
-        // // now transform into transformed 'content_transform' coordinates
+        // // now transform into transformed "content_transform" coordinates
         // if (!t.cropped) {
         //
         //     let cr = t.content_transform.getBoundingClientRect ();

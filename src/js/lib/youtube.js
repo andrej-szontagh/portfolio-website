@@ -38,12 +38,12 @@ YouTubeManager.prototype = {
         if (t.initialized ==  false) {
             t.initialized =   true;
 
-            let tag = document.createElement ('script');
+            let tag = document.createElement ("script");
 
-            tag.id  = 'iframe-api';
-            tag.src = 'https://www.youtube.com/iframe_api';
+            tag.id  = "iframe-api";
+            tag.src = "https://www.youtube.com/iframe_api";
 
-            let firstScriptTag = document.getElementsByTagName ('script')[0];
+            let firstScriptTag = document.getElementsByTagName ("script")[0];
 
             firstScriptTag.parentNode.insertBefore (tag, firstScriptTag);
         }

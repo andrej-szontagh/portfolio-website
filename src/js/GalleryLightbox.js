@@ -16,8 +16,8 @@ class GalleryLightbox {
 
         t.target        = null;
 
-        t.container.addEventListener ('onvisible',   function (e) { t.onVisible (); });
-        t.container.addEventListener ('onhidden',    function (e) { t.onHidden  (); });
+        t.container.addEventListener ("onvisible",   function (e) { t.onVisible (); });
+        t.container.addEventListener ("onhidden",    function (e) { t.onHidden  (); });
     }
 
     resetDetails () {
@@ -58,11 +58,13 @@ class GalleryLightbox {
 
                     let content = desc.details [t.details_index ++];
 
-                    t.details.innerHTML = "";
+                    let innerHTML = ""
                     for (let i = 0; i < content.length; i ++) {
 
-                        t.details.innerHTML += content [i];
+                        innerHTML += content [i];
                     }
+
+                    t.details.innerHTML = innerHTML;
 
                     t.details.style.visibility = "visible";
                 }
@@ -160,7 +162,7 @@ class GalleryLightbox {
         t.container.classList.remove ("hidden");
         t.container.classList.add    ("visible");
 
-        t.container.dispatchEvent (new Event ('onvisible'));   // !!
+        t.container.dispatchEvent (new Event ("onvisible"));   // !!
     }
 
     hide () {
@@ -172,6 +174,6 @@ class GalleryLightbox {
         t.container.classList.remove ("visible");
         t.container.classList.add    ("hidden");
 
-        t.container.dispatchEvent (new Event ('onhidden'));   // !!
+        t.container.dispatchEvent (new Event ("onhidden"));   // !!
     }
 }

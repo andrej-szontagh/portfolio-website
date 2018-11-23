@@ -20,7 +20,7 @@ class ButtonsBase {
 
         // problem with this method is that we don't know until user touches ..
 
-        window.addEventListener ('touchstart', function onFirstTouch () {
+        window.addEventListener ("touchstart", function onFirstTouch () {
 
             // console.log ("User touched !");
 
@@ -29,7 +29,7 @@ class ButtonsBase {
             t.updateButtons ();
 
             // we only need to know once that a human touched the screen, so we can stop listening now
-            window.removeEventListener ('touchstart', onFirstTouch, false);
+            window.removeEventListener ("touchstart", onFirstTouch, false);
 
         }, false);
 

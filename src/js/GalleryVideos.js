@@ -23,14 +23,14 @@ class GalleryVideos {
 
                 // console.log (key, json.videos [vid]);
 
-                let wrapper             = document.createElement ('div');
-                let player              = document.createElement ('div');
+                let wrapper             = document.createElement ("div");
+                let player              = document.createElement ("div");
 
-                let cover               = document.createElement ('div');
-                let cover_img           = document.createElement ('img');
+                let cover               = document.createElement ("div");
+                let cover_img           = document.createElement ("img");
 
-                let progressbar         = document.createElement ('div');
-                let progressbar_img     = document.createElement ('img');
+                let progressbar         = document.createElement ("div");
+                let progressbar_img     = document.createElement ("img");
 
                 // save index / order of loading ..
                 progressbar.setAttribute ("index", index);
@@ -65,7 +65,7 @@ class GalleryVideos {
                 // we cannot start animation right after dom element is created since we
                 // have to change the transition property and that wouldn't count as change
 
-                progressbar_img.addEventListener ('load', function (e) {
+                progressbar_img.addEventListener ("load", function (e) {
 
                     let progressbar = e.target.parentNode;
 
@@ -90,20 +90,20 @@ class GalleryVideos {
 
                             // https://developers.google.com/youtube/player_parameters
 
-                            'enablejsapi'       : 1,
-                            'loop'              : 1,
-                            'start'             : video.start,
-                            'playlist'          : vid,  // this is necessary for 'loop' to work
-                            'autoplay'          : 1,
-                            'controls'          : 0,
-                            'showinfo'          : 0,
-                            'fs'                : 0,
-                            'rel'               : 0,
-                            'disablekb'         : 1,
-                            'modestbranding'    : 1,
-                            'playsinline'       : 1,
-                            // 'origin'            : "https://andrej-szontagh.github.io/",
-                            // 'origin'            : "https://www.andrejszontagh.com/",
+                            "enablejsapi"       : 1,
+                            "loop"              : 1,
+                            "start"             : video.start,
+                            "playlist"          : vid,  // this is necessary for "loop" to work
+                            "autoplay"          : 1,
+                            "controls"          : 0,
+                            "showinfo"          : 0,
+                            "fs"                : 0,
+                            "rel"               : 0,
+                            "disablekb"         : 1,
+                            "modestbranding"    : 1,
+                            "playsinline"       : 1,
+                            // "origin"            : "https://andrej-szontagh.github.io/",
+                            // "origin"            : "https://www.andrejszontagh.com/",
                         },
 
                         events: {

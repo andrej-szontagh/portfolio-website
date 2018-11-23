@@ -55,14 +55,14 @@ class ButtonsActions extends ButtonsState {
                         target.classList.remove ("hidden");
                         target.classList.add    ("visible");
 
-                        target.dispatchEvent (new Event ('onvisible'));
+                        target.dispatchEvent (new Event ("onvisible"));
 
                     } else {
 
                         target.classList.remove ("visible");
                         target.classList.add    ("hidden");
 
-                        target.dispatchEvent (new Event ('onhidden'));
+                        target.dispatchEvent (new Event ("onhidden"));
                     }
                 }
             }
