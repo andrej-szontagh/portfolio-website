@@ -12,16 +12,16 @@ function onYouTubeIframeAPIReady () {
     }
 }
 
-function YouTube () {
+function YouTubeManager () {
 
-    var t = this;
+    let t = this;
 
     // ..
 }
 
-YouTube.prototype = {
+YouTubeManager.prototype = {
 
-    constructor:    YouTube,
+    constructor:    YouTubeManager,
 
     initialized:    false,
     sealed:         false,
@@ -31,19 +31,19 @@ YouTube.prototype = {
 
     init: function () {
 
-        var t = this;
+        let t = this;
 
         // initialize YouTube API
         // https://developers.google.com/youtube/iframe_api_reference#top_of_page
         if (t.initialized ==  false) {
             t.initialized =   true;
 
-            var tag = document.createElement ('script');
+            let tag = document.createElement ('script');
 
             tag.id  = 'iframe-api';
             tag.src = 'https://www.youtube.com/iframe_api';
 
-            var firstScriptTag = document.getElementsByTagName ('script')[0];
+            let firstScriptTag = document.getElementsByTagName ('script')[0];
 
             firstScriptTag.parentNode.insertBefore (tag, firstScriptTag);
         }
@@ -51,11 +51,11 @@ YouTube.prototype = {
 
     debug: function () {
 
-        var t = this;
+        let t = this;
 
-        for (var i = 0; i < t.players.length; i ++) {
+        for (let i = 0; i < t.players.length; i ++) {
 
-            var state = t.players [i].getPlayerState ();
+            let state = t.players [i].getPlayerState ();
 
             switch (state) {
                 case YT.PlayerState.ENDED:      state = "ended";        break;
@@ -72,7 +72,7 @@ YouTube.prototype = {
 
     addPlayer: function (player_desc) {
 
-        var t = this;
+        let t = this;
 
         /*
         YouTubeAPIAddPlayer ({
@@ -91,7 +91,7 @@ YouTube.prototype = {
 
         // console.log ("createPlayers");
 
-        var t = this;
+        let t = this;
 
         t.sealed = true;
 
@@ -102,8 +102,8 @@ YouTube.prototype = {
 
                 if (t.queue.length > 0) {
 
-                    var player_desc = t.queue.shift ();
-                    var player      = new YT.Player (player_desc.id, player_desc.params);
+                    let player_desc = t.queue.shift ();
+                    let player      = new YT.Player (player_desc.id, player_desc.params);
 
                     t.players.push (player);
 
@@ -140,11 +140,11 @@ YouTube.prototype = {
             initPlayer ();
 
             /*
-            for (var i = 0; i < t.queue.length; i ++) {
+            for (let i = 0; i < t.queue.length; i ++) {
 
-                var player_desc = t.queue [i];
+                let player_desc = t.queue [i];
 
-                var player = new YT.Player (player_desc.id, player_desc.params);
+                let player = new YT.Player (player_desc.id, player_desc.params);
 
                 t.players.push (player);
             }
@@ -153,4 +153,4 @@ YouTube.prototype = {
     },
 }
 
-var YouTube = new YouTube ();
+let YouTube = new YouTubeManager ();

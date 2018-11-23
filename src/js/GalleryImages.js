@@ -3,7 +3,7 @@ class GalleryImages {
 
     constructor (container, json, callback_update) {
 
-        var t = this;
+        let t = this;
 
         t.json      = json;
         t.container = container;
@@ -36,7 +36,7 @@ class GalleryImages {
 
         t.loadstack = [];
 
-        for (var img in json.images) {
+        for (let img in json.images) {
 
             // check if the property/key is defined in the object itself, not in parent
             if (json.images.hasOwnProperty (img)) {
@@ -51,18 +51,18 @@ class GalleryImages {
 
             if (index < t.loadstack.length) {
 
-                var id          = t.loadstack [index].id;
-                var filename    = json.filebase_images + id;
+                let id          = t.loadstack [index].id;
+                let filename    = json.filebase_images + id;
 
                 // https://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
 
-                var base        = filename.split ('.').slice (0, -1).join ('.');
-                var extension   = filename.substring (base.length, filename.length);
+                let base        = filename.split ('.').slice (0, -1).join ('.');
+                let extension   = filename.substring (base.length, filename.length);
 
                 // console.log ("FILE : " + base + " EXTENSION : " + extension);
 
-                var src         = base + "_tumbnail" + extension;
-                var src_fullres = filename;
+                let src         = base + "_tumbnail" + extension;
+                let src_fullres = filename;
 
                 t.addImage (id, src, src_fullres, function () {
 
@@ -76,10 +76,10 @@ class GalleryImages {
 
     addImage (id, src, src_fullres, callback) {
 
-        var t = this;
+        let t = this;
 
-        var wrapper     = document.createElement ('div');
-        var img         = document.createElement ('img');
+        let wrapper     = document.createElement ('div');
+        let img         = document.createElement ('img');
 
         wrapper.id          = id;
         wrapper.className   = "gallery-block";

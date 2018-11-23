@@ -5,7 +5,7 @@ class ContentCrop extends ContentBase {
 
         super ();
 
-        var t = this;
+        let t = this;
 
         t.crop_scrolltop    = 0;
         t.cropped           = false;
@@ -13,11 +13,11 @@ class ContentCrop extends ContentBase {
 
     cropIn (margin_top, margin_bottom) {
 
-        var t = this;
+        let t = this;
 
         // IMPORTANT: this is performance optimization (FireFox)
 
-        var r = t.content_transform.getBoundingClientRect ();
+        let r = t.content_transform.getBoundingClientRect ();
 
         t.crop_scrolltop = document.scrollingElement.scrollTop;
 
@@ -34,7 +34,7 @@ class ContentCrop extends ContentBase {
 
     cropOut () {
 
-        var t = this;
+        let t = this;
 
         // WARNING:     this causes horrible lag, make sure not animating
         // IMPORTANT:   this is performance optimization (FireFox)

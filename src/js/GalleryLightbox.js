@@ -3,7 +3,7 @@ class GalleryLightbox {
 
     constructor (json) {
 
-        var t = this;
+        let t = this;
 
         t.json          = json;
 
@@ -22,7 +22,7 @@ class GalleryLightbox {
 
     resetDetails () {
 
-        var t = this;
+        let t = this;
 
         if (t.details_timer) {
 
@@ -36,11 +36,11 @@ class GalleryLightbox {
 
     playDetails (id, delay, duration) {
 
-        var t = this;
+        let t = this;
 
         t.resetDetails ();
 
-        var d, desc = null;
+        let d, desc = null;
 
         if (d = t.json.images [id]) desc = d.description; else
         if (d = t.json.videos [id]) desc = d.description;
@@ -56,10 +56,10 @@ class GalleryLightbox {
                         t.details_index = 0;
                     }
 
-                    var content = desc.details [t.details_index ++];
+                    let content = desc.details [t.details_index ++];
 
                     t.details.innerHTML = "";
-                    for (var i = 0; i < content.length; i ++) {
+                    for (let i = 0; i < content.length; i ++) {
 
                         t.details.innerHTML += content [i];
                     }
@@ -112,7 +112,7 @@ class GalleryLightbox {
 
         // console.log ("onLightboxVisible");
 
-        var t = this;
+        let t = this;
 
         if (t.target) {
 
@@ -130,7 +130,7 @@ class GalleryLightbox {
 
         // console.log ("onLightboxHidden");
 
-        var t = this;
+        let t = this;
 
         if (manager_content.zoomed_at) {
             manager_content.zoomed_at.classList.remove ("in-lightbox");
@@ -144,7 +144,7 @@ class GalleryLightbox {
 
     isVisible (el) {
 
-        var t = this;
+        let t = this;
 
         return (t.container.classList.contains ("visible"));
     }
@@ -153,7 +153,7 @@ class GalleryLightbox {
 
         // console.log ("showLightbox");
 
-        var t = this;
+        let t = this;
 
         t.target = el;
 
@@ -167,7 +167,7 @@ class GalleryLightbox {
 
         // console.log ("hideLightbox");
 
-        var t = this;
+        let t = this;
 
         t.container.classList.remove ("visible");
         t.container.classList.add    ("hidden");

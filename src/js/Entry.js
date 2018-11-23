@@ -1,9 +1,9 @@
 
-var body                = null;
-var manager_buttons     = null;
-var manager_mechanics   = null;
-var manager_animations  = null;
-var manager_content     = null;
+let body                = null;
+let manager_buttons     = null;
+let manager_mechanics   = null;
+let manager_animations  = null;
+let manager_content     = null;
 
 window.onload = function (e) {
 

@@ -9,22 +9,22 @@ class ButtonsActions extends ButtonsState {
     showButtonTargets (el, attr, on) {
 
         super.showButtonTargets (el, attr, on);
-        
-        var t = this;
 
-        var sel = el.getAttribute (attr);
+        let t = this;
+
+        let sel = el.getAttribute (attr);
 
         if (sel) {
 
-            var targets = [];
+            let targets = [];
 
             sel = sel.trim ();
 
             // check if the string contains the "self" token
 
-            var selftoken = "<this>";
+            let selftoken = "<this>";
 
-            var thisindex = sel.indexOf (selftoken);
+            let thisindex = sel.indexOf (selftoken);
             if (thisindex >= 0) {
 
                 // cut off the self token
@@ -36,7 +36,7 @@ class ButtonsActions extends ButtonsState {
 
             if (sel) {
 
-                var elements = body.querySelectorAll (sel);
+                let elements = body.querySelectorAll (sel);
                 if (elements) {
 
                     // convert to array first (NodeList)
@@ -46,9 +46,9 @@ class ButtonsActions extends ButtonsState {
 
             if (targets != null) {
 
-                for (var i = 0; i < targets.length; i ++) {
+                for (let i = 0; i < targets.length; i ++) {
 
-                    var target = targets [i];
+                    let target = targets [i];
 
                     if (on) {
 

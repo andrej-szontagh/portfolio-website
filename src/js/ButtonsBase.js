@@ -5,7 +5,7 @@ class ButtonsBase {
 
         // console.log ("init Buttons");
 
-        var t = this;
+        let t = this;
 
         t.touch = false;
         t.ui    = document.getElementById ("ui");
@@ -38,13 +38,13 @@ class ButtonsBase {
 
     updateButtons () {
 
-        var t = this;
+        let t = this;
 
-        var buttons = body.querySelectorAll (".button-hover, .button-press");
+        let buttons = body.querySelectorAll (".button-hover, .button-press");
 
-        for (var i = 0; i < buttons.length; i ++) {
+        for (let i = 0; i < buttons.length; i ++) {
 
-            var b = buttons [i];
+            let b = buttons [i];
 
             // console.log ("button : " + b.id + " class : " + b.className);
 
@@ -58,7 +58,7 @@ class ButtonsBase {
 
     initButton (b) {
 
-        var t = this;
+        let t = this;
 
         // init state if missing ..
         if (b.getAttribute ("button-state") === null) {
@@ -74,7 +74,7 @@ class ButtonsBase {
 
     transformButton (b) {
 
-        var t = this;
+        let t = this;
 
         // transforms hover button to press button
         if (b.classList.contains ("button-hover")) {
@@ -92,26 +92,26 @@ class ButtonsBase {
 
     transformButtonByScrolls (b) {
 
-        var t = this;
+        let t = this;
 
         // if the scroll is not fitting into screen
         // transform connected button to press button ..
 
         if (b.classList.contains ("button-hover")) {
 
-            var attr = b.getAttribute ("button-scroll");
+            let attr = b.getAttribute ("button-scroll");
 
             if (attr !== null) {
 
-                var h = window.innerHeight;
+                let h = window.innerHeight;
 
-                var scrolls = body.querySelectorAll (attr);
+                let scrolls = body.querySelectorAll (attr);
 
-                for (var i = 0; i < scrolls.length; i ++) {
+                for (let i = 0; i < scrolls.length; i ++) {
 
-                    var s = scrolls [i];
+                    let s = scrolls [i];
 
-                    var r = s.getBoundingClientRect ();
+                    let r = s.getBoundingClientRect ();
 
                     if (r.height > h) {
 

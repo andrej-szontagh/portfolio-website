@@ -3,7 +3,7 @@ class ContentBase {
 
     constructor () {
 
-        var t = this;
+        let t = this;
 
         t.content_overflow  = document.getElementById ("content-overflow");
         t.content_transform = document.getElementById ("content-transform");

@@ -3,17 +3,17 @@ class Mechanics {
 
     constructor () {
 
-        var t = this;
+        let t = this;
 
         // build the email
         {
-            var email_button    = body  .querySelector ("#button-contact");
-            var email_banner    = body  .querySelector ("#label-email");
+            let email_button    = body  .querySelector ("#button-contact");
+            let email_banner    = body  .querySelector ("#label-email");
 
-            var email_name_1    = "andrej";
-            var email_name_2    = "szontagh";
-            var email_serv_1    = "gmail";
-            var email_serv_2    = "com";
+            let email_name_1    = "andrej";
+            let email_name_2    = "szontagh";
+            let email_serv_1    = "gmail";
+            let email_serv_2    = "com";
 
             email_button.href = "mailto:" +
                 email_name_1 + "." + email_name_2 + "@" +
@@ -27,16 +27,16 @@ class Mechanics {
 
         // add body class add ability to adjust CSS in entire hierarchy
         {
-            var bodytags = {
+            let bodytags = {
 
                 "screen"    : "has-screen"
                 // "popup"     : "has-popup"
             };
 
-            var query = "";
+            let query = "";
 
-            var index = 0;
-            for (var key in bodytags) {
+            let index = 0;
+            for (let key in bodytags) {
 
                 if (bodytags.hasOwnProperty (key)) {
 
@@ -48,14 +48,14 @@ class Mechanics {
 
             // console.log ("bodytags query > " + query);
 
-            var elements = document.querySelectorAll (query);
+            let elements = document.querySelectorAll (query);
 
-            for (var i = 0; i < elements.length; i ++) {
+            for (let i = 0; i < elements.length; i ++) {
 
-                var el = elements [i];
+                let el = elements [i];
 
                 el.addEventListener ('onhidden', function (e) {
-                    for (var key in bodytags) {
+                    for (let key in bodytags) {
                         if (bodytags.hasOwnProperty (key)) {
                             if (e.target.classList.contains (key)) {
                                 body.classList.remove (bodytags [key]);
@@ -65,7 +65,7 @@ class Mechanics {
                 }, false);
 
                 el.addEventListener ('onvisible', function (e) {
-                    for (var key in bodytags) {
+                    for (let key in bodytags) {
                         if (bodytags.hasOwnProperty (key)) {
                             if (e.target.classList.contains (key)) {
                                 body.classList.add (bodytags [key]);
@@ -78,15 +78,15 @@ class Mechanics {
 
         // reset scrolls when screen visible
         {
-            var elements = document.querySelectorAll (".screen");
+            let elements = document.querySelectorAll (".screen");
 
-            for (var i = 0; i < elements.length; i ++) {
+            for (let i = 0; i < elements.length; i ++) {
 
-                var el = elements [i];
+                let el = elements [i];
 
                 el.addEventListener ('onvisible', function (e) {
 
-                    var scroll = e.target.querySelector (".scroll");
+                    let scroll = e.target.querySelector (".scroll");
                     if (scroll) {
 
                         // scroll to top !
@@ -99,16 +99,16 @@ class Mechanics {
 
         // update custom CSS property for scroll elements to add ability to modify CSS depending on scroll position
         {
-            var elements = document.querySelectorAll (".scroll");
+            let elements = document.querySelectorAll (".scroll");
 
-            for (var i = 0; i < elements.length; i ++) {
+            for (let i = 0; i < elements.length; i ++) {
 
-                var el = elements [i];
+                let el = elements [i];
 
-                var cs = window.getComputedStyle (el);
+                let cs = window.getComputedStyle (el);
 
-                var scroll_pos_min = cs.getPropertyValue ('--scroll-pos-min');
-                var scroll_pos_max = cs.getPropertyValue ('--scroll-pos-max');
+                let scroll_pos_min = cs.getPropertyValue ('--scroll-pos-min');
+                let scroll_pos_max = cs.getPropertyValue ('--scroll-pos-max');
 
                 scroll_pos_min = (scroll_pos_min) ? parseFloat (scroll_pos_min) : 0.0;
                 scroll_pos_max = (scroll_pos_max) ? parseFloat (scroll_pos_max) : 1.0;
@@ -116,12 +116,12 @@ class Mechanics {
                 function onScroll (e) {
 
                     // viewport height
-                    var h = window.innerHeight;
+                    let h = window.innerHeight;
 
                     // elements bounding rect in viewport coordinates
-                    var r = el.getBoundingClientRect ();
+                    let r = el.getBoundingClientRect ();
 
-                    var pos = (r.height > h) ? (Math.abs (r.top) / (r.height - h)) : (0);
+                    let pos = (r.height > h) ? (Math.abs (r.top) / (r.height - h)) : (0);
 
                     // console.log ("top       : " + r.top);
                     // console.log ("height    : " + r.height);

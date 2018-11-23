@@ -8,7 +8,7 @@ class ButtonsState extends ButtonsBase {
 
     setButtonState (el, state, propagate) {
 
-        var t = this;
+        let t = this;
 
         // unfortunately out JS minifier doesn't support ES6 so
         // this is the way to handle optional parameters ..
@@ -19,7 +19,7 @@ class ButtonsState extends ButtonsBase {
         if (el.classList.contains ("button-hover") ||
             el.classList.contains ("button-press")) {
 
-            var button_state = t.parseButtonStateRef (el);
+            let button_state = t.parseButtonStateRef (el);
 
             if (!button_state.value_readonly) {
 
@@ -28,9 +28,9 @@ class ButtonsState extends ButtonsBase {
 
                     if (button_state.value_ext) {
 
-                        var targets = body.querySelectorAll (button_state.value_ext);
+                        let targets = body.querySelectorAll (button_state.value_ext);
 
-                        for (var i = 0; i < targets.length; i ++) {
+                        for (let i = 0; i < targets.length; i ++) {
 
                             t.setButtonState (targets [i], state, false);
                         }
@@ -47,13 +47,13 @@ class ButtonsState extends ButtonsBase {
 
             if (propagate === true) {
 
-                var button_clear = el.getAttribute ("button-clear");
+                let button_clear = el.getAttribute ("button-clear");
 
                 if (button_clear !== null) {
 
-                    var targets = body.querySelectorAll (button_clear);
+                    let targets = body.querySelectorAll (button_clear);
 
-                    for (var i = 0; i < targets.length; i ++) {
+                    for (let i = 0; i < targets.length; i ++) {
 
                         if (targets [i] !== el) {
 
@@ -69,13 +69,13 @@ class ButtonsState extends ButtonsBase {
 
                 if (propagate === true) {
 
-                    var button_set = el.getAttribute ("button-set-on");
+                    let button_set = el.getAttribute ("button-set-on");
 
                     if (button_set !== null) {
 
-                        var targets = body.querySelectorAll (button_set);
+                        let targets = body.querySelectorAll (button_set);
 
-                        for (var i = 0; i < targets.length; i ++) {
+                        for (let i = 0; i < targets.length; i ++) {
 
                             if (targets [i] !== el) {
 
@@ -92,13 +92,13 @@ class ButtonsState extends ButtonsBase {
 
                 if (propagate === true) {
 
-                    var button_set = el.getAttribute ("button-set-off");
+                    let button_set = el.getAttribute ("button-set-off");
 
                     if (button_set !== null) {
 
-                        var targets = body.querySelectorAll (button_set);
+                        let targets = body.querySelectorAll (button_set);
 
-                        for (var i = 0; i < targets.length; i ++) {
+                        for (let i = 0; i < targets.length; i ++) {
 
                             if (targets [i] !== el) {
 
@@ -115,9 +115,9 @@ class ButtonsState extends ButtonsBase {
 
     getButtonState (el) {
 
-        var t = this;
+        let t = this;
 
-        var button_state = this.parseButtonStateRef (el);
+        let button_state = this.parseButtonStateRef (el);
 
         // console.log ("getButtonState > parseButtonStateRef > " + attr);
 
@@ -129,11 +129,11 @@ class ButtonsState extends ButtonsBase {
         } else
         if (button_state.value_ext !== null) {
 
-            var target = body.querySelector (attr);
+            let target = body.querySelector (attr);
 
             if (target) {
 
-                var button_state_ext = this.parseButtonStateRef (target);
+                let button_state_ext = this.parseButtonStateRef (target);
 
                 if (button_state_ext.value === "on" ||
                     button_state_ext.value === "off") {
@@ -148,14 +148,14 @@ class ButtonsState extends ButtonsBase {
 
     parseButtonStateRef (el) {
 
-        var out = {
+        let out = {
 
             value:              null,
             value_ext:          null,
             value_readonly:     false,
         };
 
-        var attr = el.getAttribute ("button-state");
+        let attr = el.getAttribute ("button-state");
 
         if (attr) {
             attr = attr.trim ();

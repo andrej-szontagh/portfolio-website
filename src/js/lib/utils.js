@@ -4,7 +4,7 @@ const GOLDEN_RATIO_SQRT = Math.sqrt (GOLDEN_RATIO);
 
 function loadJSON (filepath, callback) {
 
-    var xobj = new XMLHttpRequest ();
+    let xobj = new XMLHttpRequest ();
 
     xobj.overrideMimeType ("application/json");
 
@@ -29,7 +29,7 @@ function hashCode (str) {
 
     // https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
 
-    var hash = 0, i, chr;
+    let hash = 0, i, chr;
 
     if (str.length === 0) return hash;
 

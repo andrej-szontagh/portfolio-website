@@ -2,35 +2,35 @@
 class GalleryVideos {
 
     constructor (container, json, animations, edge) {
-        
-        var t = this;
+
+        let t = this;
 
         t.container = container;
 
         // YouTube API needs to be initialized beforehand !
         YouTube.init ();
 
-        var index = -1;
+        let index = -1;
 
-        for (var vid in json.videos) {
+        for (let vid in json.videos) {
 
             index ++;
 
             // check if the property/key is defined in the object itself, not in parent
             if (json.videos.hasOwnProperty (vid)) {
 
-                var video = json.videos [vid];
+                let video = json.videos [vid];
 
                 // console.log (key, json.videos [vid]);
 
-                var wrapper             = document.createElement ('div');
-                var player              = document.createElement ('div');
+                let wrapper             = document.createElement ('div');
+                let player              = document.createElement ('div');
 
-                var cover               = document.createElement ('div');
-                var cover_img           = document.createElement ('img');
+                let cover               = document.createElement ('div');
+                let cover_img           = document.createElement ('img');
 
-                var progressbar         = document.createElement ('div');
-                var progressbar_img     = document.createElement ('img');
+                let progressbar         = document.createElement ('div');
+                let progressbar_img     = document.createElement ('img');
 
                 // save index / order of loading ..
                 progressbar.setAttribute ("index", index);
@@ -67,9 +67,9 @@ class GalleryVideos {
 
                 progressbar_img.addEventListener ('load', function (e) {
 
-                    var progressbar = e.target.parentNode;
+                    let progressbar = e.target.parentNode;
 
-                    var index = parseFloat (progressbar.getAttribute ("index"));
+                    let index = parseFloat (progressbar.getAttribute ("index"));
 
                     progressbar.style.setProperty ("--progress", "98%");
 
@@ -112,10 +112,10 @@ class GalleryVideos {
 
                                 // https://developers.google.com/youtube/iframe_api_reference#Operations
 
-                                var player      = e.target;
-                                var iframe      = player.getIframe ();
-                                var cover       = iframe.parentNode.querySelector (".video-cover");
-                                var progressbar = iframe.parentNode.querySelector (".video-progressbar");
+                                let player      = e.target;
+                                let iframe      = player.getIframe ();
+                                let cover       = iframe.parentNode.querySelector (".video-cover");
+                                let progressbar = iframe.parentNode.querySelector (".video-progressbar");
 
                                 // console.log ("onReady >> " + iframe.id);
 
@@ -131,7 +131,7 @@ class GalleryVideos {
 
                                 function playPlayer (player) {
 
-                                    var w = player.getIframe ().parentNode;
+                                    let w = player.getIframe ().parentNode;
 
                                     // make sure is in viewport !
                                     if (animations.isInViewport (w, edge)) {
@@ -240,8 +240,8 @@ class GalleryVideos {
 
                             "onStateChange": function (e) {
 
-                                var player  = e.target;
-                                var iframe  = player.getIframe ();
+                                let player  = e.target;
+                                let iframe  = player.getIframe ();
 
                                 // console.log ("onStateChange >> " + iframe.id + " >> " + e.data);
 

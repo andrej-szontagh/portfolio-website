@@ -3,7 +3,7 @@ class Gallery {
 
     constructor (filepath_json) {
 
-        var t = this;
+        let t = this;
 
         // initialize YouTube API ASAP (for faster loading)
         YouTube.init ();
@@ -42,13 +42,13 @@ class Gallery {
 
         function updateButtons () {
 
-            var gallery_blocks = document.querySelectorAll (".gallery-block");
+            let gallery_blocks = document.querySelectorAll (".gallery-block");
 
             if (gallery_blocks) {
 
-                for (var i = 0; i < gallery_blocks.length; i ++) {
+                for (let i = 0; i < gallery_blocks.length; i ++) {
 
-                    var el = gallery_blocks [i];
+                    let el = gallery_blocks [i];
 
                     if (el.classList.contains   ("button-hover") == false) {
                         el.classList.add        ("button-hover");
@@ -59,9 +59,9 @@ class Gallery {
 
                         el.addEventListener ('onvisible', function (e) {
 
-                            var d, desc = null;
+                            let d, desc = null;
 
-                            var id = e.target.id;
+                            let id = e.target.id;
 
                             if (d = t.json.images [id]) desc = d.description; else
                             if (d = t.json.videos [id]) desc = d.description;
@@ -77,7 +77,7 @@ class Gallery {
 
                                     if (desc.tags) {
 
-                                        for (var i = 0; i < desc.tags.length; i ++) {
+                                        for (let i = 0; i < desc.tags.length; i ++) {
 
                                             if (i > 0) {
 

@@ -5,7 +5,7 @@ class ContentZoom extends ContentCrop {
 
         super ();
 
-        var t = this;
+        let t = this;
 
         t.zoomed_at = null;
         t.zooming   = false;
@@ -16,18 +16,18 @@ class ContentZoom extends ContentCrop {
 
             if (t.zoomed_at) {
 
-                var target = t.zoomed_at;
+                let target = t.zoomed_at;
 
                 // no transitions !
                 t.content_transform.style.transition = "none";
 
                 t.zoomOut ();
 
-                var c = t.content_transform .getBoundingClientRect ();
-                var r = target              .getBoundingClientRect ();
+                let c = t.content_transform .getBoundingClientRect ();
+                let r = target              .getBoundingClientRect ();
 
-                var h = window.innerHeight;
-                var w = window.innerWidth;
+                let h = window.innerHeight;
+                let w = window.innerWidth;
 
                 document.documentElement.scrollTop = r.top - c.top - (h - r.height)*0.5;
 
@@ -60,38 +60,38 @@ class ContentZoom extends ContentCrop {
 
     zoomIn (element, callback) {
 
-        var t = this;
+        let t = this;
 
-        var h = window.innerHeight;
-        var w = window.innerWidth;
+        let h = window.innerHeight;
+        let w = window.innerWidth;
 
-        var r = element.getBoundingClientRect ();
+        let r = element.getBoundingClientRect ();
 
-        var border_top      = (r.top    < 0) ? -r.top           : 0;
-        var border_bottom   = (r.bottom > h) ? (r.bottom - h)   : 0;
+        let border_top      = (r.top    < 0) ? -r.top           : 0;
+        let border_bottom   = (r.bottom > h) ? (r.bottom - h)   : 0;
 
         // console.log ("border_top    >> " + border_top);
         // console.log ("border_bottom >> " + border_bottom);
 
         t.cropIn (border_top, border_bottom);
 
-        var cx  = r.left   + r.width  * 0.5;
-        var cy  = r.top    + r.height * 0.5;
+        let cx  = r.left   + r.width  * 0.5;
+        let cy  = r.top    + r.height * 0.5;
 
         // adjust scale depending on the size of the block
 
-        var mins    = GOLDEN_RATIO_SQRT;
-        var minsw   = mins * r.width    / w;
-        var minsh   = mins * r.height   / h;
+        let mins    = GOLDEN_RATIO_SQRT;
+        let minsw   = mins * r.width    / w;
+        let minsh   = mins * r.height   / h;
 
-        var s   = Math.max (
+        let s   = Math.max (
                     (w * Math.max (0.75, minsw)) / r.width,
                     (h * Math.max (0.75, minsh)) / r.height);
 
-        var tx  = w * 0.5 - cx;
-        var ty  = h * 0.5 - cy;
+        let tx  = w * 0.5 - cx;
+        let ty  = h * 0.5 - cy;
 
-        var rot = 5.0;
+        let rot = 5.0;
 
         cy += border_top;
 
@@ -112,15 +112,15 @@ class ContentZoom extends ContentCrop {
         });
 
         // // scaled box ..
-        // var n_top     = s*(r.top    - cy) + cy;
-        // var n_bottom  = s*(r.bottom - cy) + cy;
-        // var n_left    = s*(r.left   - cx) + cx;
-        // var n_right   = s*(r.right  - cx) + cx;
+        // let n_top     = s*(r.top    - cy) + cy;
+        // let n_bottom  = s*(r.bottom - cy) + cy;
+        // let n_left    = s*(r.left   - cx) + cx;
+        // let n_right   = s*(r.right  - cx) + cx;
         //
-        // var overflow_left   = (n_left   < 0);
-        // var overflow_right  = (n_right  > w);
-        // var overflow_top    = (n_top    < 0);
-        // var overflow_bottom = (n_bottom > h);
+        // let overflow_left   = (n_left   < 0);
+        // let overflow_right  = (n_right  > w);
+        // let overflow_top    = (n_top    < 0);
+        // let overflow_bottom = (n_bottom > h);
         //
         // // change the focus of zoom depending on the overflow
         //
@@ -152,7 +152,7 @@ class ContentZoom extends ContentCrop {
         // // now transform into transformed 'content_transform' coordinates
         // if (!t.cropped) {
         //
-        //     var cr = t.content_transform.getBoundingClientRect ();
+        //     let cr = t.content_transform.getBoundingClientRect ();
         //
         //     cx -= cr.left;
         //     cy -= cr.top;
@@ -160,8 +160,8 @@ class ContentZoom extends ContentCrop {
         //
         // cy += border_top;
         //
-        // // var rot = cx / w;
-        // var rot = 5.0;
+        // // let rot = cx / w;
+        // let rot = 5.0;
         //
         // t.content_transform.style.transform         = "translateX(" + tx + "px) translateY(" + ty + "px) scale(" + s + ") rotate(" + rot + "deg)";
         // t.content_transform.style.transformOrigin   = cx + "px " + cy + "px ";
@@ -204,7 +204,7 @@ class ContentZoom extends ContentCrop {
 
     zoomOut (callback) {
 
-        var t = this;
+        let t = this;
 
         if (t.zoomed_at) {
             t.content_transform.style.transform = null;

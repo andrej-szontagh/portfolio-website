@@ -10,7 +10,7 @@ class ButtonsEvents extends ButtonsActions {
 
         super.initButton (b);
 
-        var t = this;
+        let t = this;
 
         t.clearButtonEvents (b);
 
@@ -53,9 +53,9 @@ class ButtonsEvents extends ButtonsActions {
 
             b.___button_listener_mousedown = function (e) {
 
-                var el = e.target;
+                let el = e.target;
 
-                var state = t.getButtonState (el);
+                let state = t.getButtonState (el);
 
                 if (state === "on")     { t.setButtonState (el, "off"); } else
                 if (state === "off")    { t.setButtonState (el, "on");  }
@@ -63,11 +63,11 @@ class ButtonsEvents extends ButtonsActions {
 
             b.___button_listener_mouseup = function (e) {
 
-                var time = new Date ().getTime ();
+                let time = new Date ().getTime ();
 
                 if (e.target.___button_listener_mouseup_time) {
 
-                    var delta = time - e.target.___button_listener_mouseup_time;
+                    let delta = time - e.target.___button_listener_mouseup_time;
 
                     if (delta > 100 && delta < 500) {
 
