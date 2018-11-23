@@ -5,6 +5,9 @@ class Mechanics {
 
         let t = this;
 
+        // I am not fan of this, but to make the Codacy happy
+        // I made single call functions ..
+
         // build the email
         t.initEmailBanner ();
 
@@ -104,7 +107,7 @@ class Mechanics {
 
         for (let i = 0; i < elements.length; i ++) {
 
-            let el = elements [i];
+            let el = elements.item (i);
 
             el.addEventListener ("onhidden",    onHidden,   false);
             el.addEventListener ("onvisible",   onVisible,  false);
@@ -131,7 +134,7 @@ class Mechanics {
 
         for (let i = 0; i < elements.length; i ++) {
 
-            elements [i].addEventListener ("onvisible", onVisible, false);
+            elements.item (i).addEventListener ("onvisible", onVisible, false);
         }
     }
 
@@ -145,7 +148,7 @@ class Mechanics {
 
         for (let i = 0; i < elements.length; i ++) {
 
-            let el = elements [i];
+            let el = elements.item (i);
 
             let cs = window.getComputedStyle (el);
 
@@ -173,7 +176,7 @@ class Mechanics {
                 pos = Math.min (Math.max ((pos - scroll_pos_min) / (scroll_pos_max - scroll_pos_min), 0.0), 1.0);
 
                 el.style.setProperty ("--scroll-pos", pos);
-            }
+            };
 
             el.parentNode.addEventListener ("scroll", on_scroll);
         }
