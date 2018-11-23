@@ -9,24 +9,16 @@
 
 var gulp                = require ('gulp');
 var gulp_sass           = require ('gulp-sass');
-var gulp_cssnano        = require ('gulp-cssnano');
 var gulp_clean_css      = require ('gulp-clean-css');
-var gulp_useref         = require ('gulp-useref');
-var gulp_if             = require ('gulp-if');
-var gulp_uglify         = require ('gulp-uglify');
-var gulp_inline         = require ('gulp-inline');
-var gulp_inline_source  = require ('gulp-inline-source');
+var gulp_terser         = require ('gulp-terser');
 var gulp_pug            = require ('gulp-pug');
 var gulp_html_minifier  = require ('gulp-html-minifier');
 var gulp_concat         = require ('gulp-concat');
-var gulp_series         = require ('gulp-series');
 var gulp_sequence       = require ('gulp-sequence');
 var gulp_svgmin         = require ('gulp-svgmin');
 var gulp_svgstore       = require ('gulp-svgstore');
-var gulp_merge          = require ('gulp-merge');
 var pump                = require ('pump');
 var pumpify             = require ('pumpify');
-var minimist            = require ('minimist');
 var browser_sync        = require ('browser-sync').create ();
 
 gulp.task ('default', function () {
@@ -45,7 +37,7 @@ gulp.task ('sass', function () {
 });
 
 // build combined CSS file >> /dist
-gulp.task ('sass_debug', function () {
+gulp.task ('sass-debug', function () {
 
     return gulp.src (['src/css/styles.scss'], { base: 'src/css' })
         .pipe (gulp_concat      ('styles.scss'))
@@ -105,19 +97,27 @@ function js_concat (cb) {
 }
 
 // build concatenated JS file >> /dist
-gulp.task ('js_concat', function (cb) {
+gulp.task ('js-concat', function (cb) {
 
     return js_concat (cb);
 });
 
-// build uglyfied JS file >> /dist
-gulp.task ('js_uglify', function (cb) {
+// build minified JS file >> /dist
+gulp.task ('js-minify', function (cb) {
 
-    return pumpify ([
-        gulp.src    ('dist/scripts.js'),
-        gulp_uglify (),
-        gulp.dest   ('dist')
-    ], cb);
+    return gulp.src ('dist/scripts.js')
+        .pipe (gulp_terser ({
+            module:             true,
+            toplevel:           true,
+            keep_classnames:    false,
+            keep_fnames:        false,
+            mangle: {
+                toplevel:           true,
+                keep_classnames:    false,
+                keep_fnames:        false,
+            }
+        }))
+        .pipe (gulp.dest ('dist'));
 });
 
 // build optimized html file >> /dist
@@ -140,7 +140,7 @@ gulp.task ('html', function () {
 });
 
 // build html file >> /dist
-gulp.task ('html_debug', function () {
+gulp.task ('html-debug', function () {
 
     return gulp.src ('index.pug')
 
@@ -183,9 +183,9 @@ gulp.task ('serve', [], () => {
 // working only since gulp version 4 !
 // gulp.task ('build', gulp.series ('sass', 'uglify', 'html'));
 
-gulp.task ('build_css',         gulp_sequence ('sass'));
-gulp.task ('build_css_debug',   gulp_sequence ('sass_debug'));
-gulp.task ('build_html',        gulp_sequence ([                'svg',  'js_concat'],   'js_uglify',            'html'));
-gulp.task ('build_html_debug',  gulp_sequence ([                'svg',  'js_concat'],                           'html_debug'));
-gulp.task ('build',             gulp_sequence (['sass',         'svg',  'js_concat'],   'js_uglify',    'data', 'html'));
-gulp.task ('build_debug',       gulp_sequence (['sass_debug',   'svg',  'js_concat'],                   'data', 'html_debug'));
+gulp.task ('build-css',         gulp_sequence ('sass'));
+gulp.task ('build-css_debug',   gulp_sequence ('sass-debug'));
+gulp.task ('build-html',        gulp_sequence ([                'svg',  'js-concat'],   'js-minify',            'html'));
+gulp.task ('build-html_debug',  gulp_sequence ([                'svg',  'js-concat'],                           'html-debug'));
+gulp.task ('build',             gulp_sequence (['sass',         'svg',  'js-concat'],   'js-minify',    'data', 'html'));
+gulp.task ('build-debug',       gulp_sequence (['sass-debug',   'svg',  'js-concat'],                   'data', 'html-debug'));

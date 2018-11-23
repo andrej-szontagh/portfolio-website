@@ -9,7 +9,7 @@ class ButtonsEvents extends ButtonsActions {
     initButton (b) {
 
         super.initButton (b);
-        
+
         var t = this;
 
         t.clearButtonEvents (b);
