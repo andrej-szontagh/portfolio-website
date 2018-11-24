@@ -1,4 +1,7 @@
 
+/* global ContentBase */
+/* global body */
+
 class ContentCrop extends ContentBase {
 
     constructor () {

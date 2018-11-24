@@ -1,4 +1,7 @@
 
+/* global ButtonsActions */
+/* global body */
+
 class ButtonsEvents extends ButtonsActions {
 
     constructor () {
@@ -21,7 +24,7 @@ class ButtonsEvents extends ButtonsActions {
                 clearTimeout (e.target.___button_listener_mouseenter_timeout);
 
                 t.setButtonState (e.target, "off");
-            }
+            };
 
             b.___button_listener_mouseenter = function (e) {
 
@@ -35,14 +38,14 @@ class ButtonsEvents extends ButtonsActions {
 
                 // short timeout so the buttons don't get triggered accidentally
                 e.target.___button_listener_mouseenter_timeout = setTimeout (enter, 100);
-            }
+            };
 
             b.___button_listener_mousedown = function (e) {
 
                 if (e.target.___callback_open) {
                     e.target.___callback_open (e);
                 }
-            }
+            };
 
             b.addEventListener ("mouseenter",   b.___button_listener_mouseenter);
             b.addEventListener ("mouseleave",   b.___button_listener_mouseleave);
@@ -59,7 +62,7 @@ class ButtonsEvents extends ButtonsActions {
 
                 if (state === "on")     { t.setButtonState (el, "off"); } else
                 if (state === "off")    { t.setButtonState (el, "on");  }
-            }
+            };
 
             b.___button_listener_mouseup = function (e) {
 
@@ -80,10 +83,10 @@ class ButtonsEvents extends ButtonsActions {
                 }
 
                 e.target.___button_listener_mouseup_time = time;
-            }
+            };
 
-            b.addEventListener ("mousedown",        b.___button_listener_mousedown);
-            b.addEventListener ("mouseup",          b.___button_listener_mouseup);
+            b.addEventListener ("mousedown",    b.___button_listener_mousedown);
+            b.addEventListener ("mouseup",      b.___button_listener_mouseup);
         }
 
         if (!b.___callback_open) {

@@ -1,4 +1,6 @@
 
+/* global Gallery */
+
 class ContentBase {
 
     constructor () {
