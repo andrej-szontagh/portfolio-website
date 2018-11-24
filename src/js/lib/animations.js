@@ -20,7 +20,7 @@ class Animations {
 
         for (let i = items.length; i--;) {
 
-            let el = items [i];
+            let el = items.item (i);
 
             let cs = window.getComputedStyle (el);
 
@@ -37,16 +37,16 @@ class Animations {
                 let anim_delay_min  = cs.getPropertyValue ("--anim-delay-min");
                 let anim_delay_max  = cs.getPropertyValue ("--anim-delay-max");
 
-                //console.log ("----------------------------------------------------------------------------------");
-                //console.log ("element           : " + el.nodeName);
-                //console.log ("element.id        : " + el.id);
-                //console.log ("--anim-play       : " + anim_play);
-                //console.log ("--anim-init       : " + anim_init);
-                //console.log ("--anim-class      : " + anim_class);
-                //console.log ("--anim-trigger    : " + anim_trigger);
-                //console.log ("--anim-edge       : " + anim_edge);
-                //console.log ("--anim-delay-min  : " + anim_delay_min);
-                //console.log ("--anim-delay-max  : " + anim_delay_max);
+                // console.log ("----------------------------------------------------------------------------------");
+                // console.log ("element           : " + el.nodeName);
+                // console.log ("element.id        : " + el.id);
+                // console.log ("--anim-play       : " + anim_play);
+                // console.log ("--anim-init       : " + anim_init);
+                // console.log ("--anim-class      : " + anim_class);
+                // console.log ("--anim-trigger    : " + anim_trigger);
+                // console.log ("--anim-edge       : " + anim_edge);
+                // console.log ("--anim-delay-min  : " + anim_delay_min);
+                // console.log ("--anim-delay-max  : " + anim_delay_max);
 
                 let skip = false;
 
@@ -104,110 +104,104 @@ class Animations {
 
         //console.log ("t.triggers.length : " + t.triggers.length);
 
-        function onScroll () {
-
-            let triggers_new = [];
-
-            for (let i = 0; i < t.triggers.length; i ++) {
-
-                let l = t.triggers [i];
-
-                let target          = l.target;
-                let anim_trigger    = l.anim_trigger;
-                let anim_init       = l.anim_init;
-                let anim_class      = l.anim_class;
-                let anim_play       = l.anim_play;
-                let anim_edge       = l.anim_edge;
-
-                //console.log ("onScroll >> trigger : " + trigger.id + " target : " + target.id + " anim_play : " + anim_play);
-
-                if (isInViewport (anim_trigger, anim_edge)) {
-
-                    // remove init class from the element
-                    if (anim_init) {
-
-                        target.classList.remove (anim_init);
-                    }
-
-                    if (anim_class) {
-
-                        target.classList.add (anim_class);
-
-                        //console.log ("isInViewport >> trigger : " + trigger.id + " target : " + target.id + " anim_class : " + anim_class);
-
-                    } else {
-
-                        target.style.setProperty ("animation-name", anim_play);
-
-                        //console.log ("isInViewport >> trigger : " + trigger.id + " target : " + target.id + " anim_play : " + anim_play);
-                    }
-
-                } else {
-
-                    // try next time
-                    triggers_new.push (l);
-                }
-            }
-
-            // remove triggered elements (one shot invocation)
-            t.triggers = triggers_new;
-        }
-
         // Initialize
         for (let i = 0; i < t.triggers.length; i ++) {
 
             let l = t.triggers [i];
 
-            let target          = l.target;
-            let anim_play       = l.anim_play;
-            let anim_init       = l.anim_init;
-            let anim_class      = l.anim_class;
-            let anim_trigger    = l.anim_trigger;
-            let anim_edge       = l.anim_edge;
-            let anim_delay_min  = l.anim_delay_min;
-            let anim_delay_max  = l.anim_delay_max;
-
-            //console.log ("----------------------------------------------------------------------------------");
-            //console.log ("element           : " + el.nodeName);
-            //console.log ("element.id        : " + el.id);
-            //console.log ("--anim-play       : " + anim_play);
-            //console.log ("--anim-init       : " + anim_init);
-            //console.log ("--anim-class      : " + anim_class);
-            //console.log ("--anim-trigger    : " + anim_trigger);
-            //console.log ("--anim-edge       : " + anim_edge);
-            //console.log ("--anim-delay-min  : " + anim_delay_min);
-            //console.log ("--anim-delay-max  : " + anim_delay_max);
+            // console.log ("----------------------------------------------------------------------------------");
+            // console.log ("element           : " + el.nodeName);
+            // console.log ("element.id        : " + el.id);
+            // console.log ("--anim-play       : " + anim_play);
+            // console.log ("--anim-init       : " + anim_init);
+            // console.log ("--anim-class      : " + anim_class);
+            // console.log ("--anim-trigger    : " + anim_trigger);
+            // console.log ("--anim-edge       : " + anim_edge);
+            // console.log ("--anim-delay-min  : " + anim_delay_min);
+            // console.log ("--anim-delay-max  : " + anim_delay_max);
 
             // initialization (to avoid additional loops)
 
-            if (anim_init) {
+            if (l.anim_init) {
 
-                target.classList.add (anim_init);
+                l.target.classList.add (l.anim_init);
             }
 
-            if (anim_delay_min && anim_delay_max) {
+            if (l.anim_delay_min && l.anim_delay_max) {
 
-                anim_delay_min  = parseFloat (anim_delay_min);
-                anim_delay_max  = parseFloat (anim_delay_max);
+                let anim_delay_min  = parseFloat (l.anim_delay_min);
+                let anim_delay_max  = parseFloat (l.anim_delay_max);
 
-                target.style.setProperty ("animation-delay", (anim_delay_min + (anim_delay_max - anim_delay_min) * Math.random ()) + "s");
+                l.target.style.setProperty ("animation-delay",
+                    (anim_delay_min + (anim_delay_max - anim_delay_min) * Math.random ()) + "s");
             }
 
-            l.anim_trigger  = anim_trigger = (anim_trigger === "self") ? target : document.getElementById (anim_trigger);
-            l.anim_edge     = anim_edge    = (anim_edge) ? parseFloat (anim_edge) : 0.0;
+            l.anim_trigger  = (l.anim_trigger === "self") ? l.target : document.getElementById (l.anim_trigger);
+            l.anim_edge     = (l.anim_edge) ? parseFloat (l.anim_edge) : 0.0;
         }
 
         // in the case object is already in the viewport
-        onScroll ();
+        t.onScroll ();
 
-        window.addEventListener ("resize", onScroll);
-        window.addEventListener ("scroll", onScroll);
+        window.addEventListener ("resize", function (e) { t.onScroll (); });
+        window.addEventListener ("scroll", function (e) { t.onScroll (); });
 
         // to make sure that this is not called twice !
         this.applyAnimations = null;
     }
 
-    isInViewport (element, edge) {
+    onScroll () {
+
+        let t = this;
+
+        let triggers_new = [];
+
+        for (let i = 0; i < t.triggers.length; i ++) {
+
+            let l = t.triggers [i];
+
+            let target          = l.target;
+            let anim_trigger    = l.anim_trigger;
+            let anim_init       = l.anim_init;
+            let anim_class      = l.anim_class;
+            let anim_play       = l.anim_play;
+            let anim_edge       = l.anim_edge;
+
+            // console.log ("onScroll >> trigger : " + trigger.id + " target : " + target.id + " anim_play : " + anim_play);
+
+            if (Animations.isInViewport (l.anim_trigger, l.anim_edge)) {
+
+                // remove init class from the element
+                if (l.anim_init) {
+
+                    l.target.classList.remove (l.anim_init);
+                }
+
+                if (anim_class) {
+
+                    l.target.classList.add (l.anim_class);
+
+                    // console.log ("isInViewport >> trigger : " + trigger.id + " target : " + l.target.id + " anim_class : " + l.anim_class);
+
+                } else {
+
+                    l.target.style.setProperty ("animation-name", l.anim_play);
+
+                    // console.log ("isInViewport >> trigger : " + trigger.id + " target : " + l.target.id + " anim_play : " + l.anim_play);
+                }
+
+            } else {
+
+                // try next time
+                triggers_new.push (l);
+            }
+        }
+
+        // remove triggered elements (one shot invocation)
+        t.triggers = triggers_new;
+    }
+
+    static isInViewport (element, edge) {
 
         let h = window.innerHeight;                 // viewport height
         let r = element.getBoundingClientRect ();   // elements bounding rect in viewport coordinates

@@ -60,7 +60,7 @@ class GalleryVideos {
             // playback is in the hands of loading progress code until cover is hidden ..
             if (dom.cover.classList.contains ("hidden")) {
 
-                if (t.animations.isInViewport (dom.wrapper, 0)) {
+                if (Animations.isInViewport (dom.wrapper, 0)) {
 
                     // this helps with loading spikes when user scrolls wildly ..
                     t.playPlayer (dom, player);
@@ -108,7 +108,7 @@ class GalleryVideos {
         var t = this;
 
         // make sure is in viewport !
-        if (t.animations.isInViewport (dom.wrapper, 0)) {
+        if (Animations.isInViewport (dom.wrapper, 0)) {
 
             player.playVideo ();
             dom.wrapper.style.visibility = "visible";

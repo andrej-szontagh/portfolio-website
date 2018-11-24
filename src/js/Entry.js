@@ -7,7 +7,6 @@ let manager_video = new VideoManagerYouTube ();
 let body                = null;
 let manager_buttons     = null;
 let manager_mechanics   = null;
-let manager_animations  = null;
 let manager_content     = null;
 
 window.onload = function (e) {
@@ -23,8 +22,7 @@ window.onload = function (e) {
     // init video ASAP
     manager_video.init ();
 
-    manager_buttons     = new Buttons       ();
-    manager_mechanics   = new Mechanics     ();
-    manager_animations  = new Animations    ();
-    manager_content     = new Content       ();
+    manager_buttons     = new Buttons   ();
+    manager_mechanics   = new Mechanics ();
+    manager_content     = new Content   ();
 }

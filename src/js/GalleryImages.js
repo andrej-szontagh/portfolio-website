@@ -1,4 +1,7 @@
 
+/* global Masonry */
+/* global manager_content */
+
 class GalleryImages {
 
     constructor (container, json, callback_update) {
@@ -45,8 +48,6 @@ class GalleryImages {
             }
         }
 
-        addNextImage (0);
-
         function addNextImage (index) {
 
             if (index < t.loadstack.length) {
@@ -56,7 +57,7 @@ class GalleryImages {
 
                 // https://stackoverflow.com/questions/4250364/how-to-trim-a-file-extension-from-a-string-in-javascript
 
-                let base        = filename.split ('.').slice (0, -1).join ('.');
+                let base        = filename.split (".").slice (0, -1).join (".");
                 let extension   = filename.substring (base.length, filename.length);
 
                 // console.log ("FILE : " + base + " EXTENSION : " + extension);
@@ -72,6 +73,8 @@ class GalleryImages {
                 });
             }
         }
+
+        addNextImage (0);
     }
 
     addImage (id, src, src_fullres, callback) {
@@ -104,7 +107,7 @@ class GalleryImages {
             callback ();
         });
 
-        img.addEventListener ("error", function () {
+        img.addEventListener ("error", function (e) {
 
             // console.log ("Image load error > " + e.target);
 

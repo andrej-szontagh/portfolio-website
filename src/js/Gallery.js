@@ -28,7 +28,7 @@ class Gallery {
 
             t.json = json;
 
-            t.manager_videos = new GalleryVideos (document.getElementById ("gallery-videos"), json, manager_animations);
+            t.manager_videos = new GalleryVideos (document.getElementById ("gallery-videos"), json);
             t.manager_images = new GalleryImages (document.getElementById ("gallery-images"), json,
 
                 function () {
