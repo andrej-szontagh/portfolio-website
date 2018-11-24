@@ -1,4 +1,6 @@
 
+/* global body */
+
 class ButtonsState extends ButtonsBase {
 
     constructor () {
@@ -13,7 +15,7 @@ class ButtonsState extends ButtonsBase {
         // unfortunately out JS minifier doesn't support ES6 so
         // this is the way to handle optional parameters ..
 
-        propagate = (typeof propagate === 'undefined') ? true : propagate;
+        propagate = (typeof propagate === "undefined") ? true : propagate;
 
         // safety check
         if (el.classList.contains ("button-hover") ||
@@ -55,10 +57,11 @@ class ButtonsState extends ButtonsBase {
 
                     for (let i = 0; i < targets.length; i ++) {
 
-                        if (targets [i] !== el) {
+                        let g = targets.item (i);
+                        if (g !== el) {
 
-                            if (t.getButtonState (targets [i]) === "on") {
-                                t.setButtonState (targets [i], "off", false);
+                            if (t.getButtonState (g) === "on") {
+                                t.setButtonState (g, "off", false);
                             }
                         }
                     }
@@ -77,9 +80,10 @@ class ButtonsState extends ButtonsBase {
 
                         for (let i = 0; i < targets.length; i ++) {
 
-                            if (targets [i] !== el) {
+                            let g = targets.item (i);
+                            if (g !== el) {
 
-                                t.setButtonState (targets [i], state, false);
+                                t.setButtonState (g, state, false);
                             }
                         }
                     }
@@ -161,20 +165,19 @@ class ButtonsState extends ButtonsBase {
             attr = attr.trim ();
 
             if (attr && attr.length > 0 &&
-                (attr.charAt (0)                === '[') &&
-                (attr.charAt (attr.length - 1)  === ']')
+                (attr.charAt (0)                === "[") &&
+                (attr.charAt (attr.length - 1)  === "]")
             ){
                 attr = attr.substring (1, attr.length - 1);
 
                 out.value_readonly = true;
             }
 
-            if (attr === "on")                  out.value = "on";
-            if (attr === "off" || attr === "")  out.value = "off";
+            out.value = (attr === "on") ? "on" : "off";
 
             if (attr && attr.length > 0 &&
-                (attr.charAt (0)                === '{') &&
-                (attr.charAt (attr.length - 1)  === '}')
+                (attr.charAt (0)                === "{") &&
+                (attr.charAt (attr.length - 1)  === "}")
             ){
                 attr = attr.substring (1, attr.length - 1);
 

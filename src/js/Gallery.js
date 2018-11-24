@@ -83,23 +83,10 @@ class Gallery {
 
         let t = this;
 
-        let desc, d;
+        if (id in t.json.images) { return t.json.images [id].description; }
+        if (id in t.json.videos) { return t.json.videos [id].description; }
 
-        if (id in t.json.images) {
-
-            desc = t.json.images [id].description;
-        }
-
-        if (id in t.json.videos) {
-
-            desc = t.json.videos [id].description;
-        }
-
-        // to make the Codacy happy ..
-        // d = t.json.images [id]; if (d) { desc = d.description; } else {
-        // d = t.json.videos [id]; if (d) { desc = d.description; } }
-
-        return desc;
+        return "";
     }
 
     buildTagsString (tags) {
