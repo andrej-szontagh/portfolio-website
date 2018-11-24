@@ -1,16 +1,16 @@
 
 /* global manager_video */
+/* global Animations */
 /* global VideoEvent */
 /* global YT */
 
 class GalleryVideos {
 
-    constructor (container, json, animations) {
+    constructor (container, json) {
 
         let t = this;
 
-        t.container     = container;
-        t.animations    = animations;
+        t.container = container;
 
         let index = -1;
 

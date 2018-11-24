@@ -160,35 +160,13 @@ class Animations {
 
             let l = t.triggers [i];
 
-            let target          = l.target;
-            let anim_trigger    = l.anim_trigger;
-            let anim_init       = l.anim_init;
-            let anim_class      = l.anim_class;
-            let anim_play       = l.anim_play;
-            let anim_edge       = l.anim_edge;
-
-            // console.log ("onScroll >> trigger : " + trigger.id + " target : " + target.id + " anim_play : " + anim_play);
+            // console.log ("onScroll >> trigger : " + l.anim_trigger.id +
+            //     " target : "    + l.target.id +
+            //     " anim_play : " + l.anim_play);
 
             if (Animations.isInViewport (l.anim_trigger, l.anim_edge)) {
 
-                // remove init class from the element
-                if (l.anim_init) {
-
-                    l.target.classList.remove (l.anim_init);
-                }
-
-                if (anim_class) {
-
-                    l.target.classList.add (l.anim_class);
-
-                    // console.log ("isInViewport >> trigger : " + trigger.id + " target : " + l.target.id + " anim_class : " + l.anim_class);
-
-                } else {
-
-                    l.target.style.setProperty ("animation-name", l.anim_play);
-
-                    // console.log ("isInViewport >> trigger : " + trigger.id + " target : " + l.target.id + " anim_play : " + l.anim_play);
-                }
+                t.triggerAnimation (l.anim_trigger, l.target, l.anim_init, l.anim_class, l.anim_play);
 
             } else {
 
@@ -199,6 +177,32 @@ class Animations {
 
         // remove triggered elements (one shot invocation)
         t.triggers = triggers_new;
+    }
+
+    static triggerAnimation (trigger, target, class_remove, class_add, anim_name) {
+
+        // remove init class from the element
+        if (class_remove) {
+
+            target.classList.remove (class_remove);
+        }
+
+        if (class_add) {
+
+            target.classList.add (class_add);
+
+            // console.log ("isInViewport >> trigger : " + trigger.id +
+            //     " target : "        + target.id +
+            //     " class_add : "     + class_add);
+
+        } else {
+
+            target.style.setProperty ("animation-name", anim_name);
+
+            // console.log ("isInViewport >> trigger : " + trigger.id +
+            //     " target : "        + target.id +
+            //     " anim_name : "     + anim_name);
+        }
     }
 
     static isInViewport (element, edge) {
