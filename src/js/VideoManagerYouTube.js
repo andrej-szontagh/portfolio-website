@@ -21,8 +21,8 @@ class VideoManagerYouTube extends VideoManager {
 
         // initialize YouTube API
         // https://developers.google.com/youtube/iframe_api_reference#top_of_page
-        if (t.initialized ==  false) {
-            t.initialized =   true;
+        if (t.initialized ===   false) {
+            t.initialized =     true;
 
             let tag = document.createElement ("script");
 
@@ -94,30 +94,19 @@ class VideoManagerYouTube extends VideoManager {
                                     player.setPlaybackQuality ("small");  // small, medium, large, hd720 ..
 
                                     // this is required for the player loading queue to advance ..
-                                    // we will pause video on YT.PlayerState.PLAYING if not in viewport
+                                    // we will pause video when playing actually starts
                                     player.playVideo ();
 
                                     desc.callback (player);
                                 },
 
-                                onStateChange   (e) { VideoManagerYouTube.printState (e)),
-                                onError         (e) { VideoManagerYouTube.printError (e)),
+                                onStateChange   (e) { VideoManagerYouTube.printState (e); },
+                                onError         (e) { VideoManagerYouTube.printError (e); },
                             }
                         }
                     );
 
                     t.players.push (player);
-
-                    // console.log ("YouTube player created >> " + player_desc.id);
-
-                    /*
-                    player.addEventListener ("onReady", function listener (e) {
-
-                        e.target.removeEventListener (e.type, listener);
-
-                        initPlayer ();
-                    });
-                    */
 
                     player.addEventListener ("onStateChange", function listener (e) {
 
@@ -140,17 +129,6 @@ class VideoManagerYouTube extends VideoManager {
             // initialize players one by one to avoid excessive CPU peaks making the
             // website sluggish and lagging at the beginning
             initPlayer ();
-
-            /*
-            for (let i = 0; i < t.queue.length; i ++) {
-
-                let player_desc = t.queue [i];
-
-                let player = new YT.Player (player_desc.id, player_desc.params);
-
-                t.players.push (player);
-            }
-            */
         }
     }
 
@@ -190,17 +168,6 @@ class VideoManagerYouTube extends VideoManager {
 
             Console.log (msg [e.data]);
         }
-
-        // switch (e.data) {
-        //
-        //     case 2:     Console.log ("YouTube API error 2");    break;  // The request contains an invalid parameter value
-        //     case 5:     Console.log ("YouTube API error 5");    break;  // The requested content cannot be played in an HTML5 player
-        //     case 100:   Console.log ("YouTube API error 100");  break;  // The video requested was not found
-        //     case 101:   Console.log ("YouTube API error 101");  break;  // The owner of the requested video does not allow it to be played in embedded players
-        //     case 150:   Console.log ("YouTube API error 150");  break;  // This error is the same as 101. It's just a 101 error in disguise!
-        //
-        //     default:
-        // }
     }
 
     debug () {

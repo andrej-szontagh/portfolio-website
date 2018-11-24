@@ -1,16 +1,14 @@
 
-function Animations () {
+class Animations {
 
-    // empty ..
-}
+    constructor () {
 
-Animations.prototype = {
+        var t = this;
 
-    triggers: [],
+        t.triggers = [];
+    }
 
-    constructor: Animations,
-
-    applyLiveCSSAnimations : function () {
+    applyAnimations () {
 
         let t = this;
 
@@ -56,28 +54,28 @@ Animations.prototype = {
 
                     let l = t.triggers [j];
 
-                    if (l ["target"]			.contains (el)		&&
-                        l ["anim_play"] 		=== anim_play		&&
-                        l ["anim_init"] 		=== anim_init		&&
-                        l ["anim_class"] 		=== anim_class		&&
-                        l ["anim_trigger"]		=== anim_trigger	&&
-                        l ["anim_edge"] 		=== anim_edge		&&
-                        l ["anim_delay_min"] 	=== anim_delay_min	&&
-                        l ["anim_delay_max"] 	=== anim_delay_max
+                    if (l.target            .contains (el)      &&
+                        l.anim_play         === anim_play       &&
+                        l.anim_init         === anim_init       &&
+                        l.anim_class        === anim_class      &&
+                        l.anim_trigger      === anim_trigger    &&
+                        l.anim_edge         === anim_edge       &&
+                        l.anim_delay_min    === anim_delay_min  &&
+                        l.anim_delay_max    === anim_delay_max
                     ) {
 
                         skip = true;
                         break;
 
                     } else
-                    if (el.contains (l ["target"]) 					&&
-                        l ["anim_play"] 		=== anim_play		&&
-                        l ["anim_init"] 		=== anim_init		&&
-                        l ["anim_class"] 		=== anim_class		&&
-                        l ["anim_trigger"]		=== anim_trigger	&&
-                        l ["anim_edge"] 		=== anim_edge		&&
-                        l ["anim_delay_min"] 	=== anim_delay_min	&&
-                        l ["anim_delay_max"] 	=== anim_delay_max
+                    if (el.contains (l.target) &&
+                        l.anim_play         === anim_play       &&
+                        l.anim_init         === anim_init       &&
+                        l.anim_class        === anim_class      &&
+                        l.anim_trigger      === anim_trigger    &&
+                        l.anim_edge         === anim_edge       &&
+                        l.anim_delay_min    === anim_delay_min  &&
+                        l.anim_delay_max    === anim_delay_max
                     ) {
 
                         t.triggers.splice (j, 1);
@@ -87,16 +85,18 @@ Animations.prototype = {
 
                 if (!skip) {
 
+                    let target = el;
+
                     t.triggers.push ({
 
-                        "target" 			: el,
-                        "anim_play" 		: anim_play,
-                        "anim_init"			: anim_init,
-                        "anim_class" 		: anim_class,
-                        "anim_trigger"		: anim_trigger,
-                        "anim_edge" 		: anim_edge,
-                        "anim_delay_min"	: anim_delay_min,
-                        "anim_delay_max"	: anim_delay_max
+                        target,
+                        anim_play,
+                        anim_init,
+                        anim_class,
+                        anim_trigger,
+                        anim_edge,
+                        anim_delay_min,
+                        anim_delay_max,
                     });
                 }
             }
@@ -112,12 +112,12 @@ Animations.prototype = {
 
                 let l = t.triggers [i];
 
-                let target 			= l ["target"];
-                let anim_trigger	= l ["anim_trigger"];
-                let anim_init 		= l ["anim_init"];
-                let anim_class 		= l ["anim_class"];
-                let anim_play 		= l ["anim_play"];
-                let anim_edge 		= l ["anim_edge"];
+                let target          = l.target;
+                let anim_trigger    = l.anim_trigger;
+                let anim_init       = l.anim_init;
+                let anim_class      = l.anim_class;
+                let anim_play       = l.anim_play;
+                let anim_edge       = l.anim_edge;
 
                 //console.log ("onScroll >> trigger : " + trigger.id + " target : " + target.id + " anim_play : " + anim_play);
 
@@ -158,14 +158,14 @@ Animations.prototype = {
 
             let l = t.triggers [i];
 
-            let target 			= l ["target"];
-            let anim_play 		= l ["anim_play"];
-            let anim_init 		= l ["anim_init"];
-            let anim_class 		= l ["anim_class"];
-            let anim_trigger	= l ["anim_trigger"];
-            let anim_edge 		= l ["anim_edge"];
-            let anim_delay_min 	= l ["anim_delay_min"];
-            let anim_delay_max 	= l ["anim_delay_max"];
+            let target          = l.target;
+            let anim_play       = l.anim_play;
+            let anim_init       = l.anim_init;
+            let anim_class      = l.anim_class;
+            let anim_trigger    = l.anim_trigger;
+            let anim_edge       = l.anim_edge;
+            let anim_delay_min  = l.anim_delay_min;
+            let anim_delay_max  = l.anim_delay_max;
 
             //console.log ("----------------------------------------------------------------------------------");
             //console.log ("element           : " + el.nodeName);
@@ -193,8 +193,8 @@ Animations.prototype = {
                 target.style.setProperty ("animation-delay", (anim_delay_min + (anim_delay_max - anim_delay_min) * Math.random ()) + "s");
             }
 
-            l ["anim_trigger"] 	= anim_trigger = (anim_trigger === "self") ? target : document.getElementById (anim_trigger);
-            l ["anim_edge"] 	= anim_edge    = (anim_edge) ? parseFloat (anim_edge) : 0.0;
+            l.anim_trigger  = anim_trigger = (anim_trigger === "self") ? target : document.getElementById (anim_trigger);
+            l.anim_edge     = anim_edge    = (anim_edge) ? parseFloat (anim_edge) : 0.0;
         }
 
         // in the case object is already in the viewport
@@ -204,12 +204,12 @@ Animations.prototype = {
         window.addEventListener ("scroll", onScroll);
 
         // to make sure that this is not called twice !
-        this.applyLiveCSSAnimations = null;
-    },
+        this.applyAnimations = null;
+    }
 
-    isInViewport : function (element, edge) {
+    isInViewport (element, edge) {
 
-        let h = window.innerHeight;             	// viewport height
+        let h = window.innerHeight;                 // viewport height
         let r = element.getBoundingClientRect ();   // elements bounding rect in viewport coordinates
 
         // console.log ("top    : " + r.top);
@@ -227,5 +227,5 @@ Animations.prototype = {
         h = h - e*2;
 
         return (!((top > h) || (bottom < 0)));
-    },
+    }
 }
