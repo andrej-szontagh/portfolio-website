@@ -83,9 +83,22 @@ class Gallery {
 
         let t = this;
 
-        let r;
-        if (id in t.json.images) { r = t.json.images [id]; if (r.hasOwnProperty ("description")) { return r.description; }}
-        if (id in t.json.videos) { r = t.json.videos [id]; if (r.hasOwnProperty ("description")) { return r.description; }}
+        // Thanks Codacy ..
+        for (let i in t.json.images) {
+
+            if (i === id) {
+
+                return t.json.images [i].description;
+            }
+        }
+
+        for (let i in t.json.videos) {
+
+            if (i === id) {
+
+                return t.json.videos [i].description;
+            }
+        }
 
         // if (id in t.json.images) { return t.json.images [id].description; }
         // if (id in t.json.videos) { return t.json.videos [id].description; }
@@ -99,6 +112,7 @@ class Gallery {
 
         let i = 0;
 
+        // Thanks Codacy ..
         tags.forEach (function (o) {
 
             if (i > 0) {
@@ -108,18 +122,8 @@ class Gallery {
 
             str += o;
 
-            i ++
+            i ++;
         });
-
-        // for (let i = 0; i < tags.length; i ++) {
-        //
-        //     if (i > 0) {
-        //
-        //         str += " - ";
-        //     }
-        //
-        //     str += tags [i];
-        // }
 
         return str;
     }
