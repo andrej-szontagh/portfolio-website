@@ -1,4 +1,7 @@
 
+/* global Gallery */
+/* global manager_content */
+
 class GalleryLightbox {
 
     constructor (json) {
@@ -40,73 +43,70 @@ class GalleryLightbox {
 
         t.resetDetails ();
 
-        let d, desc = null;
-
-        if (d = t.json.images [id]) desc = d.description; else
-        if (d = t.json.videos [id]) desc = d.description;
+        let desc = Gallery.getDescriptor (t.json, id);
 
         if (desc) {
-            desc = t.json.descriptions [desc];
 
-            if (desc) {
+            function updateContent () {
 
-                function updateContent () {
-
-                    if (t.details_index >= desc.details.length) {
-                        t.details_index = 0;
-                    }
-
-                    let content = desc.details [t.details_index ++];
-
-                    let innerHTML = "";
-                    for (let i = 0; i < content.length; i ++) {
-
-                        innerHTML += content [i];
-                    }
-
-                    t.details.innerHTML = innerHTML;
-
-                    t.details.style.visibility = "visible";
+                if (t.details_index >= desc.details.length) {
+                    t.details_index = 0;
                 }
 
-                function onRollOffEnd (e) {
+                let content = desc.details [t.details_index ++];
 
-                    // console.log ("onRollOffEnd");
+                let innerHTML = "";
+                for (let i = 0; i < content.length; i ++) {
 
-                    e.target.removeEventListener (e.type, onRollOffEnd);
-
-                    // rolling ON
-                    t.details.classList.remove  ("roll-off");
-                    t.details.classList.add     ("roll-on");
-                    t.details.addEventListener ("animationend", onRollOnEnd);
-
-                    updateContent ();
+                    innerHTML += content [i];
                 }
 
-                function onRollOnEnd (e) {
+                t.details.innerHTML = innerHTML;
 
-                    // console.log ("onRollOnEnd");
-
-                    e.target.removeEventListener (e.type, onRollOnEnd);
-
-                    if (t.details_timer) {
-
-                        clearTimeout (t.details_timer);
-                    }
-
-                    t.details_timer = setTimeout (updateDetails, duration);
-                }
-
-                function updateDetails () {
-
-                    // rolling OFF
-                    t.details.classList.remove  ("roll-on");
-                    t.details.classList.add     ("roll-off");
-                    t.details.addEventListener ("animationend", onRollOffEnd);
-                }
-
-                t.details_timer = setTimeout (updateDetails, delay);
+                t.details.style.visibility = "visible";
             }
+
+            let onRollOnEnd;
+            let onRollOffEnd;
+            let updateDetails;
+
+            onRollOnEnd = function (e) {
+
+                // console.log ("onRollOnEnd");
+
+                e.target.removeEventListener (e.type, onRollOnEnd);
+
+                if (t.details_timer) {
+
+                    clearTimeout (t.details_timer);
+                }
+
+                t.details_timer = setTimeout (updateDetails, duration);
+            }
+
+            onRollOffEnd = function (e) {
+
+                // console.log ("onRollOffEnd");
+
+                e.target.removeEventListener (e.type, onRollOffEnd);
+
+                // rolling ON
+                t.details.classList.remove  ("roll-off");
+                t.details.classList.add     ("roll-on");
+                t.details.addEventListener ("animationend", onRollOnEnd);
+
+                updateContent ();
+            }
+
+            updateDetails = function () {
+
+                // rolling OFF
+                t.details.classList.remove  ("roll-on");
+                t.details.classList.add     ("roll-off");
+                t.details.addEventListener ("animationend", onRollOffEnd);
+            }
+
+            t.details_timer = setTimeout (updateDetails, delay);
         }
     }
 

@@ -79,14 +79,12 @@ class Gallery {
         manager_buttons.updateButtons ();
     }
 
-    getDescriptor (id) {
+    static getDescriptor (json, id) {
 
-        let t = this;
+        if (id in json.images) { return json.descriptions [json.images [id].description]; }
+        if (id in json.videos) { return json.descriptions [json.videos [id].description]; }
 
-        if (id in t.json.images) { return t.json.images [id].description; }
-        if (id in t.json.videos) { return t.json.videos [id].description; }
-
-        return "";
+        return null;
     }
 
     buildTagsString (tags) {
@@ -110,30 +108,23 @@ class Gallery {
 
         let t = this;
 
-        let d, desc = null;
-
-        desc = t.getDescriptor (e.target.id);
-
+        let desc = Gallery.getDescriptor (t.json, e.target.id);
         if (desc) {
-            desc = t.json.descriptions [desc];
 
-            if (desc) {
+            t.desc_header   .innerHTML = desc.name + "<br> (" + desc.year + ")";
+            t.desc_oneliner .innerHTML = desc.oneliner;
+            t.desc_tags     .innerHTML = "";
 
-                t.desc_header   .innerHTML = desc.name + "<br> (" + desc.year + ")";
-                t.desc_oneliner .innerHTML = desc.oneliner;
-                t.desc_tags     .innerHTML = "";
+            if (desc.tags) {
 
-                if (desc.tags) {
-
-                    t.desc_tags.innerHTML = t.buildTagsString (desc.tags);
-                }
-
-            } else {
-
-                t.desc_header   .innerHTML = "";
-                t.desc_oneliner .innerHTML = "";
-                t.desc_tags     .innerHTML = "";
+                t.desc_tags.innerHTML = t.buildTagsString (desc.tags);
             }
+
+        } else {
+
+            t.desc_header   .innerHTML = "";
+            t.desc_oneliner .innerHTML = "";
+            t.desc_tags     .innerHTML = "";
         }
     }
 
