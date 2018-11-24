@@ -1,5 +1,6 @@
 
 /* global manager_video */
+/* global VideoEvent */
 /* global YT */
 
 class VideoManagerYouTube extends VideoManager {
@@ -78,7 +79,7 @@ class VideoManagerYouTube extends VideoManager {
 
                             events: {
 
-                                onReady: function (e) {
+                                onReady (e) {
 
                                     // console.log ("onReady >> " + e.target.getIframe ().id);
 
@@ -99,8 +100,8 @@ class VideoManagerYouTube extends VideoManager {
                                     desc.callback (player);
                                 },
 
-                                onStateChange:  VideoManagerYouTube.printState,
-                                onError:        VideoManagerYouTube.printError,
+                                onStateChange   (e) { VideoManagerYouTube.printState (e)),
+                                onError         (e) { VideoManagerYouTube.printError (e)),
                             }
                         }
                     );
@@ -176,16 +177,30 @@ class VideoManagerYouTube extends VideoManager {
 
     static printError (e) {
 
-        switch (e.data) {
+        const msg = {
 
-            case 2:     Console.log ("YouTube API error 2");    break;  // The request contains an invalid parameter value
-            case 5:     Console.log ("YouTube API error 5");    break;  // The requested content cannot be played in an HTML5 player
-            case 100:   Console.log ("YouTube API error 100");  break;  // The video requested was not found
-            case 101:   Console.log ("YouTube API error 101");  break;  // The owner of the requested video does not allow it to be played in embedded players
-            case 150:   Console.log ("YouTube API error 150");  break;  // This error is the same as 101. It's just a 101 error in disguise!
-
-            default:
+            2:     "YouTube API error 2",   // The request contains an invalid parameter value
+            5:     "YouTube API error 5",   // The requested content cannot be played in an HTML5 player
+            100:   "YouTube API error 100", // The video requested was not found
+            101:   "YouTube API error 101", // The owner of the requested video does not allow it to be played in embedded players
+            150:   "YouTube API error 150", // This error is the same as 101. It's just a 101 error in disguise!
         }
+
+        if (e.data in msg) {
+
+            Console.log (msg [e.data]);
+        }
+
+        // switch (e.data) {
+        //
+        //     case 2:     Console.log ("YouTube API error 2");    break;  // The request contains an invalid parameter value
+        //     case 5:     Console.log ("YouTube API error 5");    break;  // The requested content cannot be played in an HTML5 player
+        //     case 100:   Console.log ("YouTube API error 100");  break;  // The video requested was not found
+        //     case 101:   Console.log ("YouTube API error 101");  break;  // The owner of the requested video does not allow it to be played in embedded players
+        //     case 150:   Console.log ("YouTube API error 150");  break;  // This error is the same as 101. It's just a 101 error in disguise!
+        //
+        //     default:
+        // }
     }
 
     debug () {

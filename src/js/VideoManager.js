@@ -24,13 +24,7 @@ class VideoManager extends EventTarget {
         let t = this;
 
         if (!t.sealed) {
-            t.queue.push ({
-
-                id:         id,
-                container:  container,
-                start:      start,
-                callback:   callback,
-            });
+            t.queue.push ({ id, container, start, callback });
         }
     }
 

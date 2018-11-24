@@ -79,7 +79,7 @@ class GalleryVideos {
 
                 } else {
 
-                    t.pausePlayer (dom, player)
+                    t.pausePlayer (dom, player);
                 }
             }
         }
@@ -155,9 +155,9 @@ class GalleryVideos {
             dom.progressbar.addEventListener ("transitionend", function listener (e) {
 
                 // make sure we are on the right transition and object
-                if (e.target        === dom.progressbar &&
-                    e.propertyName  === "clip-path" ||
-                    e.propertyName  === "width") {
+                if ((e.target        === dom.progressbar) &&
+                    (e.propertyName  === "clip-path" ||
+                     e.propertyName  === "width")) {
 
                     e.target.removeEventListener (e.type, listener);
 
