@@ -83,8 +83,12 @@ class Gallery {
 
         let t = this;
 
-        if (id in t.json.images) { return t.json.images [id].description; }
-        if (id in t.json.videos) { return t.json.videos [id].description; }
+        let r;
+        if (id in t.json.images) { r = t.json.images [id]; if (r.hasOwnProperty ("description")) { return r.description; }}
+        if (id in t.json.videos) { r = t.json.videos [id]; if (r.hasOwnProperty ("description")) { return r.description; }}
+
+        // if (id in t.json.images) { return t.json.images [id].description; }
+        // if (id in t.json.videos) { return t.json.videos [id].description; }
 
         return "";
     }
@@ -93,15 +97,29 @@ class Gallery {
 
         let str = "";
 
-        for (let i = 0; i < tags.length; i ++) {
+        let i = 0;
+
+        tags.forEach (function (o) {
 
             if (i > 0) {
 
                 str += " - ";
             }
 
-            str += tags [i];
-        }
+            str += o;
+
+            i ++
+        });
+
+        // for (let i = 0; i < tags.length; i ++) {
+        //
+        //     if (i > 0) {
+        //
+        //         str += " - ";
+        //     }
+        //
+        //     str += tags [i];
+        // }
 
         return str;
     }

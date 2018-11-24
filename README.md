@@ -23,8 +23,10 @@ $ npm install
 ## Build
 
 ```bash
-gulp build
-gulp build-debug
+$ gulp build
+```
+```bash
+$ gulp build-debug
 ```
 
 For more options check 'gulpfile.js'.
@@ -35,16 +37,16 @@ For more options check 'gulpfile.js'.
 
 ## Built With
 
-  * [@include-media](https://include-media.com/) - SASS media query library
-  * [Masonry](https://masonry.desandro.com/) - Cascading grid layout library
-  * [NodeJS](https://nodejs.org) - JavaScript runtime
-  * [GulpJS](https://gulpjs.com/) - Build task automation
-  * [PugJS](https://pugjs.org) - HTML template engine
-  * [SASS](https://sass-lang.com/) - Popular CSS extension language
+* [@include-media](https://include-media.com/) - SASS media query library
+* [Masonry](https://masonry.desandro.com/) - Cascading grid layout library
+* [NodeJS](https://nodejs.org) - JavaScript runtime
+* [GulpJS](https://gulpjs.com/) - Build task automation
+* [PugJS](https://pugjs.org) - HTML template engine
+* [SASS](https://sass-lang.com/) - Popular CSS extension language
 
 ## Author
 
-  * **Andrej Szontagh** - *Development & Design* - [andrej-szontagh](https://github.com/andrej-szontagh)
+* **Andrej Szontagh** - *Development & Design* - [andrej-szontagh](https://github.com/andrej-szontagh)
 
 ## License
 
