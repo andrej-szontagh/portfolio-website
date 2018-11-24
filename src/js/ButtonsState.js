@@ -1,5 +1,6 @@
 
 /* global body */
+/* global ButtonsBase */
 
 class ButtonsState extends ButtonsBase {
 

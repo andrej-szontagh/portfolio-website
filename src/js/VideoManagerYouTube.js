@@ -1,5 +1,6 @@
 
 /* global manager_video */
+/* global VideoManager */
 /* global VideoEvent */
 /* global YT */
 
@@ -162,7 +163,7 @@ class VideoManagerYouTube extends VideoManager {
             100:   "YouTube API error 100", // The video requested was not found
             101:   "YouTube API error 101", // The owner of the requested video does not allow it to be played in embedded players
             150:   "YouTube API error 150", // This error is the same as 101. It's just a 101 error in disguise!
-        }
+        };
 
         if (e.data in msg) {
 

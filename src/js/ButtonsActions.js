@@ -1,4 +1,7 @@
 
+/* global body */
+/* global ButtonsState */
+
 class ButtonsActions extends ButtonsState {
 
     constructor () {

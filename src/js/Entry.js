@@ -1,5 +1,8 @@
 
 /* global VideoManagerYouTube */
+/* global Buttons */
+/* global Mechanics */
+/* global Content */
 
 // init video ASAP
 let manager_video = new VideoManagerYouTube ();
@@ -25,4 +28,4 @@ window.onload = function (e) {
     manager_buttons     = new Buttons   ();
     manager_mechanics   = new Mechanics ();
     manager_content     = new Content   ();
-}
+};

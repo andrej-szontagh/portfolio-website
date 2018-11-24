@@ -1,5 +1,5 @@
 
-/* global loadJSON */
+/* global Utils */
 /* global GalleryVideos */
 /* global GalleryImages */
 /* global GalleryLightbox */
@@ -24,7 +24,7 @@ class Gallery {
         t.desc_oneliner     = t.desc.querySelector ("p");
         t.desc_tags         = t.desc.querySelector ("h3");
 
-        loadJSON (filepath_json, function (json) {
+        Utils.loadJSON (filepath_json, function (json) {
 
             t.json = json;
 

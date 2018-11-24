@@ -12,6 +12,58 @@ class Animations {
 
         let t = this;
 
+        t.collectAnimations ();
+
+        // Initialize
+        for (let i = 0; i < t.triggers.length; i ++) {
+
+            let l = t.triggers [i];
+
+            // console.log ("----------------------------------------------------------------------------------");
+            // console.log ("element           : " + el.nodeName);
+            // console.log ("element.id        : " + el.id);
+            // console.log ("--anim-play       : " + anim_play);
+            // console.log ("--anim-init       : " + anim_init);
+            // console.log ("--anim-class      : " + anim_class);
+            // console.log ("--anim-trigger    : " + anim_trigger);
+            // console.log ("--anim-edge       : " + anim_edge);
+            // console.log ("--anim-delay-min  : " + anim_delay_min);
+            // console.log ("--anim-delay-max  : " + anim_delay_max);
+
+            // initialization (to avoid additional loops)
+
+            if (l.anim_init) {
+
+                l.target.classList.add (l.anim_init);
+            }
+
+            if (l.anim_delay_min && l.anim_delay_max) {
+
+                let anim_delay_min  = parseFloat (l.anim_delay_min);
+                let anim_delay_max  = parseFloat (l.anim_delay_max);
+
+                l.target.style.setProperty ("animation-delay",
+                    (anim_delay_min + (anim_delay_max - anim_delay_min) * Math.random ()) + "s");
+            }
+
+            l.anim_trigger  = (l.anim_trigger === "self") ? l.target : document.getElementById (l.anim_trigger);
+            l.anim_edge     = (l.anim_edge) ? parseFloat (l.anim_edge) : 0.0;
+        }
+
+        // in the case object is already in the viewport
+        t.onScroll ();
+
+        window.addEventListener ("resize", function (e) { t.onScroll (); });
+        window.addEventListener ("scroll", function (e) { t.onScroll (); });
+
+        // to make sure that this is not called twice !
+        this.applyAnimations = null;
+    }
+
+    collectAnimations () {
+
+        let t = this;
+
         // this is a nasty part that needs to be done once ..
 
         let items = document.getElementsByTagName ("*");
@@ -102,52 +154,7 @@ class Animations {
             }
         }
 
-        //console.log ("t.triggers.length : " + t.triggers.length);
-
-        // Initialize
-        for (let i = 0; i < t.triggers.length; i ++) {
-
-            let l = t.triggers [i];
-
-            // console.log ("----------------------------------------------------------------------------------");
-            // console.log ("element           : " + el.nodeName);
-            // console.log ("element.id        : " + el.id);
-            // console.log ("--anim-play       : " + anim_play);
-            // console.log ("--anim-init       : " + anim_init);
-            // console.log ("--anim-class      : " + anim_class);
-            // console.log ("--anim-trigger    : " + anim_trigger);
-            // console.log ("--anim-edge       : " + anim_edge);
-            // console.log ("--anim-delay-min  : " + anim_delay_min);
-            // console.log ("--anim-delay-max  : " + anim_delay_max);
-
-            // initialization (to avoid additional loops)
-
-            if (l.anim_init) {
-
-                l.target.classList.add (l.anim_init);
-            }
-
-            if (l.anim_delay_min && l.anim_delay_max) {
-
-                let anim_delay_min  = parseFloat (l.anim_delay_min);
-                let anim_delay_max  = parseFloat (l.anim_delay_max);
-
-                l.target.style.setProperty ("animation-delay",
-                    (anim_delay_min + (anim_delay_max - anim_delay_min) * Math.random ()) + "s");
-            }
-
-            l.anim_trigger  = (l.anim_trigger === "self") ? l.target : document.getElementById (l.anim_trigger);
-            l.anim_edge     = (l.anim_edge) ? parseFloat (l.anim_edge) : 0.0;
-        }
-
-        // in the case object is already in the viewport
-        t.onScroll ();
-
-        window.addEventListener ("resize", function (e) { t.onScroll (); });
-        window.addEventListener ("scroll", function (e) { t.onScroll (); });
-
-        // to make sure that this is not called twice !
-        this.applyAnimations = null;
+        // console.log ("t.triggers.length : " + t.triggers.length);
     }
 
     onScroll () {

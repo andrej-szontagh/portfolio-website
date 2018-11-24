@@ -1,4 +1,8 @@
 
+/* global GOLDEN_RATIO_SQRT */
+/* global ContentCrop */
+/* global body */
+
 class ContentZoom extends ContentCrop {
 
     constructor () {

@@ -1,4 +1,6 @@
 
+/* global body */
+
 class ButtonsBase {
 
     constructor () {
