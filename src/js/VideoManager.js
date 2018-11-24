@@ -1,7 +1,9 @@
 
-class VideoManager {
+class VideoManager extends EventTarget {
 
     constructor () {
+
+        super ();
 
         let t = this;
 
@@ -17,12 +19,18 @@ class VideoManager {
         t.initialized = true;
     }
 
-    addPlayer (player_desc) {
+    addPlayer (id, container, start, callback) {
 
         let t = this;
 
         if (!t.sealed) {
-            t.queue.push (player_desc);
+            t.queue.push ({
+
+                id:         id,
+                container:  container,
+                start:      start,
+                callback:   callback,
+            });
         }
     }
 

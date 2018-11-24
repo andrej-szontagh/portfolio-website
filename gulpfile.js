@@ -71,6 +71,7 @@ function js_concat (cb) {
             "src/js/lib/Utils.js",
             "src/js/lib/Animations.js",
 
+            "src/js/VideoEvent.js",
             "src/js/VideoManager.js",
             "src/js/VideoManagerYouTube.js",
 
