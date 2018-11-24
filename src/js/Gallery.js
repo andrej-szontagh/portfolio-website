@@ -1,4 +1,12 @@
 
+/* global YouTube */
+/* global loadJSON */
+/* global GalleryVideos */
+/* global GalleryImages */
+/* global GalleryLightbox */
+/* global manager_buttons */
+/* global manager_content */
+
 class Gallery {
 
     constructor (filepath_json) {
@@ -84,6 +92,23 @@ class Gallery {
         return desc;
     }
 
+    buildTagsString (tags) {
+
+        let str = "";
+
+        for (let i = 0; i < tags.length; i ++) {
+
+            if (i > 0) {
+
+                str += " - ";
+            }
+
+            str += tags [i];
+        }
+
+        return str;
+    }
+
     onVisible (e) {
 
         let t = this;
@@ -103,19 +128,7 @@ class Gallery {
 
                 if (desc.tags) {
 
-                    let tags = "";
-
-                    for (let i = 0; i < desc.tags.length; i ++) {
-
-                        if (i > 0) {
-
-                            tags += " - ";
-                        }
-
-                        tags += desc.tags [i];
-                    }
-
-                    t.desc_tags.innerHTML = tags;
+                    t.desc_tags.innerHTML = t.buildTagsString (desc.tags);
                 }
 
             } else {
