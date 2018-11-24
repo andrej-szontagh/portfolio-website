@@ -1,4 +1,7 @@
 
+/* global manager_video */
+/* global YT */
+
 class VideoManagerYouTube extends VideoManager {
 
     constructor () {
@@ -118,7 +121,7 @@ class VideoManagerYouTube extends VideoManager {
                 default:                        state = "unstarted";    break;
             }
 
-            console.log ("Player " + i + " >> " + state);
+            Console.log ("Player " + i + " >> " + state);
         }
     }
 }

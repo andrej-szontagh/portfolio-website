@@ -1,4 +1,6 @@
 
+/* global manager_video */
+
 class GalleryVideos {
 
     constructor (container, json, animations, edge) {
@@ -11,10 +13,10 @@ class GalleryVideos {
 
         for (let vid in json.videos) {
 
-            index ++;
-
             // check if the property/key is defined in the object itself, not in parent
             if (json.videos.hasOwnProperty (vid)) {
+
+                index ++;
 
                 let video = json.videos [vid];
 

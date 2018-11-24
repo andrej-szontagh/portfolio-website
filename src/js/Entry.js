@@ -1,4 +1,6 @@
 
+/* global VideoManagerYouTube */
+
 // init video ASAP
 let manager_video = new VideoManagerYouTube ();
 
