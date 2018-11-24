@@ -47,7 +47,12 @@ class GalleryLightbox {
 
         if (desc) {
 
-            function updateContent () {
+            let onRollOnEnd;
+            let onRollOffEnd;
+            let updateDetails;
+            let updateContent;
+
+            updateContent = function () {
 
                 if (t.details_index >= desc.details.length) {
                     t.details_index = 0;
@@ -64,11 +69,7 @@ class GalleryLightbox {
                 t.details.innerHTML = innerHTML;
 
                 t.details.style.visibility = "visible";
-            }
-
-            let onRollOnEnd;
-            let onRollOffEnd;
-            let updateDetails;
+            };
 
             onRollOnEnd = function (e) {
 
@@ -82,7 +83,7 @@ class GalleryLightbox {
                 }
 
                 t.details_timer = setTimeout (updateDetails, duration);
-            }
+            };
 
             onRollOffEnd = function (e) {
 
@@ -96,7 +97,7 @@ class GalleryLightbox {
                 t.details.addEventListener ("animationend", onRollOnEnd);
 
                 updateContent ();
-            }
+            };
 
             updateDetails = function () {
 
@@ -104,7 +105,7 @@ class GalleryLightbox {
                 t.details.classList.remove  ("roll-on");
                 t.details.classList.add     ("roll-off");
                 t.details.addEventListener ("animationend", onRollOffEnd);
-            }
+            };
 
             t.details_timer = setTimeout (updateDetails, delay);
         }

@@ -1,35 +1,17 @@
 
-function onYouTubeIframeAPIReady () {
+class VideoManagerYouTube extends VideoManager {
 
-    // console.log ("onYouTubeIframeAPIReady");
+    constructor () {
 
-    YouTube.apiready = true;
+        super ();
 
-    if (YouTube.initialized &&
-        YouTube.sealed) {
+        let t = this;
 
-        YouTube.createPlayers ();
+        t.players   = [];
+        t.apiready  = false;
     }
-}
 
-function YouTubeManager () {
-
-    let t = this;
-
-    // ..
-}
-
-YouTubeManager.prototype = {
-
-    constructor:    YouTubeManager,
-
-    initialized:    false,
-    sealed:         false,
-    apiready:       false,
-    queue:          [],
-    players:        [],
-
-    init: function () {
+    init () {
 
         let t = this;
 
@@ -47,49 +29,16 @@ YouTubeManager.prototype = {
 
             firstScriptTag.parentNode.insertBefore (tag, firstScriptTag);
         }
-    },
+    }
 
-    debug: function () {
+    addPlayer (player_desc) {
 
-        let t = this;
-
-        for (let i = 0; i < t.players.length; i ++) {
-
-            let state = t.players [i].getPlayerState ();
-
-            switch (state) {
-                case YT.PlayerState.ENDED:      state = "ended";        break;
-                case YT.PlayerState.PLAYING:    state = "playing";      break;
-                case YT.PlayerState.PAUSED:     state = "paused";       break;
-                case YT.PlayerState.BUFFERING:  state = "buffering";    break;
-                case YT.PlayerState.CUED:       state = "cued";         break;
-                default:                        state = "unstarted";    break;
-            }
-
-            console.log ("Player " + i + " >> " + state);
-        }
-    },
-
-    addPlayer: function (player_desc) {
+        super.addPlayer (player_desc);
 
         let t = this;
+    }
 
-        /*
-        YouTubeAPIAddPlayer ({
-
-            id:     <element-id>,
-            params: <youtube-api-parameters>
-        });
-        */
-
-        // console.log ("addPlayer >> " + player_desc.id);
-
-        t.queue.push (player_desc);
-    },
-
-    createPlayers: function () {
-
-        // console.log ("createPlayers");
+    createPlayers () {
 
         let t = this;
 
@@ -150,7 +99,39 @@ YouTubeManager.prototype = {
             }
             */
         }
-    },
+    }
+
+    debug () {
+
+        let t = this;
+
+        for (let i = 0; i < t.players.length; i ++) {
+
+            let state = t.players [i].getPlayerState ();
+
+            switch (state) {
+                case YT.PlayerState.ENDED:      state = "ended";        break;
+                case YT.PlayerState.PLAYING:    state = "playing";      break;
+                case YT.PlayerState.PAUSED:     state = "paused";       break;
+                case YT.PlayerState.BUFFERING:  state = "buffering";    break;
+                case YT.PlayerState.CUED:       state = "cued";         break;
+                default:                        state = "unstarted";    break;
+            }
+
+            console.log ("Player " + i + " >> " + state);
+        }
+    }
 }
 
-let YouTube = new YouTubeManager ();
+function onYouTubeIframeAPIReady () {
+
+    // console.log ("onYouTubeIframeAPIReady");
+
+    manager_video.apiready = true;
+
+    if (manager_video.initialized &&
+        manager_video.sealed) {
+
+        manager_video.createPlayers ();
+    }
+}

@@ -1,5 +1,4 @@
 
-/* global YouTube */
 /* global loadJSON */
 /* global GalleryVideos */
 /* global GalleryImages */
@@ -12,9 +11,6 @@ class Gallery {
     constructor (filepath_json) {
 
         let t = this;
-
-        // initialize YouTube API ASAP (for faster loading)
-        YouTube.init ();
 
         t.manager_videos    = null;
         t.manager_images    = null;

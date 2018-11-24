@@ -7,9 +7,6 @@ class GalleryVideos {
 
         t.container = container;
 
-        // YouTube API needs to be initialized beforehand !
-        YouTube.init ();
-
         let index = -1;
 
         for (let vid in json.videos) {
@@ -77,7 +74,7 @@ class GalleryVideos {
                     progressbar.style.transitionDuration    = (20 + Math.random ()  * 10)   + "s";
                 });
 
-                YouTube.addPlayer ({
+                manager_video.addPlayer ({
 
                     id:     player.id,
                     params: {
@@ -280,6 +277,6 @@ class GalleryVideos {
             }
         }
 
-        YouTube.createPlayers ();
+        manager_video.createPlayers ();
     }
 }
