@@ -48,7 +48,7 @@ class ButtonsState extends ButtonsBase {
         if (el.classList.contains ("button-hover") ||
             el.classList.contains ("button-press")) {
 
-            let s   = ButtonsState.parseButtonState (el);
+            let s   = ButtonsState._parseButtonState (el);
             let str = ButtonsStatesStrings [state];
 
             if (!s.value_readonly) {
@@ -79,21 +79,26 @@ class ButtonsState extends ButtonsBase {
 
         let t = this;
 
-        let s = ButtonsState.parseButtonState (el);
+        let s = ButtonsState._parseButtonState (el);
 
         if (s.value_ext !== null) {
 
             let target = body.querySelector (attr);
             if (target) {
 
-                s = ButtonsState.parseButtonState (target);
+                s = ButtonsState._parseButtonState (target);
             }
         }
 
         return s.value;
     }
 
-    static checkBracets (str, brace_left, brace_right) {
+    showButtonTargets (el, attr, state) {
+
+        // placeholder ..
+    }
+
+    static _checkBracets (str, brace_left, brace_right) {
 
         // https://medium.com/nodesimplified/javascript-pass-by-value-and-pass-by-reference-in-javascript-fcf10305aa9c
         // we use "input" as a wrapper to be able to modify the string
@@ -113,7 +118,7 @@ class ButtonsState extends ButtonsBase {
         return { contained: false, modified: str };
     }
 
-    static parseButtonState (el) {
+    static _parseButtonState (el) {
 
         let out = {
 
@@ -127,21 +132,16 @@ class ButtonsState extends ButtonsBase {
 
             let o;
 
-            o = ButtonsState.checkBracets (attr, "[", "]");
+            o = ButtonsState._checkBracets (attr, "[", "]");
 
             out.value_readonly  = o.contained;
             out.value           = (o.modified === "on") ? ButtonsStates.ON : ButtonsStates.OFF;
 
-            o = ButtonsState.checkBracets (o.modified, "{", "}");
+            o = ButtonsState._checkBracets (o.modified, "{", "}");
 
             out.value_ext = o.contained ? o.modified : null;
         }
 
         return out;
-    }
-
-    showButtonTargets (el, attr, state) {
-
-        // placeholder ..
     }
 }

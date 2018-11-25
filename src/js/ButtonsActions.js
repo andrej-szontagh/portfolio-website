@@ -24,16 +24,11 @@ class ButtonsActions extends ButtonsState {
 
             sel = sel.trim ();
 
-            // check if the string contains the "self" token
+            let len = sel.length;
 
-            let selftoken = "<this>";
-
-            let thisindex = sel.indexOf (selftoken);
-            if (thisindex >= 0) {
-
-                // cut off the self token
-                sel = sel.substr (0, thisindex) + sel.substr (thisindex + selftoken.length);
-                sel = sel.trim ();
+            // check if referencing itself ..
+            sel = ButtonsActions._cutoffToken (sel, "<this>");
+            if (sel.length != len) {
 
                 targets.push (el);
             }
@@ -51,22 +46,47 @@ class ButtonsActions extends ButtonsState {
             if (targets != null) {
                 targets.forEach (function (target, i) {
 
-                    if (state === ButtonsStates.ON) {
-
-                        target.classList.remove ("hidden");
-                        target.classList.add    ("visible");
-
-                        target.dispatchEvent (new Event ("onvisible"));
-
-                    } else {
-
-                        target.classList.remove ("visible");
-                        target.classList.add    ("hidden");
-
-                        target.dispatchEvent (new Event ("onhidden"));
-                    }
+                    ButtonsActions._showTargetByState (target, state);
                 });
             }
         }
+    }
+
+    static _cutoffToken (str, token) {
+
+        let i = str.indexOf (token);
+        if (i >= 0) {
+
+            // cut off the token
+            str = str.substr (0, i) + str.substr (i + token.length);
+            str = str.trim ();
+        }
+
+        return str;
+    }
+
+    static _showTargetByState (target, state) {
+
+        if (state === ButtonsStates.ON) {
+
+            ButtonsActions._showTarget (target); } else {
+            ButtonsActions._hideTarget (target);
+        }
+    }
+
+    static _showTarget (target) {
+
+        target.classList.remove ("hidden");
+        target.classList.add    ("visible");
+
+        target.dispatchEvent (new Event ("onvisible"));
+    }
+
+    static _hideTarget (target) {
+
+        target.classList.remove ("visible");
+        target.classList.add    ("hidden");
+
+        target.dispatchEvent (new Event ("onhidden"));
     }
 }
