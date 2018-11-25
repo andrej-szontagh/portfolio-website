@@ -156,21 +156,19 @@ class ButtonsState extends ButtonsBase {
         // https://medium.com/nodesimplified/javascript-pass-by-value-and-pass-by-reference-in-javascript-fcf10305aa9c
         // we use "input" as a wrapper to be able to modify the string
 
-        if (str) {
+        str = str.trim ();
+
+        if (str.length > 0 &&
+            str.charAt (0)              === brace_left &&
+            str.charAt (str.length - 1) === brace_right)
+        {
+            str = str.substring (1, str.length - 1);
             str = str.trim ();
 
-            if (str.length > 0 &&
-                str.charAt (0)              === brace_left &&
-                str.charAt (str.length - 1) === brace_right)
-            {
-                str = str.substring (1, str.length - 1);
-                str = str.trim ();
-
-                return { contained: true, stripped: str };
-            }
+            return { contained: true, modified: str };
         }
 
-        return { contained: false };
+        return { contained: false, modified: str };
     }
 
     static parseButtonStateRef (el) {
@@ -188,20 +186,13 @@ class ButtonsState extends ButtonsBase {
             let o;
 
             o = ButtonsState.checkBracets (attr, "[", "]");
-            if (o.contained) {
-                attr = o.stripped;
 
-                out.value_readonly = true;
-            }
+            out.value_readonly  = o.contained;
+            out.value           = (o.modified === "on") ? "on" : "off";
 
-            out.value = (attr === "on") ? "on" : "off";
+            o = ButtonsState.checkBracets (o.modified, "{", "}");
 
-            o = ButtonsState.checkBracets (attr, "{", "}");
-            if (o.contained) {
-                attr = o.stripped;
-
-                out.value_ext = attr;
-            }
+            out.value_ext = o.contained ? o.modified : null;
         }
 
         return out;
