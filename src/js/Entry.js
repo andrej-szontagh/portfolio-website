@@ -1,11 +1,13 @@
 
 /* global VideoManagerYouTube */
+/* global Utils */
 /* global Buttons */
 /* global Mechanics */
 /* global Content */
 
-// init video ASAP
-let manager_video = new VideoManagerYouTube ();
+// init ASAP
+let utils               = new Utils ();
+let manager_video       = new VideoManagerYouTube ();
 
 let body                = null;
 let manager_buttons     = null;

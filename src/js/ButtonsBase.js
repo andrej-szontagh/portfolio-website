@@ -1,4 +1,5 @@
 
+/* global Utils */
 /* global body */
 
 class ButtonsBase {
@@ -42,11 +43,7 @@ class ButtonsBase {
 
         let t = this;
 
-        let buttons = body.querySelectorAll (".button-hover, .button-press");
-
-        for (let i = 0; i < buttons.length; i ++) {
-
-            let b = buttons [i];
+        Utils.forEachNodeList (body.querySelectorAll (".button-hover, .button-press"), function (b, i) {
 
             // console.log ("button : " + b.id + " class : " + b.className);
 
@@ -55,7 +52,7 @@ class ButtonsBase {
                 t.transformButton   (b); } else {
                 t.initButton        (b);
             }
-        }
+        });
     }
 
     initButton (b) {
@@ -107,20 +104,17 @@ class ButtonsBase {
 
                 let h = window.innerHeight;
 
-                let scrolls = body.querySelectorAll (attr);
-
-                for (let i = 0; i < scrolls.length; i ++) {
-
-                    let s = scrolls [i];
+                Utils.forEachNodeList (body.querySelectorAll (attr), function (s, i) {
 
                     let r = s.getBoundingClientRect ();
 
                     if (r.height > h) {
 
                         t.transformButton (b);
-                        break;
+
+                        return true;    // break
                     }
-                }
+                });
             }
         }
     }

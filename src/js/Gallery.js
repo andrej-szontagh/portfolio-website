@@ -52,25 +52,19 @@ class Gallery {
         function onOpen     (e) { t.onOpen      (e);    }
         function onVisible  (e) { t.onVisible   (e);    }
 
-        let gallery_blocks = document.querySelectorAll (".gallery-block");
-        if (gallery_blocks) {
+        Utils.forEachNodeList (document.querySelectorAll (".gallery-block"), function (el, i) {
 
-            for (let i = 0; i < gallery_blocks.length; i ++) {
+            if (el.classList.contains   ("button-hover") === false) {
+                el.classList.add        ("button-hover");
+                el.classList.add        ("hidden");
 
-                let el = gallery_blocks.item (i);
+                el.setAttribute ("button-target",  "<this> #label-description");
+                el.setAttribute ("button-clear",   ".gallery-block");
 
-                if (el.classList.contains   ("button-hover") === false) {
-                    el.classList.add        ("button-hover");
-                    el.classList.add        ("hidden");
-
-                    el.setAttribute ("button-target",  "<this> #label-description");
-                    el.setAttribute ("button-clear",   ".gallery-block");
-
-                    el.addEventListener ("onvisible", onVisible);
-                    el.___callback_open = onOpen;
-                }
+                el.addEventListener ("onvisible", onVisible);
+                el.___callback_open = onOpen;
             }
-        }
+        });
 
         manager_buttons.updateButtons ();
     }
@@ -87,15 +81,15 @@ class Gallery {
 
         let str = "";
 
-        for (let i = 0; i < tags.length; i ++) {
+        Utils.forEachObject (tags, function (k, tag, i) {
 
             if (i > 0) {
 
                 str += " - ";
             }
 
-            str += tags [i];
-        }
+            str += tag;
+        });
 
         return str;
     }

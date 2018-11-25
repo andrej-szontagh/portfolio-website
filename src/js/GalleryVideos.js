@@ -1,8 +1,9 @@
 
-/* global manager_video */
+/* global Utils */
 /* global Animations */
 /* global VideoEvent */
 /* global YT */
+/* global manager_video */
 
 class GalleryVideos {
 
@@ -12,41 +13,29 @@ class GalleryVideos {
 
         t.container = container;
 
-        let index = -1;
+        Utils.forEachObject (json.videos, function (vid, video, index) {
 
-        for (let vid in json.videos) {
+            let dom = t.appendVideoDOM (vid, index + 1, json.filebase_covers + video.cover);
 
-            // check if the property/key is defined in the object itself, not in parent
-            if (json.videos.hasOwnProperty (vid)) {
+            // start fake progres-bar right away with
+            // random delay and duration to make it look natural
+            // the duration is set to be slow enough that video will be
+            // loaded before the animation ends at least in majority of cases, but
+            // not too slow that it's apparent that video is loading so the user stops by and keep waiting.
 
-                // console.log (key, json.videos [vid]);
+            // we cannot start animation right after dom element is created since we
+            // have to change the transition property and that wouldn't count as change
 
-                index ++;
+            dom.progressbar_img.addEventListener ("load", function (e) {
 
-                let video = json.videos [vid];
+                t.startBuffering (dom);
+            });
 
-                let dom = t.appendVideoDOM (vid, index, json.filebase_covers + video.cover);
+            manager_video.addPlayer (vid, dom.placeholder, video.start, function (player) {
 
-                // start fake progres-bar right away with
-                // random delay and duration to make it look natural
-                // the duration is set to be slow enough that video will be
-                // loaded before the animation ends at least in majority of cases, but
-                // not too slow that it's apparent that video is loading so the user stops by and keep waiting.
-
-                // we cannot start animation right after dom element is created since we
-                // have to change the transition property and that wouldn't count as change
-
-                dom.progressbar_img.addEventListener ("load", function (e) {
-
-                    t.startBuffering (dom);
-                });
-
-                manager_video.addPlayer (vid, dom.placeholder, video.start, function (player) {
-
-                    t.initPlayer (dom, player);
-                });
-            }
-        }
+                t.initPlayer (dom, player);
+            });
+        });
 
         manager_video.createPlayers ();
     }

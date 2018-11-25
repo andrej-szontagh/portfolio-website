@@ -167,7 +167,7 @@ class VideoManagerYouTube extends VideoManager {
 
         if (e.data in msg) {
 
-            Console.log (msg [e.data]);
+            console.log (msg [e.data]);
         }
     }
 
@@ -175,21 +175,27 @@ class VideoManagerYouTube extends VideoManager {
 
         let t = this;
 
-        for (let i = 0; i < t.players.length; i ++) {
+        const states = {
 
-            let state = t.players [i].getPlayerState ();
+            [YT.PlayerState.ENDED]:     "ended",
+            [YT.PlayerState.PLAYING]:   "playing",
+            [YT.PlayerState.PAUSED]:    "paused",
+            [YT.PlayerState.BUFFERING]: "buffering",
+            [YT.PlayerState.CUED]:      "cued",
+        };
 
-            switch (state) {
-                case YT.PlayerState.ENDED:      state = "ended";        break;
-                case YT.PlayerState.PLAYING:    state = "playing";      break;
-                case YT.PlayerState.PAUSED:     state = "paused";       break;
-                case YT.PlayerState.BUFFERING:  state = "buffering";    break;
-                case YT.PlayerState.CUED:       state = "cued";         break;
-                default:                        state = "unstarted";    break;
+        t.players.forEach (function (player, index) {
+
+            let state = player.getPlayerState ();
+
+            if (state in states) {
+
+                state = states [state]; } else {
+                state = "unstarted";
             }
 
-            Console.log ("Player " + i + " >> " + state);
-        }
+            console.log ("Player " + index + " >> " + state);
+        });
     }
 }
 

@@ -48,10 +48,7 @@ class ButtonsActions extends ButtonsState {
             }
 
             if (targets != null) {
-
-                for (let i = 0; i < targets.length; i ++) {
-
-                    let target = targets [i];
+                targets.forEach (function (target, i) {
 
                     if (on) {
 
@@ -67,7 +64,7 @@ class ButtonsActions extends ButtonsState {
 
                         target.dispatchEvent (new Event ("onhidden"));
                     }
-                }
+                });
             }
         }
     }

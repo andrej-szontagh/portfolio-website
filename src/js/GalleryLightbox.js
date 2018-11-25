@@ -1,4 +1,5 @@
 
+/* global Utils */
 /* global Gallery */
 /* global manager_content */
 
@@ -61,10 +62,11 @@ class GalleryLightbox {
                 let content = desc.details [t.details_index ++];
 
                 let innerHTML = "";
-                for (let i = 0; i < content.length; i ++) {
 
-                    innerHTML += content [i];
-                }
+                Utils.forEachObject (content, function (k, field, i) {
+
+                    innerHTML += field;
+                });
 
                 t.details.innerHTML = innerHTML;
 

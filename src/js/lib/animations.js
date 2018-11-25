@@ -15,9 +15,7 @@ class Animations {
         t.collectAnimations ();
 
         // Initialize
-        for (let i = 0; i < t.triggers.length; i ++) {
-
-            let l = t.triggers [i];
+        triggers.forEach (function (l, i) {
 
             // console.log ("----------------------------------------------------------------------------------");
             // console.log ("element           : " + el.nodeName);
@@ -48,7 +46,7 @@ class Animations {
 
             l.anim_trigger  = (l.anim_trigger === "self") ? l.target : document.getElementById (l.anim_trigger);
             l.anim_edge     = (l.anim_edge) ? parseFloat (l.anim_edge) : 0.0;
-        }
+        });
 
         // in the case object is already in the viewport
         t.onScroll ();
@@ -69,7 +67,6 @@ class Animations {
         let items = document.getElementsByTagName ("*");
 
         // collect elements ..
-
         for (let i = items.length; i--;) {
 
             let el = items.item (i);
@@ -102,9 +99,7 @@ class Animations {
 
                 let skip = false;
 
-                for (let j = 0; j < t.triggers.length; j ++) {
-
-                    let l = t.triggers [j];
+                t.triggers.forEach (function (l, j) {
 
                     if (l.target            .contains (el)      &&
                         l.anim_play         === anim_play       &&
@@ -133,7 +128,7 @@ class Animations {
                         t.triggers.splice (j, 1);
                         break;
                     }
-                }
+                });
 
                 if (!skip) {
 
@@ -163,9 +158,7 @@ class Animations {
 
         let triggers_new = [];
 
-        for (let i = 0; i < t.triggers.length; i ++) {
-
-            let l = t.triggers [i];
+        t.triggers.forEach (function (l, i) {
 
             // console.log ("onScroll >> trigger : " + l.anim_trigger.id +
             //     " target : "    + l.target.id +
@@ -180,7 +173,7 @@ class Animations {
                 // try next time
                 triggers_new.push (l);
             }
-        }
+        });
 
         // remove triggered elements (one shot invocation)
         t.triggers = triggers_new;

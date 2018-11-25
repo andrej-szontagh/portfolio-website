@@ -1,4 +1,5 @@
 
+/* global Utils */
 /* global body */
 
 class Mechanics {
@@ -63,57 +64,45 @@ class Mechanics {
         let query = "";
 
         let index = 0;
-        for (let key in bodytags) {
 
-            if (bodytags.hasOwnProperty (key)) {
+        Utils.forEachObject (bodytags, function (k, v, i) {
 
-                if (index ++ > 0) {
-                    query += ", ";
-                }
-
-                query += "." + key;
+            if (i > 0) {
+                query += ", ";
             }
-        }
+
+            query += "." + k;
+        });
 
         // console.log ("bodytags query > " + query);
 
-        let elements = document.querySelectorAll (query);
-
         function onHidden (e) {
 
-            for (let key in bodytags) {
+            Utils.forEachObject (bodytags, function (k, v, i) {
 
-                if (bodytags.hasOwnProperty (key)) {
+                if (e.target.classList.contains (k)) {
 
-                    if (e.target.classList.contains (key)) {
-
-                        body.classList.remove (bodytags [key]);
-                    }
+                    body.classList.remove (v);
                 }
-            }
+            });
         }
 
         function onVisible (e) {
 
-            for (let key in bodytags) {
+            Utils.forEachObject (bodytags, function (k, v, i) {
 
-                if (bodytags.hasOwnProperty (key)) {
+                if (e.target.classList.contains (k)) {
 
-                    if (e.target.classList.contains (key)) {
-
-                        body.classList.add (bodytags [key]);
-                    }
+                    body.classList.add (v);
                 }
-            }
+            });
         }
 
-        for (let i = 0; i < elements.length; i ++) {
-
-            let el = elements.item (i);
+        Utils.forEachNodeList (document.querySelectorAll (query), function (el, i) {
 
             el.addEventListener ("onhidden",    onHidden,   false);
             el.addEventListener ("onvisible",   onVisible,  false);
-        }
+        });
     }
 
     initScrollReset () {
@@ -121,8 +110,6 @@ class Mechanics {
         // reset scrolls when screen visible
 
         let t = this;
-
-        let elements = document.querySelectorAll (".screen");
 
         function onVisible (e) {
 
@@ -134,10 +121,10 @@ class Mechanics {
             }
         }
 
-        for (let i = 0; i < elements.length; i ++) {
+        Utils.forEachNodeList (document.querySelectorAll (".screen"), function (el, i) {
 
-            elements.item (i).addEventListener ("onvisible", onVisible, false);
-        }
+            el.addEventListener ("onvisible", onVisible, false);
+        });
     }
 
     initScrollCSSVar () {
@@ -146,11 +133,7 @@ class Mechanics {
 
         let t = this;
 
-        let elements = document.querySelectorAll (".scroll");
-
-        for (let i = 0; i < elements.length; i ++) {
-
-            let el = elements.item (i);
+        Utils.forEachNodeList (document.querySelectorAll (".scroll"), function (el, i) {
 
             let cs = window.getComputedStyle (el);
 
@@ -181,6 +164,6 @@ class Mechanics {
             };
 
             el.parentNode.addEventListener ("scroll", on_scroll);
-        }
+        });
     }
 }

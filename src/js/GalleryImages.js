@@ -1,4 +1,5 @@
 
+/* global Utils */
 /* global Masonry */
 /* global manager_content */
 
@@ -39,14 +40,10 @@ class GalleryImages {
 
         t.loadstack = [];
 
-        for (let img in json.images) {
+        Utils.forEachObject (json.images, function (img, data, i) {
 
-            // check if the property/key is defined in the object itself, not in parent
-            if (json.images.hasOwnProperty (img)) {
-
-                t.loadstack.push ({id:img, data:json.images [img]});
-            }
-        }
+            t.loadstack.push ({ id: img, data: data });
+        });
 
         function addNextImage (index) {
 

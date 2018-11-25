@@ -1,5 +1,6 @@
 
 /* global body */
+/* global Utils */
 /* global ButtonsBase */
 
 class ButtonsState extends ButtonsBase {
@@ -31,12 +32,10 @@ class ButtonsState extends ButtonsBase {
 
                     if (button_state.value_ext) {
 
-                        let targets = body.querySelectorAll (button_state.value_ext);
+                        Utils.forEachNodeList (body.querySelectorAll (button_state.value_ext), function (target, i) {
 
-                        for (let i = 0; i < targets.length; i ++) {
-
-                            t.setButtonState (targets [i], state, false);
-                        }
+                            t.setButtonState (target, state, false);
+                        });
                     }
                 }
                 */
@@ -51,21 +50,17 @@ class ButtonsState extends ButtonsBase {
             if (propagate === true) {
 
                 let button_clear = el.getAttribute ("button-clear");
-
                 if (button_clear !== null) {
 
-                    let targets = body.querySelectorAll (button_clear);
+                    Utils.forEachNodeList (body.querySelectorAll (button_clear), function (target, i) {
 
-                    for (let i = 0; i < targets.length; i ++) {
+                        if (target !== el) {
 
-                        let g = targets.item (i);
-                        if (g !== el) {
-
-                            if (t.getButtonState (g) === "on") {
-                                t.setButtonState (g, "off", false);
+                            if (t.getButtonState (target) === "on") {
+                                t.setButtonState (target, "off", false);
                             }
                         }
-                    }
+                    });
                 }
             }
 
@@ -74,19 +69,15 @@ class ButtonsState extends ButtonsBase {
                 if (propagate === true) {
 
                     let button_set = el.getAttribute ("button-set-on");
-
                     if (button_set !== null) {
 
-                        let targets = body.querySelectorAll (button_set);
+                        Utils.forEachNodeList (body.querySelectorAll (button_set), function (target, i) {
 
-                        for (let i = 0; i < targets.length; i ++) {
-
-                            let g = targets.item (i);
-                            if (g !== el) {
+                            if (target !== el) {
 
                                 t.setButtonState (g, state, false);
                             }
-                        }
+                        });
                     }
                 }
 
@@ -100,16 +91,13 @@ class ButtonsState extends ButtonsBase {
                     let button_set = el.getAttribute ("button-set-off");
                     if (button_set !== null) {
 
-                        let targets = body.querySelectorAll (button_set);
+                        Utils.forEachNodeList (body.querySelectorAll (button_set), function (target, i) {
 
-                        for (let i = 0; i < targets.length; i ++) {
-
-                            let target = targets.item (i);
                             if (target !== el) {
 
                                 t.setButtonState (target, state, false);
                             }
-                        }
+                        });
                     }
                 }
 

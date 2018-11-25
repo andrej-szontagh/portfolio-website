@@ -9,6 +9,35 @@ class Utils {
         var t = this;
     }
 
+    static forEachNodeList (nodelist, fn) {
+
+        if (nodelist) {
+
+            for (let i = 0; i < nodelist.length; i ++) {
+
+                if (fn (nodelist.item (i), i)) {
+
+                    return;
+                }
+            }
+        }
+    }
+
+    static forEachObject (dict, fn) {
+
+        let i = 0;
+        for (var key in dict) {
+
+            if (dict.hasOwnProperty (key)) {
+
+                if (fn (key, dict [key], i ++)) {
+
+                    return;
+                }
+            }
+        }
+    }
+
     static loadJSON (filepath, callback) {
 
         let xobj = new XMLHttpRequest ();
