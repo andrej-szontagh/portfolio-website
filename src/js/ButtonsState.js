@@ -22,7 +22,7 @@ class ButtonsState extends ButtonsBase {
         if (el.classList.contains ("button-hover") ||
             el.classList.contains ("button-press")) {
 
-            let button_state = t.parseButtonStateRef (el);
+            let button_state = ButtonsState.parseButtonStateRef (el);
 
             if (!button_state.value_readonly) {
 
@@ -98,16 +98,16 @@ class ButtonsState extends ButtonsBase {
                 if (propagate === true) {
 
                     let button_set = el.getAttribute ("button-set-off");
-
                     if (button_set !== null) {
 
                         let targets = body.querySelectorAll (button_set);
 
                         for (let i = 0; i < targets.length; i ++) {
 
-                            if (targets [i] !== el) {
+                            let target = targets.item (i);
+                            if (target !== el) {
 
-                                t.setButtonState (targets [i], state, false);
+                                t.setButtonState (target, state, false);
                             }
                         }
                     }
@@ -122,7 +122,7 @@ class ButtonsState extends ButtonsBase {
 
         let t = this;
 
-        let button_state = this.parseButtonStateRef (el);
+        let button_state = ButtonsState.parseButtonStateRef (el);
 
         // console.log ("getButtonState > parseButtonStateRef > " + attr);
 
@@ -138,7 +138,7 @@ class ButtonsState extends ButtonsBase {
 
             if (target) {
 
-                let button_state_ext = this.parseButtonStateRef (target);
+                let button_state_ext = ButtonsState.parseButtonStateRef (target);
 
                 if (button_state_ext.value === "on" ||
                     button_state_ext.value === "off") {
@@ -151,7 +151,29 @@ class ButtonsState extends ButtonsBase {
         return "off";
     }
 
-    parseButtonStateRef (el) {
+    static checkBracets (str, brace_left, brace_right) {
+
+        // https://medium.com/nodesimplified/javascript-pass-by-value-and-pass-by-reference-in-javascript-fcf10305aa9c
+        // we use "input" as a wrapper to be able to modify the string
+
+        if (str) {
+            str = str.trim ();
+
+            if (str.length > 0 &&
+                str.charAt (0)              === brace_left &&
+                str.charAt (str.length - 1) === brace_right)
+            {
+                str = str.substring (1, str.length - 1);
+                str = str.trim ();
+
+                return { contained: true, stripped: str };
+            }
+        }
+
+        return { contained: false };
+    }
+
+    static parseButtonStateRef (el) {
 
         let out = {
 
@@ -161,26 +183,22 @@ class ButtonsState extends ButtonsBase {
         };
 
         let attr = el.getAttribute ("button-state");
-
         if (attr) {
-            attr = attr.trim ();
 
-            if (attr && attr.length > 0 &&
-                (attr.charAt (0)                === "[") &&
-                (attr.charAt (attr.length - 1)  === "]")
-            ){
-                attr = attr.substring (1, attr.length - 1);
+            let o;
+
+            o = ButtonsState.checkBracets (attr, "[", "]");
+            if (o.contained) {
+                attr = o.stripped;
 
                 out.value_readonly = true;
             }
 
             out.value = (attr === "on") ? "on" : "off";
 
-            if (attr && attr.length > 0 &&
-                (attr.charAt (0)                === "{") &&
-                (attr.charAt (attr.length - 1)  === "}")
-            ){
-                attr = attr.substring (1, attr.length - 1);
+            o = ButtonsState.checkBracets (attr, "{", "}");
+            if (o.contained) {
+                attr = o.stripped;
 
                 out.value_ext = attr;
             }
