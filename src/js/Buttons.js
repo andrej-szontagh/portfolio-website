@@ -1,5 +1,6 @@
 
 /* global ButtonsEvents */
+/* global ButtonsStates */
 
 class Buttons extends ButtonsEvents {
 

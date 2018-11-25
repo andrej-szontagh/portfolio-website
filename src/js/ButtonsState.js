@@ -3,6 +3,18 @@
 /* global Utils */
 /* global ButtonsBase */
 
+const ButtonsStates = Object.freeze ({
+
+    ON:     Symbol ("on"),
+    OFF:    Symbol ("off")
+});
+
+const ButtonsStatesStrings = Object.freeze ({
+
+    [ButtonsStates.ON]:     "on",
+    [ButtonsStates.OFF]:    "off"
+});
+
 class ButtonsState extends ButtonsBase {
 
     constructor () {
@@ -30,48 +42,36 @@ class ButtonsState extends ButtonsBase {
                     });
                 }
             }
-        };
+        }
 
         // safety check
         if (el.classList.contains ("button-hover") ||
             el.classList.contains ("button-press")) {
 
-            let button_state = ButtonsState.parseButtonStateRef (el);
+            let s   = ButtonsState.parseButtonState (el);
+            let str = ButtonsStatesStrings [state];
 
-            if (!button_state.value_readonly) {
+            if (!s.value_readonly) {
 
                 // console.log ("Button : " + el.id + " State > " + state);
 
-                el.setAttribute ("button-state", state);
+                el.setAttribute ("button-state", str);
             }
 
             // clear buttons selected by "button-clear" attribute
             propagateFn ("button-clear", function (target) {
 
-                if (t.getButtonState (target) === "on") {
-                    t.setButtonState (target, "off", false);
+                if (t.getButtonState (target) ===   ButtonsStates.ON) {
+                    t.setButtonState (target,       ButtonsStates.OFF, false);
                 }
             });
 
-            if (state === "on") {
+            propagateFn ("button-set-" + str, function (target) {
 
-                propagateFn ("button-set-on", function (target) {
+                t.setButtonState (target, state, false);
+            });
 
-                    t.setButtonState (target, state, false);
-                });
-
-                t.showButtonTargets (el, "button-target", true);
-            }
-
-            if (state === "off") {
-
-                propagateFn ("button-set-off", function (target) {
-
-                    t.setButtonState (target, state, false);
-                });
-
-                t.showButtonTargets (el, "button-target", false);
-            }
+            t.showButtonTargets (el, "button-target", state);
         }
     }
 
@@ -79,33 +79,18 @@ class ButtonsState extends ButtonsBase {
 
         let t = this;
 
-        let button_state = ButtonsState.parseButtonStateRef (el);
+        let s = ButtonsState.parseButtonState (el);
 
-        // console.log ("getButtonState > parseButtonStateRef > " + attr);
-
-        if (button_state.value === "on" ||
-            button_state.value === "off") {
-
-            return button_state.value;
-
-        } else
-        if (button_state.value_ext !== null) {
+        if (s.value_ext !== null) {
 
             let target = body.querySelector (attr);
-
             if (target) {
 
-                let button_state_ext = ButtonsState.parseButtonStateRef (target);
-
-                if (button_state_ext.value === "on" ||
-                    button_state_ext.value === "off") {
-
-                    return button_state_ext.value;
-                }
+                s = ButtonsState.parseButtonState (target);
             }
         }
 
-        return "off";
+        return s.value;
     }
 
     static checkBracets (str, brace_left, brace_right) {
@@ -128,7 +113,7 @@ class ButtonsState extends ButtonsBase {
         return { contained: false, modified: str };
     }
 
-    static parseButtonStateRef (el) {
+    static parseButtonState (el) {
 
         let out = {
 
@@ -145,7 +130,7 @@ class ButtonsState extends ButtonsBase {
             o = ButtonsState.checkBracets (attr, "[", "]");
 
             out.value_readonly  = o.contained;
-            out.value           = (o.modified === "on") ? "on" : "off";
+            out.value           = (o.modified === "on") ? ButtonsStates.ON : ButtonsStates.OFF;
 
             o = ButtonsState.checkBracets (o.modified, "{", "}");
 
@@ -155,7 +140,7 @@ class ButtonsState extends ButtonsBase {
         return out;
     }
 
-    showButtonTargets (el, attr, on) {
+    showButtonTargets (el, attr, state) {
 
         // placeholder ..
     }

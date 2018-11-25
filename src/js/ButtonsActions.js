@@ -1,6 +1,7 @@
 
 /* global body */
 /* global ButtonsState */
+/* global ButtonsStates */
 
 class ButtonsActions extends ButtonsState {
 
@@ -9,9 +10,9 @@ class ButtonsActions extends ButtonsState {
         super ();
     }
 
-    showButtonTargets (el, attr, on) {
+    showButtonTargets (el, attr, state) {
 
-        super.showButtonTargets (el, attr, on);
+        super.showButtonTargets (el, attr, state);
 
         let t = this;
 
@@ -50,7 +51,7 @@ class ButtonsActions extends ButtonsState {
             if (targets != null) {
                 targets.forEach (function (target, i) {
 
-                    if (on) {
+                    if (state === ButtonsStates.ON) {
 
                         target.classList.remove ("hidden");
                         target.classList.add    ("visible");

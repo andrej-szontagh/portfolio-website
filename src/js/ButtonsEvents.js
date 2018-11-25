@@ -1,6 +1,7 @@
 
-/* global ButtonsActions */
 /* global body */
+/* global ButtonsActions */
+/* global ButtonsStates */
 
 class ButtonsEvents extends ButtonsActions {
 
@@ -23,16 +24,16 @@ class ButtonsEvents extends ButtonsActions {
 
                 clearTimeout (e.target.___button_listener_mouseenter_timeout);
 
-                t.setButtonState (e.target, "off");
+                t.setButtonState (e.target, ButtonsStates.OFF);
             };
 
             b.___button_listener_mouseenter = function (e) {
 
                 clearTimeout (e.target.___button_listener_mouseenter_timeout);
 
-                function enter() {
+                function enter () {
 
-                    t.setButtonState            (e.target, "on");
+                    t.setButtonState            (e.target, ButtonsStates.ON);
                     t.transformButtonByScrolls  (e.target);
                 }
 
@@ -60,8 +61,8 @@ class ButtonsEvents extends ButtonsActions {
 
                 let state = t.getButtonState (el);
 
-                if (state === "on")     { t.setButtonState (el, "off"); } else
-                if (state === "off")    { t.setButtonState (el, "on");  }
+                if (state === ButtonsStates.ON)     { t.setButtonState (el, ButtonsStates.OFF); } else
+                if (state === ButtonsStates.OFF)    { t.setButtonState (el, ButtonsStates.ON);  }
             };
 
             b.___button_listener_mouseup = function (e) {
