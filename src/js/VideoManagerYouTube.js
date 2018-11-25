@@ -2,8 +2,8 @@
 /* global manager_video */
 /* global VideoManager */
 /* global VideoEvent */
-/* gloval VideoEvents */
-/* gloval VideoEventsStrings */
+/* global VideoEvents */
+/* global VideoEventsStrings */
 /* global YT */
 
 class VideoManagerYouTube extends VideoManager {

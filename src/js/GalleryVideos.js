@@ -1,8 +1,8 @@
 
 /* global Utils */
 /* global VideoEvent */
-/* gloval VideoEvents */
-/* gloval VideoEventsStrings */
+/* global VideoEvents */
+/* global VideoEventsStrings */
 /* global YT */
 /* global manager_video */
 
