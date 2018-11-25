@@ -10,14 +10,27 @@ class ButtonsState extends ButtonsBase {
         super ();
     }
 
-    setButtonState (el, state, propagate) {
+    setButtonState (el, state, propagate = true) {
 
         let t = this;
 
-        // unfortunately out JS minifier doesn't support ES6 so
-        // this is the way to handle optional parameters ..
+        function propagateFn (attr, fn) {
 
-        propagate = (typeof propagate === "undefined") ? true : propagate;
+            if (propagate === true) {
+
+                let a = el.getAttribute (attr);
+                if (a !== null) {
+
+                    Utils.forEachNodeList (body.querySelectorAll (a), function (target, i) {
+
+                        if (target !== el) {
+
+                            fn (target);
+                        }
+                    });
+                }
+            }
+        };
 
         // safety check
         if (el.classList.contains ("button-hover") ||
@@ -27,79 +40,35 @@ class ButtonsState extends ButtonsBase {
 
             if (!button_state.value_readonly) {
 
-                /*
-                if (propagate === true) {
-
-                    if (button_state.value_ext) {
-
-                        Utils.forEachNodeList (body.querySelectorAll (button_state.value_ext), function (target, i) {
-
-                            t.setButtonState (target, state, false);
-                        });
-                    }
-                }
-                */
-
                 // console.log ("Button : " + el.id + " State > " + state);
 
                 el.setAttribute ("button-state", state);
             }
 
             // clear buttons selected by "button-clear" attribute
+            propagateFn ("button-clear", function (target) {
 
-            if (propagate === true) {
-
-                let button_clear = el.getAttribute ("button-clear");
-                if (button_clear !== null) {
-
-                    Utils.forEachNodeList (body.querySelectorAll (button_clear), function (target, i) {
-
-                        if (target !== el) {
-
-                            if (t.getButtonState (target) === "on") {
-                                t.setButtonState (target, "off", false);
-                            }
-                        }
-                    });
+                if (t.getButtonState (target) === "on") {
+                    t.setButtonState (target, "off", false);
                 }
-            }
+            });
 
             if (state === "on") {
 
-                if (propagate === true) {
+                propagateFn ("button-set-on", function (target) {
 
-                    let button_set = el.getAttribute ("button-set-on");
-                    if (button_set !== null) {
-
-                        Utils.forEachNodeList (body.querySelectorAll (button_set), function (target, i) {
-
-                            if (target !== el) {
-
-                                t.setButtonState (g, state, false);
-                            }
-                        });
-                    }
-                }
+                    t.setButtonState (target, state, false);
+                });
 
                 t.showButtonTargets (el, "button-target", true);
             }
 
             if (state === "off") {
 
-                if (propagate === true) {
+                propagateFn ("button-set-off", function (target) {
 
-                    let button_set = el.getAttribute ("button-set-off");
-                    if (button_set !== null) {
-
-                        Utils.forEachNodeList (body.querySelectorAll (button_set), function (target, i) {
-
-                            if (target !== el) {
-
-                                t.setButtonState (target, state, false);
-                            }
-                        });
-                    }
-                }
+                    t.setButtonState (target, state, false);
+                });
 
                 t.showButtonTargets (el, "button-target", false);
             }

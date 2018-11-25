@@ -40,9 +40,9 @@ class GalleryImages {
 
         t.loadstack = [];
 
-        Utils.forEachObject (json.images, function (img, data, i) {
+        Utils.forEachObject (json.images, function (id, data, i) {
 
-            t.loadstack.push ({ id: img, data: data });
+            t.loadstack.push ({ id, data });
         });
 
         function addNextImage (index) {
