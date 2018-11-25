@@ -28,7 +28,7 @@ class ButtonsActions extends ButtonsState {
 
             // check if referencing itself ..
             sel = ButtonsActions._cutoffToken (sel, "<this>");
-            if (sel.length != len) {
+            if (sel.length !== len) {
 
                 targets.push (el);
             }

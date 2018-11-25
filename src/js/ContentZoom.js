@@ -102,18 +102,7 @@ class ContentZoom extends ContentCrop {
         t.content_transform.style.transform         = "translateX(" + tx + "px) translateY(" + ty + "px) scale(" + s + ") rotate(" + rot + "deg)";
         t.content_transform.style.transformOrigin   = cx + "px " + cy + "px ";
 
-        t.content_transform.classList.add ("focusing");
-
-        t.content_transform.addEventListener ("animationend", function listener (e) {
-
-            if (e.target        === t.content_transform &&
-                e.animationName === "focusing") {
-
-                e.target.removeEventListener (e.type, listener);
-
-                t.content_transform.classList.remove ("focusing");
-            }
-        });
+        ContentZoom._playAnimation (t.content_transform, "focusing", "focusing", null);
 
         // // scaled box ..
         // let n_top     = s*(r.top    - cy) + cy;
@@ -183,21 +172,13 @@ class ContentZoom extends ContentCrop {
 
             body.classList.add ("is-zooming-in");
 
-            t.content_transform.addEventListener ("transitionend", function listener (e) {
+            ContentZoom._onTransitionEnd (t.content_transform, "transform", function (e) {
 
-                // console.log ("e.propertyName >> " + e.propertyName);
+                body.classList.remove ("is-zooming-in");
 
-                if (e.target        === t.content_transform &&
-                    e.propertyName  === "transform") {
+                t.zooming = false;
 
-                    e.target.removeEventListener (e.type, listener);
-
-                    body.classList.remove ("is-zooming-in");
-
-                    t.zooming = false;
-
-                    callback (e);
-                }
+                callback (e);
             });
 
         } else {
@@ -213,18 +194,7 @@ class ContentZoom extends ContentCrop {
         if (t.zoomed_at) {
             t.content_transform.style.transform = null;
 
-            t.content_transform.classList.add ("focusing");
-
-            t.content_transform.addEventListener ("animationend", function listener (e) {
-
-                if (e.target        === t.content_transform &&
-                    e.animationName === "focusing") {
-
-                    e.target.removeEventListener (e.type, listener);
-
-                    t.content_transform.classList.remove ("focusing");
-                }
-            });
+            ContentZoom._playAnimation (t.content_transform, "focusing", "focusing", null);
         }
 
         t.zooming = true;
@@ -233,42 +203,34 @@ class ContentZoom extends ContentCrop {
 
             body.classList.add ("is-zooming-out");
 
-            t.content_transform.addEventListener ("transitionend", function listener (e) {
+            ContentZoom._onTransitionEnd (t.content_transform, "transform", function (e) {
 
-                // console.log ("e.propertyName >> " + e.propertyName);
+                // // avoid cropping out while animating, wait for transition to end
+                // document.getElementById ("ui").addEventListener ("transitionend", function listener (e) {
+                //
+                //     if (e.propertyName === "filter") {
+                //
+                //         e.target.removeEventListener (e.type, listener);
+                //
+                //         t.zooming = false;
+                //
+                //         t.cropOut ();
+                //
+                //         if (callback) {
+                //             callback (e);
+                //         }
+                //     }
+                // });
 
-                if (e.target        === t.content_transform &&
-                    e.propertyName  === "transform") {
+                t.zooming   = false;
+                t.zoomed_at = null;
 
-                    e.target.removeEventListener (e.type, listener);
+                body.classList.remove ("is-zooming-out");
+                body.classList.remove ("has-zoom");
 
-                    // // avoid cropping out while animating, wait for transition to end
-                    // document.getElementById ("ui").addEventListener ("transitionend", function listener (e) {
-                    //
-                    //     if (e.propertyName === "filter") {
-                    //
-                    //         e.target.removeEventListener (e.type, listener);
-                    //
-                    //         t.zooming = false;
-                    //
-                    //         t.cropOut ();
-                    //
-                    //         if (callback) {
-                    //             callback (e);
-                    //         }
-                    //     }
-                    // });
+                t.cropOut ();
 
-                    t.zooming   = false;
-                    t.zoomed_at = null;
-
-                    body.classList.remove ("is-zooming-out");
-                    body.classList.remove ("has-zoom");
-
-                    t.cropOut ();
-
-                    callback (e);
-                }
+                callback (e);
             });
 
         } else {
@@ -280,5 +242,55 @@ class ContentZoom extends ContentCrop {
 
             t.cropOut ();
         }
+    }
+
+    static _playAnimation (target, target_class, name, callback) {
+
+        target.classList.add (target_class);
+
+        ContentZoom._onAnimationEnd (target, name, function (e) {
+
+            target.classList.remove (target_class);
+
+            if (callback) {
+                callback (e);
+            }
+        });
+    }
+
+    static _onAnimationEnd (target, name, callback) {
+
+        target.addEventListener ("animationend", function listener (e) {
+
+            // console.log ("e.propertyName >> " + e.propertyName);
+
+            if (e.target        === target &&
+                e.animationName === name) {
+
+                e.target.removeEventListener (e.type, listener);
+
+                if (callback) {
+                    callback (e);
+                }
+            }
+        });
+    }
+
+    static _onTransitionEnd (target, prop, callback) {
+
+        target.addEventListener ("transitionend", function listener (e) {
+
+            // console.log ("e.propertyName >> " + e.propertyName);
+
+            if (e.target        === target &&
+                e.propertyName  === prop) {
+
+                e.target.removeEventListener (e.type, listener);
+
+                if (callback) {
+                    callback (e);
+                }
+            }
+        });
     }
 }
