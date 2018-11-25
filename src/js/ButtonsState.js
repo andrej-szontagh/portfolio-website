@@ -3,6 +3,9 @@
 /* global Utils */
 /* global ButtonsBase */
 
+// TODO: use Enumify !
+// https://github.com/rauschma/enumify
+
 const ButtonsStates = Object.freeze ({
 
     ON:     Symbol ("on"),

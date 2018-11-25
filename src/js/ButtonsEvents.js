@@ -69,7 +69,8 @@ class ButtonsEvents extends ButtonsActions {
 
                 let time = new Date ().getTime ();
 
-                if (e.target.___button_listener_mouseup_time) {
+                if (e.target.___callback_open &&
+                    e.target.___button_listener_mouseup_time) {
 
                     let delta = time - e.target.___button_listener_mouseup_time;
 
@@ -77,9 +78,7 @@ class ButtonsEvents extends ButtonsActions {
 
                         // e.preventDefault ();
 
-                        if (e.target.___callback_open) {
-                            e.target.___callback_open (e);
-                        }
+                        e.target.___callback_open (e);
                     }
                 }
 

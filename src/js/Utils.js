@@ -9,6 +9,42 @@ class Utils {
         var t = this;
     }
 
+    static isInViewport (element, edge) {
+
+        let h = window.innerHeight;                 // viewport height
+        let r = element.getBoundingClientRect ();   // elements bounding rect in viewport coordinates
+
+        // console.log ("top    : " + r.top);
+        // console.log ("bottom : " + r.bottom);
+        // console.log ("height : " + h);
+
+        // add extra margin to the viewport to ensure that
+        // big enough portion of the object is already visible
+
+        let e = h * Math.min (edge, 0.4); // relative viewport factor, max 40%
+
+        let top     = r.top     - e;
+        let bottom  = r.bottom  - e;
+
+        h = h - e*2;
+
+        return (!((top > h) || (bottom < 0)));
+    }
+
+    static forEachArray (array, fn) {
+
+        if (array) {
+
+            for (let i = 0; i < array.length; i ++) {
+
+                if (fn (array [i], i)) {
+
+                    return;
+                }
+            }
+        }
+    }
+
     static forEachNodeList (nodelist, fn) {
 
         if (nodelist) {

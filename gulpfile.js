@@ -68,8 +68,7 @@ function js_concat (cb) {
     return pumpify  ([
         gulp.src    ([
 
-            "src/js/lib/Utils.js",
-            "src/js/lib/Animations.js",
+            "src/js/Utils.js",
 
             "src/js/VideoEvent.js",
             "src/js/VideoManager.js",

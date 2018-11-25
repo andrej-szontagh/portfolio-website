@@ -2,6 +2,8 @@
 /* global manager_video */
 /* global VideoManager */
 /* global VideoEvent */
+/* gloval VideoEvents */
+/* gloval VideoEventsStrings */
 /* global YT */
 
 class VideoManagerYouTube extends VideoManager {
@@ -42,94 +44,100 @@ class VideoManagerYouTube extends VideoManager {
 
         t.sealed = true;
 
+        // after the API code downloads ..
         if (t.initialized && t.apiready) {
-
-            // after the API code downloads ..
-            function initPlayer () {
-
-                if (t.queue.length > 0) {
-
-                    let desc = t.queue.shift ();
-
-                    let player = new YT.Player (desc.container.id,
-
-                        {
-                            width:      640,    // 720p half-res
-                            height:     360,    // 720p half-res
-                            videoId:    desc.id,
-
-                            playerVars: {
-
-                                // https://developers.google.com/youtube/player_parameters
-
-                                "enablejsapi"       : 1,
-                                "loop"              : 1,
-                                "start"             : desc.start,
-                                "playlist"          : desc.id,  // this is necessary for "loop" to work
-                                "autoplay"          : 1,
-                                "controls"          : 0,
-                                "showinfo"          : 0,
-                                "fs"                : 0,
-                                "rel"               : 0,
-                                "disablekb"         : 1,
-                                "modestbranding"    : 1,
-                                "playsinline"       : 1,
-                                // "origin"            : "https://andrej-szontagh.github.io/",
-                                // "origin"            : "https://www.andrejszontagh.com/",
-                            },
-
-                            events: {
-
-                                onReady (e) {
-
-                                    // console.log ("onReady >> " + e.target.getIframe ().id);
-
-                                    // https://developers.google.com/youtube/iframe_api_reference#Operations
-
-                                    let player = e.target;
-
-                                    // makes sure it's muted
-                                    player.mute ();
-
-                                    // starts low quality to make the buffering fast ..
-                                    player.setPlaybackQuality ("small");  // small, medium, large, hd720 ..
-
-                                    // this is required for the player loading queue to advance ..
-                                    // we will pause video when playing actually starts
-                                    player.playVideo ();
-
-                                    desc.callback (player);
-                                },
-
-                                onStateChange   (e) { VideoManagerYouTube.printState (e); },
-                                onError         (e) { VideoManagerYouTube.printError (e); },
-                            }
-                        }
-                    );
-
-                    t.players.push (player);
-
-                    player.addEventListener ("onStateChange", function listener (e) {
-
-                        if (e.data === YT.PlayerState.PLAYING) {
-
-                            t.dispatchEvent (new VideoEvent (VideoEvent.ON_PLAYING, e.target));
-                        }
-                    });
-
-                    t.addEventListener (VideoEvent.ON_PLAYING, function listener (e) {
-
-                        e.target.removeEventListener (e.type, listener);
-
-                        // timeout helps to greatly reduce CPU spikes
-                        setTimeout (initPlayer, 1000);
-                    });
-                }
-            }
 
             // initialize players one by one to avoid excessive CPU peaks making the
             // website sluggish and lagging at the beginning
-            initPlayer ();
+            t._initPlayersRecursive ();
+        }
+    }
+
+    _initPlayersRecursive () {
+
+        let t = this;
+
+        if (t.queue.length > 0) {
+
+            let desc = t.queue.shift ();
+
+            let player = new YT.Player (desc.container.id,
+
+                {
+                    width:      640,    // 720p half-res
+                    height:     360,    // 720p half-res
+                    videoId:    desc.id,
+
+                    playerVars: {
+
+                        // https://developers.google.com/youtube/player_parameters
+
+                        "enablejsapi"       : 1,
+                        "loop"              : 1,
+                        "start"             : desc.start,
+                        "playlist"          : desc.id,  // this is necessary for "loop" to work
+                        "autoplay"          : 1,
+                        "controls"          : 0,
+                        "showinfo"          : 0,
+                        "fs"                : 0,
+                        "rel"               : 0,
+                        "disablekb"         : 1,
+                        "modestbranding"    : 1,
+                        "playsinline"       : 1,
+                        // "origin"            : "https://andrej-szontagh.github.io/",
+                        // "origin"            : "https://www.andrejszontagh.com/",
+                    },
+
+                    events: {
+
+                        onReady (e) {
+
+                            // console.log ("onReady >> " + e.target.getIframe ().id);
+
+                            // https://developers.google.com/youtube/iframe_api_reference#Operations
+
+                            let player = e.target;
+
+                            // makes sure it's muted
+                            player.mute ();
+
+                            // starts low quality to make the buffering fast ..
+                            player.setPlaybackQuality ("small");  // small, medium, large, hd720 ..
+
+                            // this is required for the player loading queue to advance ..
+                            // we will pause video when playing actually starts
+                            player.playVideo ();
+
+                            desc.callback (player);
+                        },
+
+                        onStateChange   (e) { VideoManagerYouTube.printState (e); },
+                        onError         (e) { VideoManagerYouTube.printError (e); },
+                    }
+                }
+            );
+
+            t.players.push (player);
+
+            player.addEventListener ("onStateChange", function listener (e) {
+
+                if (e.data === YT.PlayerState.PLAYING) {
+
+                    t.dispatchEvent (new VideoEvent (VideoEventsStrings [VideoEvents.PLAYING], e.target));
+                }
+            });
+
+            t.addEventListener (VideoEventsStrings [VideoEvents.PLAYING], function listener (e) {
+
+                e.target.removeEventListener (e.type, listener);
+
+                // timeout helps to greatly reduce CPU spikes
+                setTimeout (function () {
+
+                    t._initPlayersRecursive ();
+
+                }, 1000);
+            });
         }
     }
 

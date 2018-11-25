@@ -1,7 +1,8 @@
 
 /* global Utils */
-/* global Animations */
 /* global VideoEvent */
+/* gloval VideoEvents */
+/* gloval VideoEventsStrings */
 /* global YT */
 /* global manager_video */
 
@@ -49,7 +50,7 @@ class GalleryVideos {
             // playback is in the hands of loading progress code until cover is hidden ..
             if (dom.cover.classList.contains ("hidden")) {
 
-                if (Animations.isInViewport (dom.wrapper, 0)) {
+                if (Utils.isInViewport (dom.wrapper, 0)) {
 
                     // this helps with loading spikes when user scrolls wildly ..
                     t.playPlayer (dom, player);
@@ -76,7 +77,7 @@ class GalleryVideos {
         window.addEventListener ("resize", onScroll);
         window.addEventListener ("scroll", onScroll);
 
-        manager_video.addEventListener (VideoEvent.ON_PLAYING, function listener (e) {
+        manager_video.addEventListener (VideoEventsStrings [VideoEvents.PLAYING], function listener (e) {
 
             e.target.removeEventListener (e.type, listener);
 
@@ -97,7 +98,7 @@ class GalleryVideos {
         var t = this;
 
         // make sure is in viewport !
-        if (Animations.isInViewport (dom.wrapper, 0)) {
+        if (Utils.isInViewport (dom.wrapper, 0)) {
 
             player.playVideo ();
             dom.wrapper.style.visibility = "visible";

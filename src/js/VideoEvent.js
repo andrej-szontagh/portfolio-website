@@ -1,4 +1,17 @@
 
+// TODO: use Enumify !
+// https://github.com/rauschma/enumify
+
+const VideoEvents = Object.freeze ({
+
+    PLAYING: Symbol ("onplaying")
+});
+
+const VideoEventsStrings = Object.freeze ({
+
+    [VideoEvents.PLAYING]: "onplaying"
+});
+
 class VideoEvent extends Event {
 
     constructor (name, player) {
@@ -8,10 +21,5 @@ class VideoEvent extends Event {
         var t = this;
 
         t.player = player;
-    }
-
-    static get ON_PLAYING () {
-
-        return "onplaying";
     }
 }
