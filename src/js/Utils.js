@@ -31,6 +31,8 @@ class Utils {
         return (!((top > h) || (bottom < 0)));
     }
 
+    // Lodash: 4kb popular lib with all these utility functions
+    // https://github.com/lodash/lodash
     static forEachArray (array, fn) {
 
         if (array) {
@@ -45,6 +47,8 @@ class Utils {
         }
     }
 
+    // Lodash: 4kb popular lib with all these utility functions
+    // https://github.com/lodash/lodash
     static forEachNodeList (nodelist, fn) {
 
         if (nodelist) {
@@ -59,6 +63,8 @@ class Utils {
         }
     }
 
+    // Lodash: 4kb popular lib with all these utility functions
+    // https://github.com/lodash/lodash
     static forEachObject (dict, fn) {
 
         let i = 0;

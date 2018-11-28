@@ -109,14 +109,28 @@ gulp.task ("js-minify", function (cb) {
 
     return gulp.src ("dist/scripts.js")
         .pipe (gulp_terser ({
-            module:             true,
-            toplevel:           true,
-            keep_classnames:    false,
-            keep_fnames:        false,
+
+            // https://github.com/terser-js/terser
+
+            module:                 true,
+            toplevel:               true,
+            keep_classnames:        false,
+            keep_fnames:            false,
+
+            compress: {
+
+                toplevel:           false,
+                unused:             false,
+                // dead_code:          false,
+                // top_retain:         ["onYouTubeIframeAPIReady"],
+            },
+
             mangle: {
+
                 toplevel:           true,
                 keep_classnames:    false,
                 keep_fnames:        false,
+                reserved:           ["onYouTubeIframeAPIReady"],
             }
         }))
         .pipe (gulp.dest ("dist"));
