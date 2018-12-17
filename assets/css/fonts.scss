@@ -1,0 +1,151 @@
+
+// https://google-webfonts-helper.herokuapp.com/fonts/montserrat?subsets=latin
+
+// WARNING:
+
+// we removed "local" from the src property to avoid loading local fonts.
+// we also named fonts differently and used normal weight to make sure we 100% get the right font and weight.
+// as it turns out some of the Montserrat fonts that somehow got into my system have a different weights as
+// they suppose to have which might possibly happen to anybody if these font's are somewhere on the web
+// forcing custom font loading will hurt loading times but still better than screwed up design
+
+@font-face {
+
+    font-family:    "Montserrat500";
+    font-style:     normal;
+    font-weight:    500;
+    src:            url("/data/fonts/montserrat-v12-latin-500.eot");
+    src:            url("/data/fonts/montserrat-v12-latin-500.eot?#iefix")           format("embedded-opentype"),
+                    url("/data/fonts/montserrat-v12-latin-500.woff2")                format("woff2"),
+                    url("/data/fonts/montserrat-v12-latin-500.woff")                 format("woff"),
+                    url("/data/fonts/montserrat-v12-latin-500.ttf")                  format("truetype"),
+                    url("/data/fonts/montserrat-v12-latin-500.svg#Montserrat")       format("svg");
+}
+
+@font-face {
+
+    font-family:    "Montserrat700";
+    font-style:     normal;
+    font-weight:    700;
+    src:            url("/data/fonts/montserrat-v12-latin-700.eot");
+    src:            url("/data/fonts/montserrat-v12-latin-700.eot?#iefix")           format("embedded-opentype"),
+                    url("/data/fonts/montserrat-v12-latin-700.woff2")                format("woff2"),
+                    url("/data/fonts/montserrat-v12-latin-700.woff")                 format("woff"),
+                    url("/data/fonts/montserrat-v12-latin-700.ttf")                  format("truetype"),
+                    url("/data/fonts/montserrat-v12-latin-700.svg#Montserrat")       format("svg");
+}
+
+@font-face {
+
+    font-family:    "Montserrat900";
+    font-style:     normal;
+    font-weight:    900;
+    src:            url("/data/fonts/montserrat-v12-latin-900.eot");
+    src:            url("/data/fonts/montserrat-v12-latin-900.eot?#iefix")           format("embedded-opentype"),
+                    url("/data/fonts/montserrat-v12-latin-900.woff2")                format("woff2"),
+                    url("/data/fonts/montserrat-v12-latin-900.woff")                 format("woff"),
+                    url("/data/fonts/montserrat-v12-latin-900.ttf")                  format("truetype"),
+                    url("/data/fonts/montserrat-v12-latin-900.svg#Montserrat")       format("svg");
+}
+
+// Universal 3 level system ..
+
+@mixin font-normal () {
+
+    font-family:    "Montserrat500", sans-serif;
+    font-weight:    500;
+}
+
+@mixin font-bold () {
+
+    font-family:    "Montserrat700", sans-serif;
+    font-weight:    700;
+}
+
+@mixin font-boldest () {
+
+    font-family:    "Montserrat900", sans-serif;
+    font-weight:    900;
+}
+
+// global SASS variables
+
+// we need statically defined font sizes in pixels since we do a lot of
+// static calculations like media query breakpoints that is dependent on the font size ..
+
+$font-size-down:        16px;
+$font-size-up:          20px;
+
+$font-size-factor-down: 1.00;
+$font-size-factor-up:   1.25;
+
+:root {
+
+    --gratio:                   1.61803398875;
+
+    --font-size-6:              calc(var(--font-size-5)         * var(--gratio));    // 17.94427rem;
+    --font-size-5:              calc(var(--font-size-4)         * var(--gratio));    // 11.09016rem;
+    --font-size-4:              calc(var(--font-size-3)         * var(--gratio));    // 6.854101rem;
+    --font-size-3:              calc(var(--font-size-2)         * var(--gratio));    // 4.236067rem;
+    --font-size-2:              calc(var(--font-size-1)         * var(--gratio));    // 2.618033rem;
+    --font-size-1:              calc(var(--font-size-normal)    * var(--gratio));    // 1.618033rem;
+    --font-size-normal:         1.0rem;
+
+    // font visual size factor / multiplier
+    --font-size-visual:         0.7;
+
+    @include font-normal;
+
+    // unfortunately there is no reliable way how to know how big is the pixel or any of the CSS units which are pretty
+    // much just relative values that depends on outside factors that are not under our control
+
+    // centimeter measurements are useless ..
+    // https://stackoverflow.com/questions/20298221/using-cm-in-responsive-media-queries
+
+    // .. so I decided to go with the flow and do what everybody else does and use this simple approach
+    // crossed fingers and hope it will work just fine
+
+    // we specify the smallest text size here as a base to ensure readability on all devices ..
+
+    // https://adamwathan.me/dont-use-em-for-media-queries/
+    // "The short answer is set an explicit root font size in pixels."
+
+    // text breakpoint .. this is a major breakpoint for the whole UI
+    @include media ("width<text")   { font-size: $font-size-down;   }
+    @include media ("width>=text")  { font-size: $font-size-up;     }
+
+    text-transform:             none;
+    text-decoration:            none;
+    text-rendering:             geometricPrecision;
+
+    line-height:                var(--gratio);
+
+    letter-spacing:             normal;
+
+    -moz-osx-font-smoothing:    grayscale;
+     -webkit-font-smoothing:    subpixel-antialiased;
+             font-smoothing:    antialiased;
+
+    // Fix for IE10 and IE11 Montserrat font display issues.
+    -ms-font-feature-settings:  normal;
+
+    -webkit-text-size-adjust:   100%;
+        -ms-text-size-adjust:   100%;
+            text-size-adjust:   100%;
+}
+
+h1 { @include font-boldest; font-size: var(--font-size-3);      line-height: 1.0;           text-transform: uppercase; }
+h2 { @include font-bold;    font-size: var(--font-size-2);      line-height: 1.0;           text-transform: none;      }
+h3 { @include font-boldest; font-size: var(--font-size-1);      line-height: 1.0;           text-transform: uppercase; }
+p  { @include font-normal;  font-size: var(--font-size-normal); line-height: var(--gratio); text-transform: none;      }
+b  { @include font-bold;    font-size: var(--font-size-normal); line-height: var(--gratio); text-transform: none;      }
+
+h1 { margin-top:  0.60em; margin-bottom: 0.6em; }
+h2 { margin-top: -0.15em; margin-bottom: 0.6em; }
+h3 { margin-top:  0.80em; margin-bottom: 0.8em; }
+
+// basic link overrides
+a:link      { color: inherit; text-decoration: none; }
+a:visited   { color: inherit; text-decoration: none; }
+a:hover     { color: inherit; text-decoration: none; }
+a:active    { color: inherit; text-decoration: none; }

@@ -1,0 +1,20 @@
+
+@mixin links ($style) {
+    @include media ("width<text-contact") {
+        @include media_box_if           (550px,     750px)  { @if $style == "vertical"   { @content; }} @include media_box_else {
+            @include media_box_if       (750px,     400px)  { @if $style == "stacked"    { @content; }}
+        }
+    }
+    @include media ("width>=text-contact", "width<text") {
+        @include media_box_if           (550px,     750px)  { @if $style == "vertical"   { @content; }} @include media_box_else {
+            @include media_box_if       (1300px,    300px)  { @if $style == "horizontal" { @content; }} @include media_box_else {
+                @include media_box_if   (1000px,    400px)  { @if $style == "stacked"    { @content; }}
+            }
+        }
+    }
+    @include media ("width>=text") {
+        @include media_box_if           (680px,     940px)  { @if $style == "vertical"   { @content; }} @include media_box_else {
+            @include media_box_if       (1600px,    380px)  { @if $style == "horizontal" { @content; }}
+        }
+    }
+}

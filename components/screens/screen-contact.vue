@@ -1,0 +1,197 @@
+
+<template>
+    <screen-base
+        :id         ="'screen-contact'"
+        :visible    ="visible"
+        :infocus    ="visible"
+    >
+        <no-ssr>
+            <div>{{ evalEmail () }}</div>
+        </no-ssr>
+    </screen-base>
+</template>
+
+<script>
+
+    import ScreenBase from '~/components/screens/screen-base.vue';
+
+    export default {
+
+        components: {
+
+            ScreenBase
+        },
+
+        props: {
+
+            visible : { default: false, type: Boolean },
+        },
+        
+        methods: {
+
+            evalEmail: function () {
+
+                let email_name_1 = "andrej";
+                let email_name_2 = "szontagh";
+                let email_serv_1 = "gmail";
+                let email_serv_2 = "com";
+
+                // \u200B is zero width space that will allow desired work breaking behaviour
+                return  email_name_1 + "\u200B.\u200B" + email_name_2 + " \u200B@ \u200B" +
+                        email_serv_1 + "\u200B.\u200B" + email_serv_2;
+            },
+        }
+    }
+    
+</script>
+
+<style lang="scss" scoped>
+
+    // email banner
+    .screen {
+
+        display:            flex;
+        align-items:        center;
+
+        & > div {
+
+            // this makes height values obvious
+            line-height:    1;  // no units !!
+
+            // this is my experimental way for handling different variations of the
+            // element that switches by available space and priority using media queries
+            // the downside is pretty complex media queries depends on how many variations we have
+
+            // dimensions of the banner for different font sizes (with some margin) ..
+            // fs - font size
+            // bw - block width (this breaks the lines)
+            // hh - half height (depends on the number of lines)
+
+            // WARNING: the pixel 'w' & 'h' dimensions are for 16px base font size !
+
+            $dim-2-big:     (w: 1800px, h: 500px,   fs: var(--font-size-5), bw: 8.9em, hh: 1.0em);
+            $dim-2-small:   (w: 1200px, h: 350px,   fs: var(--font-size-4), bw: 8.9em, hh: 1.0em);
+            $dim-2-tiny:    (w: 800px,  h: 200px,   fs: var(--font-size-3), bw: 8.9em, hh: 1.0em);
+            $dim-3-big:     (w: 1400px, h: 800px,   fs: var(--font-size-5), bw: 6.5em, hh: 1.5em);
+            $dim-3-small:   (w: 900px,  h: 450px,   fs: var(--font-size-4), bw: 6.5em, hh: 1.5em);
+            $dim-3-tiny:    (w: 580px,  h: 300px,   fs: var(--font-size-3), bw: 6.5em, hh: 1.5em);
+            $dim-4-big:     (w: 1200px, h: 900px,   fs: var(--font-size-5), bw: 5.2em, hh: 2.0em);
+            $dim-4-small:   (w: 700px,  h: 600px,   fs: var(--font-size-4), bw: 5.2em, hh: 2.0em);
+            $dim-4-tiny:    (w: 500px,  h: 400px,   fs: var(--font-size-3), bw: 5.2em, hh: 2.0em);
+
+            @mixin landscape ($map) {
+
+                font-size:  map-get($map, fs);
+                width:      map-get($map, bw);
+            }
+
+            @mixin portrait ($map) {
+
+                @include landscape ($map);
+
+                left:       calc(50% - #{map-get($map, hh)});
+            }
+
+            @mixin media-landscape ($f, $map) {
+
+                @include media (
+
+                    "width>="   + map-get($map, w) * $f,
+                    "height>="  + map-get($map, h) * $f) {
+
+                    @include landscape ($map);
+                }
+            }
+
+            @mixin media-portrait ($f, $map) {
+
+                // 'w' & 'h' are flipped !
+                @include media (
+
+                    "width>="   + map-get($map, h) * $f,
+                    "height>="  + map-get($map, w) * $f) {
+
+                    @include portrait ($map);
+                }
+            }
+
+            @mixin media-uni ($type, $f, $map) {
+
+                @if $type == 'portrait' {
+                    @include media-portrait     ($f, $map); } @else {
+                    @include media-landscape    ($f, $map);
+                }
+            }
+
+            @mixin media-all ($type) {
+
+                // latest have the highest priority
+
+                @include media ("width<text") {
+                    @include media-uni ($type, $font-size-factor-down, $dim-2-tiny);
+                    // @include media-uni ($type, $font-size-factor-down, $dim-3-tiny);
+                    @include media-uni ($type, $font-size-factor-down, $dim-4-tiny);
+                    @include media-uni ($type, $font-size-factor-down, $dim-2-small);
+                    // @include media-uni ($type, $font-size-factor-down, $dim-3-small);
+                    @include media-uni ($type, $font-size-factor-down, $dim-4-small);
+                    @include media-uni ($type, $font-size-factor-down, $dim-2-big);
+                    // @include media-uni ($type, $font-size-factor-down, $dim-3-big);
+                    @include media-uni ($type, $font-size-factor-down, $dim-4-big);
+                }
+
+                @include media ("width>=text") {
+                    @include media-uni ($type, $font-size-factor-up, $dim-2-tiny);
+                    // @include media-uni ($type, $font-size-factor-up, $dim-3-tiny);
+                    @include media-uni ($type, $font-size-factor-up, $dim-4-tiny);
+                    @include media-uni ($type, $font-size-factor-up, $dim-2-small);
+                    // @include media-uni ($type, $font-size-factor-up, $dim-3-small);
+                    @include media-uni ($type, $font-size-factor-up, $dim-4-small);
+                    @include media-uni ($type, $font-size-factor-up, $dim-2-big);
+                    // @include media-uni ($type, $font-size-factor-up, $dim-3-big);
+                    @include media-uni ($type, $font-size-factor-up, $dim-4-big);
+                }
+            }
+
+            @include media ("portrait") {
+
+                // anchored at ..
+                position:           absolute;
+                left:               $ui-margin-left;
+                top:                $ui-margin-top + 8.3rem;
+                transform:          translateY(-100%) rotate(90deg);
+                transform-origin:   bottom left;
+
+                // adjust the offset when contact buttons shrinks
+                @include media ("width<text-contact") {
+
+                    top: $ui-margin-top - 0.5rem;
+                }
+
+                @include portrait ($dim-4-tiny);    // default
+                @include media-all ("portrait");
+            }
+
+            @include media ("landscape") {
+
+                // anchored at ..
+                position:           absolute;
+                left:               $ui-margin-left;
+
+                @include landscape ($dim-4-tiny);   // default
+                @include media-all ("landscape");
+            }
+
+            @include font-boldest;
+
+            text-transform:     lowercase;
+            word-break:         break-word;
+
+            // color:              var(--color-bg);
+            z-index:            1;
+
+            pointer-events:     none;
+            user-select:        auto;
+        }
+    }
+
+</style>
