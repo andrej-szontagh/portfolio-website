@@ -11,7 +11,7 @@ I have decided to contribute to the open-source development community and also s
 
 ## Installation
 
-Install NodeJS (`https://nodejs.org`)
+Install Node.js (`https://nodejs.org`)
 
 This suppose to install all the dependencies automatically into '/node_modules'.
 Execute in the project folder after cloning the repository and installing NodeJS.
