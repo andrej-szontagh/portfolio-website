@@ -6,7 +6,7 @@
     "license": "ISC",
     "main": "gulpfile.js",
     "dependencies": {
-        "terser": "^3.10.12"
+        "terser": "^4.8.1"
     },
     "devDependencies": {
         "browser-sync": "^2.26.3",
